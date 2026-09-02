@@ -308,10 +308,55 @@ body {
 .app {
     flex: 1;
     display: grid;
-    grid-template-columns: 240px 1fr 340px;
+    grid-template-columns: var(--library-w, 240px) 6px 1fr 6px var(--inspector-w, 340px);
     min-height: 0;
     overflow: hidden;
 }
+
+/* ---------------- Resizers (VS Code-style drag handles) ---------------- */
+.resizer {
+    position: relative;
+    background: transparent;
+    z-index: 25;
+}
+.resizer::after {
+    content: "";
+    position: absolute;
+    background: transparent;
+    transition: background 0.1s ease-out 0.05s;
+}
+.resizer:hover::after,
+.resizer.active::after {
+    background: var(--brand);
+}
+.resizer-v {
+    cursor: col-resize;
+}
+.resizer-v::after {
+    top: 0;
+    bottom: 0;
+    left: 2px;
+    width: 2px;
+}
+.resizer-h {
+    cursor: row-resize;
+    height: 6px;
+    flex-shrink: 0;
+}
+.resizer-h::after {
+    left: 0;
+    right: 0;
+    top: 2px;
+    height: 2px;
+}
+body.resizing-col,
+body.resizing-col * { cursor: col-resize !important; }
+body.resizing-row,
+body.resizing-row * { cursor: row-resize !important; }
+body.resizing-col,
+body.resizing-row { user-select: none; }
+body.resizing-col .canvas,
+body.resizing-row .canvas { transition: none !important; }
 
 /* ---------------- Library ---------------- */
 .library {
@@ -847,7 +892,7 @@ body {
 .explain {
     border-top: 1px solid var(--gray-200);
     background: var(--white);
-    height: 160px;
+    height: var(--explain-h, 160px);
     display: flex;
     flex-direction: column;
     flex-shrink: 0;

@@ -3777,6 +3777,96 @@ canvasWrapEl.addEventListener('mousedown', (e) => {
 canvasWrapEl.addEventListener('auxclick', (e) => { if (e.button === 1) e.preventDefault(); });
 
 // ============================================================
+// RESIZABLE PANELS (library / inspector / bottom explain panel)
+// ============================================================
+function initResizers() {
+    const root = document.documentElement;
+    const explainEl = document.querySelector('.explain');
+    const libraryEl = document.querySelector('.library');
+    const inspectorEl = document.querySelector('.inspector');
+    const LIB_MIN = 180, LIB_MAX = 480;
+    const INSP_MIN = 260, INSP_MAX = 560;
+    const EXP_MIN = 90, EXP_MAX = 520;
+
+    function saveLayout() {
+        try {
+            localStorage.setItem('jsl-layout', JSON.stringify({
+                libraryW: parseInt(root.style.getPropertyValue('--library-w')) || undefined,
+                inspectorW: parseInt(root.style.getPropertyValue('--inspector-w')) || undefined,
+                explainH: parseInt(root.style.getPropertyValue('--explain-h')) || undefined,
+            }));
+        } catch (_) {}
+    }
+
+    function loadLayout() {
+        try {
+            const raw = localStorage.getItem('jsl-layout');
+            if (!raw) return;
+            const l = JSON.parse(raw);
+            if (l.libraryW) root.style.setProperty('--library-w', l.libraryW + 'px');
+            if (l.inspectorW) root.style.setProperty('--inspector-w', l.inspectorW + 'px');
+            if (l.explainH) root.style.setProperty('--explain-h', l.explainH + 'px');
+        } catch (_) {}
+    }
+
+    function dragCol(resizerEl, varName, targetEl, min, max, fromRight) {
+        if (!resizerEl) return;
+        resizerEl.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            resizerEl.classList.add('active');
+            document.body.classList.add('resizing-col');
+            const startX = e.clientX;
+            const startW = targetEl.getBoundingClientRect().width;
+            const onMove = (ev) => {
+                let delta = ev.clientX - startX;
+                if (fromRight) delta = -delta;
+                const next = Math.min(max, Math.max(min, Math.round(startW + delta)));
+                root.style.setProperty(varName, next + 'px');
+            };
+            const onUp = () => {
+                resizerEl.classList.remove('active');
+                document.body.classList.remove('resizing-col');
+                document.removeEventListener('mousemove', onMove);
+                document.removeEventListener('mouseup', onUp);
+                saveLayout();
+            };
+            document.addEventListener('mousemove', onMove);
+            document.addEventListener('mouseup', onUp);
+        });
+    }
+
+    function dragRow(resizerEl) {
+        if (!resizerEl) return;
+        resizerEl.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            resizerEl.classList.add('active');
+            document.body.classList.add('resizing-row');
+            const startY = e.clientY;
+            const startH = explainEl.getBoundingClientRect().height;
+            const onMove = (ev) => {
+                const delta = startY - ev.clientY;
+                const next = Math.min(EXP_MAX, Math.max(EXP_MIN, Math.round(startH + delta)));
+                root.style.setProperty('--explain-h', next + 'px');
+            };
+            const onUp = () => {
+                resizerEl.classList.remove('active');
+                document.body.classList.remove('resizing-row');
+                document.removeEventListener('mousemove', onMove);
+                document.removeEventListener('mouseup', onUp);
+                saveLayout();
+            };
+            document.addEventListener('mousemove', onMove);
+            document.addEventListener('mouseup', onUp);
+        });
+    }
+
+    loadLayout();
+    dragCol($('resizer-library'), '--library-w', libraryEl, LIB_MIN, LIB_MAX, false);
+    dragCol($('resizer-inspector'), '--inspector-w', inspectorEl, INSP_MIN, INSP_MAX, true);
+    dragRow($('resizer-explain'));
+}
+
+// ============================================================
 // BOOT
 // ============================================================
 function preloadStarter() {
@@ -3798,6 +3888,7 @@ function preloadStarter() {
     } catch (_) {}
     loadTheme();
     loadApiConfig();
+    initResizers();
     renderUIStrings();
     renderLibrary();
     renderLevelsMenu();
