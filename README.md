@@ -2,13 +2,13 @@
 
 A static web app that teaches **vanilla JavaScript data flow** with a drag-and-drop block canvas — the JavaScript sibling of Angular Flow Lab. Learners build a flow (array → filter → template string → DOM, or API → fetch → await → json → render), press **Run Flow**, and watch the *real value* change at every step.
 
-No build step, no dependencies. Open `index.html`.
+No build step, no dependencies. Open `index.html`. (Fonts — Inter, Figtree, IBM Plex Mono, Noto Sans Georgian — load from Google Fonts and fall back to system fonts offline.)
 
 ## Project structure
 
 - `index.html` — application shell.
-- `styles.css` — the Angular Flow Lab stylesheet plus the additions for the new panels, API form and console.
-- `app.js` — block definitions, the simulation engine, code generator, canvas editor, levels and examples.
+- `styles.css` — design tokens for the dark (default) and light themes, then every component: pill buttons, 12px cards, layered shadows, aurora glows behind the canvas.
+- `app.js` — block definitions, scenario datasets, the simulation engine, code generator, canvas editor, levels, reference schemas and real-world tasks.
 - `imgs/` — logo.
 
 ## What is different from the Angular lab
@@ -27,6 +27,15 @@ Connect `fetch()` straight into `.filter()` and the trace says:
 > `.filter()` needs an array, but received a Promise (did you forget await?)
 
 Wire `res.json()` before `fetch()`, feed a localStorage string into `.map()` — each mistake produces the sentence a real learner needs. Breaking a flow on purpose is a lesson, not a dead end.
+
+**4. Real-world tasks — students design the flow themselves.**
+Press **Tasks** for 10 briefs taken from products people use every day: a weather widget, a shopping cart, live movie search, a news feed that survives an outage, a to-do list that remembers, a sign-in form, a sales dashboard, an unread-messages badge, an edit-profile page and a restaurant menu. The canvas starts empty; a floating checklist ticks each requirement as the student wires blocks (requirements are rules such as "data can travel from fetch() to await" or "one output feeds two branches", so extra debugging blocks never fail a task). Two levels of help: **Show blocks** lists the blocks needed (click one to add it), **Show solution** reveals the reference flow as readable chains. Completed tasks are remembered in `localStorage`.
+
+Every scenario brings its own sample data — cities and temperatures, cart items, orders, messages, dishes in ₾ — so the Data tab, the generated code (`orders.filter(o => o.paid)`) and the browser preview all speak the scenario's language.
+
+## Branching flows
+
+A port can hold any number of connections: one output can feed several blocks (fan-out) and one input can collect several outputs (fan-in, e.g. URL + API key → `fetch()`). Only loops are refused. When a flow runs, every block keeps its own output and each branch reads from its own parent, so the `.reduce()` branch and the template branch of the same array each get the right value. The Code tab does the same: each branch reads its parent's variable. Linear levels still check for one straight chain.
 
 ## API block with your own key
 
@@ -66,21 +75,22 @@ Fundamentals 1–9: render an array, filter, map, sort, reduce, first fetch, asy
 
 Advanced 10–22: click handlers, POST from a form, PUT, delegated DELETE, spread + localStorage, restore from storage, debounced search, event delegation, `.then()` chain, event-loop ordering, ES modules, AbortController, and a fan-in/fan-out graph level where create and delete share one request pipeline.
 
-**Check Answer** validates the chain and names the first block that is out of place. **Reference Schemas** holds 20 pre-built flows you can load read-only and then edit.
+**Check Answer** validates the chain and names the first block that is out of place. **Reference Schemas** holds 30 pre-built flows you can load read-only and then edit: 10 real-world scenarios (each with a *Practise as a task* link) and 20 concept schemas.
 
 ## Canvas controls
 
 | Action | How |
 | --- | --- |
 | Add a block | Drag from the library (or search it first) |
-| Connect | Drag from a right port to a left port |
-| Remove a connection | Click the line |
+| Connect | Drag from a right port to a left port — again from the same port to branch |
+| Remove a connection | Hover the line and click its ×, or click the line |
 | Block details | Click (inspector) · double-click (flip) · ⟩ (dive in) |
-| Pan / zoom | Space+drag or middle-drag · Ctrl+wheel · Ctrl +/−/0 |
-| Tidy, snap, undo | Buttons bottom-right · Ctrl+Z / Ctrl+Shift+Z |
+| Pan / zoom | Drag the empty background, Space+drag or middle-drag · Ctrl+wheel · Ctrl +/−/0 |
+| Tidy, snap, undo, fit | Floating toolbar bottom-right (it stays put while you pan) · Ctrl+Z / Ctrl+Shift+Z |
+| More room for the canvas | « in the library header folds it into an icon rail (hover an icon for its name, drag it as usual) · hover the inspector's or the bottom panel's edge and click the double arrow to hide it, click it again to bring it back · drag any edge to resize. Remembered per browser. |
 | Delete a block | Select and press Delete |
 
-Also: light/dark theme, English/Georgian UI, block search, and level progress — all remembered in `localStorage`.
+Also: dark (default) and light theme, English/Georgian UI, block search, and task progress — remembered in `localStorage`.
 
 ## Teaching ideas
 
@@ -90,6 +100,7 @@ Also: light/dark theme, English/Georgian UI, block search, and level progress �
 - Open the Data tab and walk the pill values: `5 items → 3 items → 1 number`. That single line is what `.filter()` and `.reduce()` mean.
 - Level 19 (event loop): read the console order out loud before running it, then run it.
 - Level 22: ask why two different user actions can share one `fetch()` — the graph makes the answer visible.
+- Tasks: let pairs read a brief aloud and sketch the flow on paper first, then build it. Compare designs — the checklist accepts any flow that meets the requirements, so two different correct answers are a discussion, not a mistake.
 
 ## Notes
 

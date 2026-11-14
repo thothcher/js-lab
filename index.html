@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="JS Flow Lab is an interactive demo that teaches vanilla JavaScript data flow — fetch, async/await, array methods and DOM rendering — with drag-and-drop blocks, a live data trace and generated code."
+      content="JS Flow Lab is an interactive demo that teaches vanilla JavaScript data flow — fetch, async/await, array methods and DOM rendering — with drag-and-drop blocks, a live data trace, generated code and real-world tasks."
     />
     <meta
       name="keywords"
@@ -13,6 +13,7 @@
     />
     <meta name="author" content="IT Step Academy" />
     <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0b0c0e" />
     <meta property="og:title" content="JS Flow Lab · IT Step Academy" />
     <meta
       property="og:description"
@@ -36,6 +37,12 @@
       content="https://your-domain.example/imgs/logo.png"
     />
     <title>JS Flow Lab · IT Step Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&family=Noto+Sans+Georgian:wght@400;500;600&display=swap"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -57,7 +64,7 @@
         <span id="level-title">Render an array</span>
       </div>
       <div class="navbar-actions">
-        <button class="btn btn-ghost theme-toggle" id="theme-toggle" title="Toggle theme">
+        <button class="btn btn-icon btn-ghost theme-toggle" id="theme-toggle" title="Toggle theme">
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="4" />
             <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
@@ -80,7 +87,14 @@
             <rect x="3" y="14" width="7" height="7" rx="1" />
             <rect x="14" y="14" width="7" height="7" rx="1" />
           </svg>
-          <span id="lbl-examples">Examples</span>
+          <span class="btn-label" id="lbl-examples">Examples</span>
+        </button>
+        <button class="btn btn-accent" id="tasks-toggle" title="Real-world tasks">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 11l3 3L22 4" />
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+          </svg>
+          <span class="btn-label" id="lbl-tasks">Tasks</span>
         </button>
         <div class="lang-switcher" id="lang-switcher">
           <button class="lang-btn active" data-lang="en">EN</button>
@@ -88,12 +102,7 @@
         </div>
         <div class="levels-dropdown" id="levels-dropdown">
           <button class="btn btn-secondary" id="levels-toggle">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="8" y1="6" x2="21" y2="6" />
               <line x1="8" y1="12" x2="21" y2="12" />
               <line x1="8" y1="18" x2="21" y2="18" />
@@ -101,32 +110,23 @@
               <line x1="3" y1="12" x2="3.01" y2="12" />
               <line x1="3" y1="18" x2="3.01" y2="18" />
             </svg>
-            <span id="lbl-levels">Levels</span>
+            <span class="btn-label" id="lbl-levels">Levels</span>
           </button>
           <div class="levels-dropdown-menu" id="levels-menu"></div>
         </div>
+        <div class="nav-sep"></div>
         <button class="btn btn-ghost" id="reset-btn">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="1 4 1 10 7 10" />
             <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
           </svg>
-          <span id="lbl-reset">Reset</span>
+          <span class="btn-label" id="lbl-reset">Reset</span>
         </button>
         <button class="btn btn-secondary" id="check-btn">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="20 6 9 17 4 12" />
           </svg>
-          <span id="lbl-check">Check Answer</span>
+          <span class="btn-label" id="lbl-check">Check Answer</span>
         </button>
         <button class="btn btn-primary" id="run-btn">
           <svg viewBox="0 0 24 24" fill="currentColor">
@@ -140,8 +140,14 @@
     <main class="app">
       <aside class="library">
         <div class="library-rotator" id="library-rotator">
-          <div class="library-header" id="lbl-library">Block Library</div>
+          <div class="library-top">
+            <div class="library-header" id="lbl-library">Block Library</div>
+            <button class="panel-collapse" id="library-collapse" title="Collapse to icons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="11 17 6 12 11 7" /><polyline points="18 17 13 12 18 7" /></svg>
+            </button>
+          </div>
           <div class="library-search-wrap">
+            <svg class="library-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7" /><line x1="20" y1="20" x2="16.65" y2="16.65" /></svg>
             <input class="library-search" id="library-search" placeholder="Search blocks..." />
           </div>
           <div class="library-list" id="library-list"></div>
@@ -154,12 +160,7 @@
         <div class="breadcrumb" id="breadcrumb"></div>
         <div class="mission-banner">
           <div class="mission-icon">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="10" />
               <circle cx="12" cy="12" r="6" />
               <circle cx="12" cy="12" r="2" />
@@ -172,36 +173,59 @@
           <div class="mission-hint" id="mission-hint">Show hint</div>
         </div>
 
-        <div class="canvas-wrap" id="canvas-wrap">
-          <div class="canvas-stage" id="canvas-stage">
-            <div class="canvas" id="canvas">
-              <svg
-                id="connections-svg"
-                xmlns="http://www.w3.org/2000/svg"
-              ></svg>
-              <div id="nodes-container"></div>
+        <!-- The canvas area does not scroll: only .canvas-wrap does.
+             Everything else in here (toolbar, task panel, banner) stays put while you pan. -->
+        <div class="canvas-area" id="canvas-area">
+          <div class="canvas-wrap" id="canvas-wrap">
+            <div class="canvas-stage" id="canvas-stage">
+              <div class="canvas" id="canvas">
+                <svg id="connections-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+                <div id="nodes-container"></div>
+              </div>
             </div>
           </div>
-          <div class="zoom-controls">
+
+          <div class="task-panel" id="task-panel"></div>
+
+          <div class="readonly-banner" id="example-readonly-banner">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" /></svg>
+            <span id="lbl-readonly">Read-only preview — load it to edit.</span>
+            <button id="example-load-editable">Load to canvas (edit)</button>
+          </div>
+
+          <div class="zoom-controls" role="toolbar">
             <button class="zoom-btn" id="snap-toggle" title="Snap to grid">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
             </button>
             <button class="zoom-btn" id="autolayout-btn" title="Tidy layout">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="6" height="6" rx="1"/><rect x="15" y="14" width="6" height="6" rx="1"/><path d="M9 7h4a2 2 0 0 1 2 2v8"/></svg>
             </button>
+            <span class="zoom-sep"></span>
             <button class="zoom-btn" id="undo-btn" title="Undo (Ctrl+Z)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 7 3 13 9 13"/><path d="M3 13a9 9 0 1 0 3-7"/></svg>
             </button>
             <button class="zoom-btn" id="redo-btn" title="Redo (Ctrl+Shift+Z)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="21 7 21 13 15 13"/><path d="M21 13a9 9 0 1 1-3-7"/></svg>
             </button>
-            <button class="zoom-btn" id="zoom-out" title="Zoom out">−</button>
-            <button class="zoom-btn zoom-level" id="zoom-level">100%</button>
-            <button class="zoom-btn" id="zoom-in" title="Zoom in">+</button>
+            <span class="zoom-sep"></span>
+            <button class="zoom-btn" id="zoom-out" title="Zoom out (Ctrl −)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <button class="zoom-btn zoom-level" id="zoom-level" title="Reset zoom (Ctrl 0)">100%</button>
+            <button class="zoom-btn" id="zoom-in" title="Zoom in (Ctrl +)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <button class="zoom-btn" id="fit-btn" title="Fit everything in view">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+            </button>
           </div>
         </div>
 
-        <div class="resizer resizer-h" id="resizer-explain" title="Drag to resize"></div>
+        <div class="resizer resizer-h" id="resizer-explain" title="Drag to resize">
+          <button class="edge-toggle" id="explain-collapse" title="Hide panel">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 13 12 18 17 13" /><polyline points="7 6 12 11 17 6" /></svg>
+          </button>
+        </div>
 
         <div class="explain">
           <div class="explain-header">
@@ -219,17 +243,16 @@
         </div>
       </section>
 
-      <div class="resizer resizer-v" id="resizer-inspector" title="Drag to resize"></div>
+      <div class="resizer resizer-v" id="resizer-inspector" title="Drag to resize">
+        <button class="edge-toggle" id="inspector-collapse" title="Hide inspector">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7" /><polyline points="6 17 11 12 6 7" /></svg>
+        </button>
+      </div>
 
       <aside class="inspector">
         <div class="inspector-header">
           <div class="inspector-header-icon">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="11" cy="11" r="8" />
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
             </svg>
@@ -271,12 +294,25 @@
             </svg>
           </button>
         </div>
-        <div class="example-readonly-banner" id="example-readonly-banner">
-          <span id="lbl-readonly">Read-only preview — load it to edit.</span>
-          <span class="spacer"></span>
-          <button id="example-load-editable">Load to canvas (edit)</button>
-        </div>
         <div class="examples-body" id="examples-body"></div>
+      </div>
+    </div>
+
+    <div class="examples-overlay" id="tasks-overlay">
+      <div class="examples-window tasks-window">
+        <div class="examples-header tasks-header">
+          <div class="tasks-header-text">
+            <div class="examples-title" id="lbl-tasks-title">Real-world tasks</div>
+            <div class="examples-subtitle" id="lbl-tasks-sub"></div>
+          </div>
+          <button class="examples-close" id="tasks-close">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+        <div class="examples-body tasks-body" id="tasks-body"></div>
       </div>
     </div>
 
@@ -290,14 +326,7 @@
             https://shop.local/products
           </div>
           <button class="preview-close" id="preview-close">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="18" y1="6" x2="6" y2="18" />
               <line x1="6" y1="6" x2="18" y2="18" />
             </svg>

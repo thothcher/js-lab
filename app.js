@@ -111,8 +111,8 @@ const T = {
     // Toast titles
     emptyFlow:    ['Empty flow', 'ცარიელი ნაკადი'],
     emptyFlowMsg: ['Drag blocks from the left and connect them first.', 'ჯერ გადმოიტანე და შეაერთე ბლოკები.'],
-    notLinear:    ['Flow is not linear', 'ნაკადი არ არის წრფივი'],
-    notLinearMsg: ['Each block should have at most one input and one output connection.', 'თითო ბლოკს უნდა ჰქონდეს მაქსიმუმ ერთი შემავალი და ერთი გამოსასვლელი კავშირი.'],
+    notLinear:    ['This level wants one chain', 'ამ დონეს ერთი ჯაჭვი სჭირდება'],
+    notLinearMsg: ['Branches are allowed on the canvas, but this level expects one straight chain. Remove the extra connection — or open Tasks for branching, real-world flows.', 'კანვასზე განშტოება დასაშვებია, მაგრამ ეს დონე ერთ სწორ ჯაჭვს ელის. წაშალე ზედმეტი კავშირი — ან გახსენი დავალებები განშტოებიანი, რეალური ნაკადებისთვის.'],
     unconnected:  ['Unconnected blocks', 'შეუერთებელი ბლოკები'],
     unconnectedMsg:['All blocks on the canvas must be linked into a single chain.', 'ყველა ბლოკი უნდა იყოს დაკავშირებული ერთ ჯაჭვში.'],
     correct:      ['Correct flow', 'სწორი ნაკადია'],
@@ -194,6 +194,13 @@ const T = {
     snapOn:       ['Snap to grid: on', 'ბადეზე მიწებება: ჩართულია'],
     snapOff:      ['Snap to grid: off', 'ბადეზე მიწებება: გამორთულია'],
     tidied:       ['Layout tidied', 'განლაგება დალაგდა'],
+    collapseLibrary: ['Collapse to icons', 'ხატულებად შეკეცვა'],
+    expandLibrary:   ['Expand the library', 'ბიბლიოთეკის გაშლა'],
+    hideInspector:   ['Hide the inspector', 'ინსპექტორის დამალვა'],
+    showInspector:   ['Show the inspector', 'ინსპექტორის ჩვენება'],
+    hidePanel:       ['Hide the bottom panel', 'ქვედა პანელის დამალვა'],
+    showPanel:       ['Show the bottom panel', 'ქვედა პანელის ჩვენება'],
+    dragResize:      ['Drag to resize', 'გადაათრიე ზომის შესაცვლელად'],
     searchBlocks: ['Search blocks...', 'ბლოკის ძებნა...'],
     noBlocks:     ['No blocks match that search.', 'ასეთი ბლოკი ვერ მოიძებნა.'],
 
@@ -238,7 +245,48 @@ const T = {
     fetchFailed:  ['Fetch failed — falling back to mock data', 'მოთხოვნა ვერ შესრულდა — გამოყენებულია ნიმუში'],
     consoleTitle: ['Console', 'კონსოლი'],
     consoleHint:  ['console.log output from this flow', 'ამ ნაკადის console.log გამონატანი'],
-    consoleEmpty: ['Nothing logged yet.', 'ჯერ არაფერია დალოგილი.']
+    consoleEmpty: ['Nothing logged yet.', 'ჯერ არაფერია დალოგილი.'],
+
+    // Connections
+    wouldLoop:    ['That would make a loop', 'ეს ციკლს შექმნიდა'],
+    wouldLoopMsg: ['Data has to flow forward — a block cannot feed one of the blocks it came from.', 'მონაცემი წინ უნდა მიედინებოდეს — ბლოკი ვერ მისცემს მონაცემს იმ ბლოკს, საიდანაც თვითონ მიიღო.'],
+    removeLink:   ['Remove connection', 'კავშირის წაშლა'],
+
+    // Reference schemas gallery
+    realWorld:    ['Real-world scenarios', 'რეალური სცენარები'],
+    realWorldSub: ['The flows behind products people use every day. Open one read-only, or practise it as a task.', 'ნაკადები ყოველდღიური პროდუქტების უკან. გახსენი სანახავად ან ივარჯიშე დავალების სახით.'],
+    conceptSchemas:['Concept schemas', 'კონცეფციების სქემები'],
+    practiceTask: ['Practise as a task', 'ივარჯიშე დავალებად'],
+
+    // Real-world tasks
+    tasks:        ['Tasks', 'დავალებები'],
+    tasksTitle:   ['Real-world tasks', 'რეალური დავალებები'],
+    tasksSub:     ['Each task is a job from a real product. Read the brief, then design the flow yourself — the checklist ticks as you build.', 'თითო დავალება რეალური პროდუქტის ამოცანაა. წაიკითხე აღწერა და ნაკადი თავად დააპროექტე — სია აწყობისას თავისით მოინიშნება.'],
+    startTask:    ['Start task', 'დაწყება'],
+    viewSolution: ['Solution', 'ამოხსნა'],
+    completedBadge:['Done', 'შესრულდა'],
+    blocksCount:  ['blocks', 'ბლოკი'],
+    reqsCount:    ['checks', 'შემოწმება'],
+    taskEyebrow:  ['Real-world task', 'რეალური დავალება'],
+    taskLabel:    ['Task', 'დავალება'],
+    taskProgress: ['requirements met', 'მოთხოვნა შესრულებულია'],
+    taskBlocks:   ['Blocks you will need — click to add', 'საჭირო ბლოკები — დააწკაპუნე დასამატებლად'],
+    addToCanvas:  ['Add to canvas', 'კანვასზე დამატება'],
+    showBlocks:   ['Show blocks', 'ბლოკები'],
+    hideBlocks:   ['Hide blocks', 'ბლოკების დამალვა'],
+    showSolution: ['Show solution', 'ამოხსნა'],
+    hideSolution: ['Hide solution', 'ამოხსნის დამალვა'],
+    solutionLabel:['Reference solution', 'ნიმუშის ამოხსნა'],
+    checkTask:    ['Check task', 'შემოწმება'],
+    exitTask:     ['Leave task (keeps your canvas)', 'დავალებიდან გასვლა (კანვასი რჩება)'],
+    collapse:     ['Collapse', 'ჩაკეცვა'],
+    expand:       ['Expand', 'გაშლა'],
+    taskDone:     ['Task complete!', 'დავალება შესრულებულია!'],
+    taskDoneMsg:  ['Every requirement is met. Press Run Flow to watch the real data move through your design.', 'ყველა მოთხოვნა შესრულებულია. დააჭირე გაშვებას და ნახე, როგორ მოძრაობს ნამდვილი მონაცემი შენს სქემაში.'],
+    taskMissing:  ['Not finished yet', 'ჯერ არ დასრულებულა'],
+    taskNext:     ['Next requirement:', 'შემდეგი მოთხოვნა:'],
+    taskTip:      ['Read the brief, then build the flow. One port can hold several connections — drag from it again to branch.', 'წაიკითხე აღწერა და ააწყე ნაკადი. ერთ პორტს რამდენიმე კავშირი შეიძლება ჰქონდეს — განშტოებისთვის ისევ გამოათრიე იმავე პორტიდან.'],
+    reqConnected: ['Every block is connected to the flow', 'ყველა ბლოკი ნაკადთანაა დაკავშირებული']
 };
 
 let lang = 'en';
@@ -1048,6 +1096,9 @@ const NODE_DEFS = {
 
 // ============================================================
 // SAMPLE DATA — the values that actually travel through a flow
+// Lesson levels use the shop products. Every real-world scenario
+// brings its own dataset (weather, cart, orders...) so the Data tab,
+// the generated code and the browser preview speak its language.
 // ============================================================
 const PRODUCTS = [
     { id: 1, name: 'Laptop',     price: 1200, inStock: true  },
@@ -1061,6 +1112,213 @@ const SEARCH_RESULTS = [
     { id: 12, name: 'Laptop Stand',  price: 45,   inStock: true }
 ];
 const NEW_PRODUCT = { id: 6, name: 'Webcam', price: 60, inStock: true };
+
+// Each dataset names its three working fields:
+//   f.name — the label, f.num — the number, f.ok — the yes/no flag.
+// pre/suf format the number ($1200, 24°C, 4 min read).
+const DATASETS = {
+    products: {
+        var: 'products', it: 'p', file: './data.js', storageKey: 'products', click: '#refresh',
+        f: { name: 'name', num: 'price', ok: 'inStock' }, pre: '$', suf: '', okVar: 'available',
+        title: ['Our Products', 'ჩვენი პროდუქცია'],
+        okLabel: ['In stock', 'მარაგშია'], noLabel: ['Out of stock', 'არ არის მარაგში'],
+        page: 'https://shop.local/products', api: 'https://shop.local/api/products',
+        query: 'lap', rows: PRODUCTS, stored: PRODUCTS.slice(0, 3), search: SEARCH_RESULTS,
+        add: NEW_PRODUCT, edit: { price: 999 }
+    },
+    weather: {
+        var: 'cities', it: 'c', file: './weather.js', storageKey: 'cities', click: '#refresh',
+        f: { name: 'city', num: 'temp', ok: 'sunny' }, pre: '', suf: '°C', okVar: 'sunnyCities',
+        title: ['Weather right now', 'ამინდი ახლა'],
+        okLabel: ['Sunny', 'მზიანი'], noLabel: ['Cloudy', 'მოღრუბლული'],
+        page: 'https://news.local/', api: 'https://api.weather.local/v1/current',
+        query: 'bat',
+        rows: [
+            { id: 1, city: 'Tbilisi', temp: 24, sunny: true },
+            { id: 2, city: 'Batumi',  temp: 21, sunny: false },
+            { id: 3, city: 'Kutaisi', temp: 26, sunny: true },
+            { id: 4, city: 'Gudauri', temp: 9,  sunny: false },
+            { id: 5, city: 'Telavi',  temp: 23, sunny: true }
+        ],
+        add: { id: 6, city: 'Mestia', temp: 12, sunny: true },
+        banner: ['Weather widget rendered from the API response.', 'ამინდის ვიჯეტი დახატულია API-ს პასუხიდან.']
+    },
+    cart: {
+        var: 'cart', it: 'item', file: './cart.js', storageKey: 'cart', click: '#checkout',
+        f: { name: 'title', num: 'price', ok: 'inStock' }, pre: '$', suf: '', okVar: 'shippable',
+        title: ['Your cart', 'შენი კალათა'],
+        okLabel: ['Ready to ship', 'გასაგზავნად მზადაა'], noLabel: ['Back-ordered', 'მოლოდინშია'],
+        page: 'https://shop.local/cart', api: 'https://shop.local/api/cart',
+        query: 'sock',
+        rows: [
+            { id: 1, title: 'Running shoes',   price: 120, inStock: true },
+            { id: 2, title: 'Sports socks',    price: 12,  inStock: true },
+            { id: 3, title: 'Water bottle',    price: 18,  inStock: false },
+            { id: 4, title: 'Fitness tracker', price: 95,  inStock: true }
+        ],
+        add: { id: 5, title: 'Yoga mat', price: 35, inStock: true },
+        banner: ['Cart restored from localStorage — the order total is in the console.', 'კალათა აღდგა localStorage-იდან — შეკვეთის ჯამი კონსოლშია.']
+    },
+    movies: {
+        var: 'movies', it: 'm', file: './movies.js', storageKey: 'movies', click: '#search-btn',
+        f: { name: 'title', num: 'rating', ok: 'streaming' }, pre: '★ ', suf: '', okVar: 'watchable',
+        title: ['Search results', 'ძიების შედეგები'],
+        okLabel: ['Streaming now', 'ახლა ხელმისაწვდომია'], noLabel: ['Coming soon', 'მალე'],
+        page: 'https://movies.local/search?q=star', api: 'https://api.movies.local/search',
+        query: 'star',
+        rows: [
+            { id: 1, title: 'Star Wars',      rating: 8.6, streaming: true },
+            { id: 2, title: 'Interstellar',   rating: 8.7, streaming: true },
+            { id: 3, title: 'A Star Is Born', rating: 7.6, streaming: false },
+            { id: 4, title: 'The Matrix',     rating: 8.7, streaming: true },
+            { id: 5, title: 'Stardust',       rating: 7.6, streaming: true }
+        ],
+        search: [
+            { id: 1, title: 'Star Wars',      rating: 8.6, streaming: true },
+            { id: 3, title: 'A Star Is Born', rating: 7.6, streaming: false },
+            { id: 5, title: 'Stardust',       rating: 7.6, streaming: true }
+        ],
+        add: { id: 6, title: 'Star Trek', rating: 7.9, streaming: true },
+        banner: ['Results for "star" — only the last keystroke reached the server.', 'შედეგები „star“-ისთვის — სერვერამდე მხოლოდ ბოლო აკრეფამ მიაღწია.']
+    },
+    news: {
+        var: 'articles', it: 'a', file: './news.js', storageKey: 'articles', click: '#reload',
+        f: { name: 'headline', num: 'readMin', ok: 'published' }, pre: '', suf: ' min read', okVar: 'visible',
+        title: ['Latest news', 'ბოლო სიახლეები'],
+        okLabel: ['Published', 'გამოქვეყნებული'], noLabel: ['Draft', 'მონახაზი'],
+        page: 'https://news.local/', api: 'https://api.news.local/articles',
+        query: 'metro',
+        rows: [
+            { id: 1, headline: 'Metro adds night trains on weekends',  readMin: 4,  published: true },
+            { id: 2, headline: 'New bike lanes open downtown',          readMin: 6,  published: true },
+            { id: 3, headline: 'DRAFT: the city budget explained',      readMin: 12, published: false },
+            { id: 4, headline: 'Local startups raise record funding',   readMin: 3,  published: true },
+            { id: 5, headline: 'Grape harvest starts early this year',  readMin: 5,  published: true }
+        ],
+        add: { id: 6, headline: 'Old town square reopens', readMin: 2, published: true },
+        banner: ['Drafts hidden — only published articles reached the page.', 'მონახაზები დამალულია — გვერდზე მხოლოდ გამოქვეყნებული სტატიები მოხვდა.']
+    },
+    todos: {
+        var: 'todos', it: 't', file: './todos.js', storageKey: 'todos', click: '#add-task',
+        f: { name: 'text', num: 'minutes', ok: 'done' }, pre: '', suf: ' min', okVar: 'finished',
+        title: ['My to-do list', 'ჩემი საქმეები'],
+        okLabel: ['Done', 'შესრულებულია'], noLabel: ['To do', 'გასაკეთებელია'],
+        page: 'https://todo.local/', api: 'https://api.todo.local/todos',
+        query: 'call',
+        rows: [
+            { id: 1, text: 'Buy groceries',      minutes: 30, done: false },
+            { id: 2, text: 'Finish JS homework', minutes: 90, done: false },
+            { id: 3, text: 'Call grandma',       minutes: 15, done: true }
+        ],
+        add: { id: 4, text: 'Book a dentist appointment', minutes: 10, done: false },
+        banner: ['New task added, saved to localStorage and rendered.', 'ახალი საქმე დაემატა, შეინახა localStorage-ში და დაიხატა.']
+    },
+    login: {
+        var: 'session', it: 's', file: './auth.js', storageKey: 'session', click: '#sign-in',
+        f: { name: 'name', num: 'id', ok: 'verified' }, pre: '#', suf: '', okVar: 'verified',
+        title: ['Welcome back', 'კეთილი იყოს შენი დაბრუნება'],
+        okLabel: ['Signed in', 'შესულია'], noLabel: ['Signed out', 'გამოსულია'],
+        page: 'https://learn.local/login', api: 'https://api.learn.local/auth/login',
+        query: 'nino',
+        rows: [{ id: 7, name: 'Nino', verified: true }],
+        add: { email: 'nino@example.com', password: '********' },
+        created: { token: 'eyJhbGciOiJIUzI1NiJ9.demo-token', user: { id: 7, name: 'Nino' }, expiresIn: 3600 },
+        banner: ['Signed in — the session token is saved in localStorage.', 'შესვლა შესრულდა — სესიის ტოკენი შენახულია localStorage-ში.']
+    },
+    orders: {
+        var: 'orders', it: 'o', file: './orders.js', storageKey: 'orders', click: '#refresh',
+        f: { name: 'customer', num: 'total', ok: 'paid' }, pre: '$', suf: '', okVar: 'paidOrders', sortDesc: true,
+        title: ['Paid orders', 'გადახდილი შეკვეთები'],
+        okLabel: ['Paid', 'გადახდილია'], noLabel: ['Pending', 'მოლოდინში'],
+        page: 'https://admin.shop.local/dashboard', api: 'https://api.shop.local/v2/orders',
+        query: 'ana',
+        rows: [
+            { id: 101, customer: 'Giorgi B.', total: 240, paid: true },
+            { id: 102, customer: 'Ana K.',    total: 75,  paid: false },
+            { id: 103, customer: 'Luka M.',   total: 510, paid: true },
+            { id: 104, customer: 'Mariam T.', total: 130, paid: true },
+            { id: 105, customer: 'Saba D.',   total: 60,  paid: false }
+        ],
+        add: { id: 106, customer: 'Nino R.', total: 99, paid: true },
+        banner: ['Revenue KPI is in the console, paid orders are in the table.', 'შემოსავლის KPI კონსოლშია, გადახდილი შეკვეთები — ცხრილში.']
+    },
+    messages: {
+        var: 'messages', it: 'm', file: './inbox.js', storageKey: 'inbox', click: '#bell',
+        f: { name: 'from', num: 'minutesAgo', ok: 'unread' }, pre: '', suf: ' min ago', okVar: 'unread',
+        toggle: ['#bell', 'has-unread', '.length > 0'],
+        title: ['Unread messages', 'წაუკითხავი შეტყობინებები'],
+        okLabel: ['New', 'ახალი'], noLabel: ['Read', 'წაკითხული'],
+        page: 'https://chat.local/', api: 'https://api.chat.local/inbox',
+        query: 'team',
+        rows: [
+            { id: 1, from: 'Team chat',     minutesAgo: 2,  unread: true },
+            { id: 2, from: 'Nika',          minutesAgo: 15, unread: false },
+            { id: 3, from: 'Design review', minutesAgo: 7,  unread: true },
+            { id: 4, from: 'Mom',           minutesAgo: 31, unread: true },
+            { id: 5, from: 'Newsletter',    minutesAgo: 58, unread: false }
+        ],
+        add: { id: 6, from: 'Teacher', minutesAgo: 0, unread: true },
+        banner: ['Badge lit — unread messages listed newest first.', 'ნიშნული აინთო — წაუკითხავები ჩამოწერილია, უახლესი პირველია.']
+    },
+    profile: {
+        var: 'profile', it: 'u', file: './profile.js', storageKey: 'profile', click: '#save-profile',
+        f: { name: 'name', num: 'followers', ok: 'verified' }, pre: '', suf: ' followers', okVar: 'verified',
+        title: ['Profile', 'პროფილი'],
+        okLabel: ['Verified', 'ვერიფიცირებული'], noLabel: ['Not verified', 'ვერიფიცირებული არ არის'],
+        page: 'https://social.local/settings/profile', api: 'https://api.social.local/users/7',
+        query: 'nino',
+        rows: [{ id: 7, name: 'Nino Beridze', followers: 1280, verified: true, bio: 'Frontend student' }],
+        add: { id: 8, name: 'Luka Gelashvili', followers: 310, verified: false, bio: 'Designer' },
+        edit: { bio: 'Frontend developer in training @ IT Step' },
+        banner: ['Saved with PUT — the card was re-rendered from the server answer.', 'შენახულია PUT-ით — ბარათი სერვერის პასუხიდან გადაიხატა.']
+    },
+    menu: {
+        var: 'menu', it: 'd', file: './menu.js', storageKey: 'menu', click: '#menu-tab',
+        f: { name: 'dish', num: 'price', ok: 'available' }, pre: '', suf: ' ₾', okVar: 'onSale',
+        title: ['Menu', 'მენიუ'],
+        okLabel: ['Available', 'ხელმისაწვდომია'], noLabel: ['Sold out', 'გაყიდულია'],
+        page: 'https://food.local/restaurant/42', api: 'https://api.food.local/restaurants/42/menu',
+        query: 'khach',
+        rows: [
+            { id: 1, dish: 'Khachapuri Adjaruli',    price: 18, available: true },
+            { id: 2, dish: 'Khinkali (10 pcs)',      price: 15, available: true },
+            { id: 3, dish: 'Lobiani',                price: 9,  available: false },
+            { id: 4, dish: 'Badrijani with walnuts', price: 12, available: true },
+            { id: 5, dish: 'Churchkhela',            price: 5,  available: false }
+        ],
+        add: { id: 6, dish: 'Mtsvadi', price: 22, available: true },
+        banner: ['Menu built from real DOM nodes — no innerHTML involved.', 'მენიუ აწყობილია ნამდვილი DOM კვანძებით — innerHTML-ის გარეშე.']
+    }
+};
+
+// The dataset of whatever is on the canvas right now.
+const DS = () => DATASETS[state.dataset] || DATASETS.products;
+const nameOf = (p) => (p == null ? '?' : (p[DS().f.name] ?? p.title ?? p.name ?? '?'));
+const numOf  = (p) => (p == null ? undefined : (p[DS().f.num] ?? p.price));
+const okOf   = (p) => !!(p && p[DS().f.ok]);
+function fmtNum(v) {
+    if (typeof v !== 'number') return v == null ? '' : String(v);
+    const d = DS();
+    return d.pre + v + d.suf;
+}
+// A value written as JavaScript source: { id: 1, city: 'Tbilisi', temp: 24 }
+function jsLiteral(v) {
+    if (Array.isArray(v)) return '[' + v.map(jsLiteral).join(', ') + ']';
+    if (v && typeof v === 'object') return '{ ' + Object.entries(v).map(([k, x]) => k + ': ' + jsLiteral(x)).join(', ') + ' }';
+    if (typeof v === 'string') return '\'' + v.replace(/\\/g, '\\\\').replace(/'/g, '\\\'') + '\'';
+    return String(v);
+}
+// Template-literal source for a formatted number: $${p.price} or ${c.temp}°C
+function numExpr(it) {
+    const d = DS();
+    return d.pre + '${' + it + '.' + d.f.num + '}' + d.suf;
+}
+// The one line of JavaScript a block stands for (some depend on the dataset).
+function opOf(type) {
+    const s = SIM[type];
+    if (!s || !s.op) return '';
+    return typeof s.op === 'function' ? s.op() : s.op;
+}
 
 const clone = (v) => (typeof structuredClone === 'function' ? structuredClone(v) : JSON.parse(JSON.stringify(v)));
 
@@ -1098,30 +1356,30 @@ function describeKind(v) {
 
 const SIM = {
     dataArray: {
-        op: 'const products = [...]',
-        run: () => clone(PRODUCTS),
+        op: () => 'const ' + DS().var + ' = [...]',
+        run: () => clone(DS().rows),
         gen: (c) => {
-            c.v = 'products';
-            return ['const products = [',
-                    '  { id: 1, name: \'Laptop\',    price: 1200, inStock: true  },',
-                    '  { id: 2, name: \'USB Mouse\', price: 25,   inStock: false },',
-                    '  { id: 3, name: \'Keyboard\',  price: 80,   inStock: true  }',
-                    '];'];
+            const d = DS();
+            const rows = d.rows.slice(0, 3);
+            c.v = d.var;
+            return ['const ' + d.var + ' = [']
+                .concat(rows.map((r, i) => '  ' + jsLiteral(r) + (i < rows.length - 1 ? ',' : '')))
+                .concat(['];']);
         }
     },
     apiEndpoint: {
         op: 'const API = \'...\'',
-        run: (v, c) => c.api.url || 'https://shop.local/api/products',
-        gen: (c) => { c.v = 'API'; c.url = 'API'; return ['const API = \'' + (c.api.url || 'https://shop.local/api/products') + '\';']; }
+        run: (v, c) => c.api.url || DS().api,
+        gen: (c) => { c.v = 'API'; c.url = 'API'; return ['const API = \'' + (c.api.url || DS().api) + '\';']; }
     },
     localStore: {
-        op: 'localStorage.getItem(key)',
-        run: () => JSON.stringify(PRODUCTS.slice(0, 3)),
-        gen: (c) => { c.v = 'raw'; return ['const raw = localStorage.getItem(\'products\'); // a string, or null']; }
+        op: () => 'localStorage.getItem(\'' + DS().storageKey + '\')',
+        run: () => JSON.stringify(DS().stored || DS().rows),
+        gen: (c) => { c.v = 'raw'; return ['const raw = localStorage.getItem(\'' + DS().storageKey + '\'); // a string, or null']; }
     },
     userInput: {
         op: 'input.value',
-        run: () => 'lap',
+        run: () => DS().query,
         gen: (c) => { c.v = 'q'; return ['const q = document.querySelector(\'#search\').value.trim();']; }
     },
 
@@ -1146,8 +1404,8 @@ const SIM = {
         gen: (c) => {
             const url = c.queryKey ? 'url' : (c.url || 'API');
             const args = [url];
-            if (c.options) args.push('options');
-            else if (c.headers) args.push('{ headers }');
+            if (c.options) args.push(c.signal ? '{ ...options, signal }' : 'options');
+            else if (c.headers || c.signal) args.push('{ ' + [c.headers && 'headers', c.signal && 'signal'].filter(Boolean).join(', ') + ' }');
             const call = 'fetch(' + args.join(', ') + ')';
             if (c.thenStyle) { c.skipFetchLine = true; c.v = 'data'; return []; }
             if (c.canAwait) { c.v = 'res'; return ['const res = await ' + call + ';']; }
@@ -1161,24 +1419,25 @@ const SIM = {
             if (typeof v === 'string') return JSON.parse(v);
             const k = kindOf(v);
             if (k === 'promise' || k === 'response') {
+                const d = DS();
                 // A write returns what it wrote, not the whole collection.
-                if (c.method === 'POST') return { ...(c.sentBody || clone(NEW_PRODUCT)), id: 6, created: true };
-                if (c.method === 'PUT') return { ...(c.sentBody || clone(PRODUCTS[0])), updated: true };
-                if (c.method === 'DELETE') return { id: 3, deleted: true };
+                if (c.method === 'POST') return d.created ? clone(d.created) : { ...(c.sentBody || clone(d.add)), id: (d.add && d.add.id) || 6, created: true };
+                if (c.method === 'PUT') return { ...(c.sentBody || clone(d.rows[0])), updated: true };
+                if (c.method === 'DELETE') return { id: (d.rows[2] || d.rows[0]).id, deleted: true };
                 return clone(c.payload);
             }
             throw new Error('res.json() needs a Response, but received ' + describeKind(v));
         },
         gen: (c) => {
             if (c.thenStyle) return [];
-            if (c.v === 'raw') { c.v = 'products'; return ['const products = JSON.parse(raw ?? \'[]\');']; }
+            if (c.v === 'raw') { c.v = DS().var; return ['const ' + c.v + ' = JSON.parse(raw ?? \'[]\');']; }
             c.v = 'data';
             return [(c.canAwait ? 'const data = await res.json();' : 'const data = await resPromise.then(r => r.json());')];
         }
     },
     httpGet:    { op: 'method: \'GET\'',    run: (v, c) => { c.method = 'GET'; return mkOptions({ method: 'GET', headers: buildHeaders(c.api, false) }); }, gen: (c) => { c.options = true; c.method = 'GET'; return ['const options = { method: \'GET\'' + (c.headers ? ', headers' : '') + ' };']; } },
-    httpPost:   { op: 'method: \'POST\'',   run: (v, c) => { c.method = 'POST'; c.sentBody = isPlainObject(v) ? v : clone(NEW_PRODUCT); return mkOptions({ method: 'POST', headers: buildHeaders(c.api, true), body: JSON.stringify(c.sentBody) }); }, gen: (c) => { c.options = true; c.method = 'POST'; return ['const options = {', '  method: \'POST\',', '  headers' + (c.headers ? '' : ': { \'Content-Type\': \'application/json\' }') + ',', '  body: JSON.stringify(' + (c.v || 'payload') + ')', '};']; } },
-    httpPut:    { op: 'method: \'PUT\'',    run: (v, c) => { c.method = 'PUT'; c.sentBody = isPlainObject(v) ? v : { ...clone(PRODUCTS[0]), price: 999 }; return mkOptions({ method: 'PUT', headers: buildHeaders(c.api, true), body: JSON.stringify(c.sentBody) }); }, gen: (c) => { c.options = true; c.method = 'PUT'; c.url = '`${API}/${id}`'; return ['const options = {', '  method: \'PUT\',', '  headers' + (c.headers ? '' : ': { \'Content-Type\': \'application/json\' }') + ',', '  body: JSON.stringify(' + (c.v || 'updated') + ')', '};']; } },
+    httpPost:   { op: 'method: \'POST\'',   run: (v, c) => { c.method = 'POST'; c.sentBody = isPlainObject(v) ? v : clone(DS().add); return mkOptions({ method: 'POST', headers: buildHeaders(c.api, true), body: JSON.stringify(c.sentBody) }); }, gen: (c) => { c.options = true; c.method = 'POST'; return ['const options = {', '  method: \'POST\',', '  headers' + (c.headers ? '' : ': { \'Content-Type\': \'application/json\' }') + ',', '  body: JSON.stringify(' + (c.v || 'payload') + ')', '};']; } },
+    httpPut:    { op: 'method: \'PUT\'',    run: (v, c) => { c.method = 'PUT'; c.sentBody = isPlainObject(v) ? v : { ...clone(DS().rows[0]), ...(DS().edit || {}) }; return mkOptions({ method: 'PUT', headers: buildHeaders(c.api, true), body: JSON.stringify(c.sentBody) }); }, gen: (c) => { c.options = true; c.method = 'PUT'; c.url = '`${API}/${id}`'; return ['const options = {', '  method: \'PUT\',', '  headers' + (c.headers ? '' : ': { \'Content-Type\': \'application/json\' }') + ',', '  body: JSON.stringify(' + (c.v || 'updated') + ')', '};']; } },
     httpDelete: { op: 'method: \'DELETE\'', run: (v, c) => { c.method = 'DELETE'; return mkOptions({ method: 'DELETE', headers: buildHeaders(c.api, false) }); }, gen: (c) => { c.options = true; c.method = 'DELETE'; c.url = '`${API}/${id}`'; return ['const options = { method: \'DELETE\'' + (c.headers ? ', headers' : '') + ' };']; } },
 
     tryCatch: {
@@ -1189,7 +1448,7 @@ const SIM = {
     abortCtl: {
         op: 'new AbortController()',
         run: (v) => v,
-        gen: () => ['controller?.abort(); // cancel the previous request', 'controller = new AbortController();', 'const signal = controller.signal;']
+        gen: (c) => { c.signal = true; return ['controller?.abort(); // cancel the previous request', 'controller = new AbortController();', 'const signal = controller.signal;']; }
     },
 
     asyncFn: {
@@ -1242,52 +1501,84 @@ const SIM = {
     },
 
     filterOp: {
-        op: '.filter(p => p.inStock)',
-        run: (v) => needArray(v, '.filter()').filter(p => p.inStock),
-        gen: (c) => { const from = c.v; c.v = 'available'; return ['const available = ' + from + '.filter(p => p.inStock);']; }
+        op: () => { const d = DS(); return '.filter(' + d.it + ' => ' + d.it + '.' + d.f.ok + ')'; },
+        run: (v) => needArray(v, '.filter()').filter(okOf),
+        gen: (c) => { const d = DS(); const from = c.v; c.v = d.okVar; return ['const ' + d.okVar + ' = ' + from + '.filter(' + d.it + ' => ' + d.it + '.' + d.f.ok + ');']; }
     },
     mapOp: {
-        op: '.map(p => ({ ... }))',
-        run: (v) => needArray(v, '.map()').map(p => ({ id: p.id, title: String(p.name).toUpperCase(), price: '$' + p.price })),
-        gen: (c) => { const from = c.v; c.v = 'rows'; return ['const rows = ' + from + '.map(p => ({', '  id: p.id,', '  title: p.name.toUpperCase(),', '  price: `$${p.price}`', '}));']; }
+        op: () => '.map(' + DS().it + ' => ({ ... }))',
+        run: (v) => {
+            const num = DS().f.num;
+            return needArray(v, '.map()').map(p => ({ id: p.id, title: String(nameOf(p)).toUpperCase(), [num]: fmtNum(numOf(p)) }));
+        },
+        gen: (c) => {
+            const d = DS(), it = d.it;
+            const from = c.v;
+            c.v = 'rows';
+            c.mapped = true;
+            return ['const rows = ' + from + '.map(' + it + ' => ({',
+                    '  id: ' + it + '.id,',
+                    '  title: ' + it + '.' + d.f.name + '.toUpperCase(),',
+                    '  ' + d.f.num + ': `' + numExpr(it) + '`',
+                    '}));'];
+        }
     },
     sortOp: {
-        op: '.sort((a, b) => a.price - b.price)',
-        run: (v) => [...needArray(v, '.sort()')].sort((a, b) => (a.price || 0) - (b.price || 0)),
-        gen: (c) => { const from = c.v; c.v = 'sorted'; return ['const sorted = [...' + from + '].sort((a, b) => a.price - b.price);']; }
+        op: () => { const d = DS(), n = d.f.num; return '.sort((a, b) => ' + (d.sortDesc ? 'b.' + n + ' - a.' + n : 'a.' + n + ' - b.' + n) + ')'; },
+        run: (v) => {
+            const dir = DS().sortDesc ? -1 : 1;
+            return [...needArray(v, '.sort()')].sort((a, b) => dir * ((Number(numOf(a)) || 0) - (Number(numOf(b)) || 0)));
+        },
+        gen: (c) => {
+            const d = DS(), n = d.f.num;
+            const from = c.v;
+            c.v = 'sorted';
+            return ['const sorted = [...' + from + '].sort((a, b) => ' + (d.sortDesc ? 'b.' + n + ' - a.' + n : 'a.' + n + ' - b.' + n) + ');'];
+        }
     },
     reduceOp: {
-        op: '.reduce((sum, p) => sum + p.price, 0)',
-        run: (v) => needArray(v, '.reduce()').reduce((s, p) => s + (p.price || 0), 0),
-        gen: (c) => { const from = c.v; c.v = 'total'; return ['const total = ' + from + '.reduce((sum, p) => sum + p.price, 0);']; }
+        op: () => { const d = DS(); return '.reduce((sum, ' + d.it + ') => sum + ' + d.it + '.' + d.f.num + ', 0)'; },
+        run: (v) => Math.round(needArray(v, '.reduce()').reduce((s, p) => s + (Number(numOf(p)) || 0), 0) * 100) / 100,
+        gen: (c) => { const d = DS(); const from = c.v; c.v = 'total'; return ['const total = ' + from + '.reduce((sum, ' + d.it + ') => sum + ' + d.it + '.' + d.f.num + ', 0);']; }
     },
     findOp: {
-        op: '.find(p => p.inStock)',
-        run: (v) => needArray(v, '.find()').find(p => p.inStock),
-        gen: (c) => { const from = c.v; c.v = 'found'; return ['const found = ' + from + '.find(p => p.inStock);']; }
+        op: () => { const d = DS(); return '.find(' + d.it + ' => ' + d.it + '.' + d.f.ok + ')'; },
+        run: (v) => needArray(v, '.find()').find(okOf),
+        gen: (c) => { const d = DS(); const from = c.v; c.v = 'found'; return ['const found = ' + from + '.find(' + d.it + ' => ' + d.it + '.' + d.f.ok + ');']; }
     },
     destructure: {
-        op: 'const { name, price } = item',
+        op: () => { const d = DS(); return 'const { ' + d.f.name + ', ' + d.f.num + ' } = item'; },
         run: (v) => {
             const src = Array.isArray(v) ? v[0] : v;
             if (!isPlainObject(src)) throw new Error('destructuring needs an object, but received ' + describeKind(v));
-            const { name, price } = src;
-            return { name, price };
+            const f = DS().f;
+            return { [f.name]: src[f.name] ?? src.title, [f.num]: src[f.num] };
         },
-        gen: (c) => { const from = c.v; c.v = 'first'; return ['const [first] = ' + from + ';', 'const { name, price = 0 } = first;']; }
+        gen: (c) => { const d = DS(); const from = c.v; c.v = 'first'; return ['const [first] = ' + from + ';', 'const { ' + d.f.name + ', ' + d.f.num + ' = 0 } = first;']; }
     },
     spreadOp: {
         op: '[...items, newItem]',
-        run: (v) => [...needArray(v, 'spread'), clone(NEW_PRODUCT)],
-        gen: (c) => { const from = c.v; c.v = 'next'; return ['const next = [...' + from + ', { id: 6, name: \'Webcam\', price: 60, inStock: true }];']; }
+        run: (v) => [...needArray(v, 'spread'), clone(DS().add)],
+        gen: (c) => { const from = c.v; c.v = 'next'; return ['const next = [...' + from + ', ' + (c.formVar || jsLiteral(DS().add)) + '];']; }
     },
     templateLit: {
         op: 'items.map(...).join(\'\')',
-        run: (v) => {
+        run: (v, c) => {
             const arr = needArray(v, 'the template');
-            return arr.map(p => '<li class="row"><b>' + (p.name || p.title || '?') + '</b> — ' + (typeof p.price === 'number' ? '$' + p.price : p.price) + '</li>').join('\n');
+            c.renderArray = arr;
+            return arr.map(p => '<li class="row"><b>' + nameOf(p) + '</b> — ' + fmtNum(numOf(p)) + '</li>').join('\n');
         },
-        gen: (c) => { const from = c.v; c.v = 'html'; return ['const html = ' + from + '.map(p => `', '  <li class="row" data-id="${p.id}">', '    <b>${p.name}</b> — $${p.price}', '  </li>`).join(\'\');']; }
+        gen: (c) => {
+            const d = DS(), it = d.it;
+            const from = c.v;
+            const label = c.mapped ? 'title' : d.f.name;
+            const num = c.mapped ? '${' + it + '.' + d.f.num + '}' : numExpr(it);
+            c.v = 'html';
+            return ['const html = ' + from + '.map(' + it + ' => `',
+                    '  <li class="row" data-id="${' + it + '.id}">',
+                    '    <b>${' + it + '.' + label + '}</b> — ' + num,
+                    '  </li>`).join(\'\');'];
+        }
     },
 
     stateObj: {
@@ -1301,9 +1592,9 @@ const SIM = {
         gen: (c) => { const from = c.v; return ['const store = createStore(' + from + '); // items stay private inside']; }
     },
     saveLocal: {
-        op: 'localStorage.setItem(key, json)',
+        op: () => 'localStorage.setItem(\'' + DS().storageKey + '\', json)',
         run: (v) => JSON.stringify(Array.isArray(v) ? v : (v && v.items) || v),
-        gen: (c) => { const from = c.v; return ['localStorage.setItem(\'products\', JSON.stringify(' + from + '));']; }
+        gen: (c) => { const from = c.v; return ['localStorage.setItem(\'' + DS().storageKey + '\', JSON.stringify(' + from + '));']; }
     },
 
     querySel: {
@@ -1313,8 +1604,23 @@ const SIM = {
     },
     createEl: {
         op: 'document.createElement(\'li\')',
-        run: (v) => v,
-        gen: (c) => { const from = c.v; return ['const nodes = ' + from + '.map(p => {', '  const li = document.createElement(\'li\');', '  li.textContent = `${p.name} — $${p.price}`;', '  li.dataset.id = p.id;', '  return li;', '});']; }
+        run: (v, c) => {
+            if (Array.isArray(v)) c.renderArray = v;
+            else if (isPlainObject(v) && Array.isArray(v.items)) c.renderArray = v.items;
+            return v;
+        },
+        gen: (c) => {
+            const d = DS(), it = d.it;
+            const from = c.v;
+            const label = c.mapped ? 'title' : d.f.name;
+            const num = c.mapped ? '${' + it + '.' + d.f.num + '}' : numExpr(it);
+            return ['const nodes = ' + from + '.map(' + it + ' => {',
+                    '  const li = document.createElement(\'li\');',
+                    '  li.textContent = `${' + it + '.' + label + '} — ' + num + '`;',
+                    '  li.dataset.id = ' + it + '.id;',
+                    '  return li;',
+                    '});'];
+        }
     },
     appendChildBlk: {
         op: 'list.append(fragment)',
@@ -1332,34 +1638,42 @@ const SIM = {
     },
     eventListener: {
         op: 'btn.addEventListener(\'click\', fn)',
-        run: () => mkEvent('click', '#refresh'),
-        gen: (c) => { c.open.push(['});']); c.indentAfter = 1; return ['document.querySelector(\'#refresh\').addEventListener(\'click\', async (e) => {']; }
+        run: () => mkEvent('click', DS().click || '#refresh'),
+        gen: (c) => { c.open.push(['});']); c.indentAfter = 1; return ['document.querySelector(\'' + (DS().click || '#refresh') + '\').addEventListener(\'click\', async (e) => {']; }
     },
     delegation: {
         op: 'list.addEventListener(\'click\', fn)',
-        run: () => mkEvent('click', '.row[data-id="3"]'),
+        run: () => mkEvent('click', '.row[data-id="' + (DS().rows[2] || DS().rows[0]).id + '"]'),
         gen: (c) => { c.open.push(['});']); c.indentAfter = 1; return ['list.addEventListener(\'click\', (e) => {', '  const row = e.target.closest(\'[data-id]\');', '  if (!row) return;', '  const id = Number(row.dataset.id);']; }
     },
     formSubmit: {
         op: 'form.addEventListener(\'submit\', fn)',
-        run: () => clone(NEW_PRODUCT),
-        gen: (c) => { c.open.push(['});']); c.indentAfter = 1; c.v = 'values'; return ['form.addEventListener(\'submit\', async (e) => {', '  e.preventDefault();', '  const values = Object.fromEntries(new FormData(form));']; }
+        run: () => clone(DS().add),
+        gen: (c) => { c.open.push(['});']); c.indentAfter = 1; c.v = 'values'; c.formVar = 'values'; return ['form.addEventListener(\'submit\', async (e) => {', '  e.preventDefault();', '  const values = Object.fromEntries(new FormData(form));']; }
     },
     classToggle: {
         op: 'el.classList.toggle(\'is-empty\', ...)',
         run: (v) => v,
-        gen: (c) => ['list.classList.toggle(\'is-empty\', ' + (c.v || 'items') + '.length === 0);']
+        gen: (c) => {
+            const t = DS().toggle;
+            if (t) return ['document.querySelector(\'' + t[0] + '\').classList.toggle(\'' + t[1] + '\', ' + (c.v || 'items') + t[2] + ');'];
+            return ['list.classList.toggle(\'is-empty\', ' + (c.v || 'items') + '.length === 0);'];
+        }
     },
 
     exportBlk: {
-        op: 'export const products',
+        op: () => 'export const ' + DS().var,
         run: (v) => v,
-        gen: (c) => { const from = c.v; return ['// ---- data.js ----', 'export const products = ' + from + ';']; }
+        gen: (c) => {
+            const d = DS();
+            const from = c.v;
+            return ['// ---- ' + d.file.replace('./', '') + ' ----', from === d.var ? 'export { ' + d.var + ' };' : 'export const ' + d.var + ' = ' + from + ';'];
+        }
     },
     importBlk: {
-        op: 'import { products } from \'./data.js\'',
+        op: () => 'import { ' + DS().var + ' } from \'' + DS().file + '\'',
         run: (v) => v,
-        gen: (c) => { c.v = 'products'; return ['// ---- app.js ----', 'import { products } from \'./data.js\';']; }
+        gen: (c) => { const d = DS(); c.v = d.var; return ['// ---- app.js ----', 'import { ' + d.var + ' } from \'' + d.file + '\';']; }
     },
 
     consoleLog: {
@@ -1802,7 +2116,259 @@ const EXAMPLES = [
     { id:'crud', diff:5, title:['Create + delete pipeline','შექმნა + წაშლა ერთად'],
       desc:['Two actions share one fetch (graph)','ორი ქმედება ერთ fetch-ს იყენებს'],
       nodes:[{type:'formSubmit',x:120,y:170},{type:'delegation',x:120,y:430},{type:'httpPost',x:400,y:170},{type:'httpDelete',x:400,y:430},{type:'apiEndpoint',x:400,y:620},{type:'fetchCall',x:700,y:300},{type:'jsonParse',x:960,y:300},{type:'stateObj',x:1220,y:300},{type:'templateLit',x:1480,y:300},{type:'renderDom',x:1740,y:300},{type:'browser',x:2000,y:300}],
-      connections:[[0,2],[1,3],[2,5],[3,5],[4,5],[5,6],[6,7],[7,8],[8,9],[9,10]] }
+      connections:[[0,2],[1,3],[2,5],[3,5],[4,5],[5,6],[6,7],[7,8],[8,9],[9,10]] },
+
+    // ---------- Real-world scenarios: the flows behind products people use every day ----------
+    { id:'rw-weather', real:true, dataset:'weather', diff:3,
+      scenario:['Weather app · news portal','ამინდის აპი · საინფორმაციო პორტალი'],
+      title:['Weather widget','ამინდის ვიჯეტი'],
+      desc:['URL + API key fan into one fetch, .map() formats "24°C"','URL და API გასაღები ერთ fetch-ში, .map() აფორმებს „24°C“-ს'],
+      nodes:[{type:'asyncFn',x:60,y:200},{type:'apiEndpoint',x:320,y:200},{type:'apiKey',x:320,y:440},{type:'fetchCall',x:580,y:320},{type:'awaitOp',x:840,y:320},{type:'jsonParse',x:1100,y:320},{type:'mapOp',x:1360,y:320},{type:'templateLit',x:1620,y:320},{type:'renderDom',x:1880,y:320},{type:'browser',x:2140,y:320}],
+      connections:[[0,1],[1,3],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9]] },
+    { id:'rw-cart', real:true, dataset:'cart', diff:3,
+      scenario:['Online store · checkout','ონლაინ მაღაზია · გადახდა'],
+      title:['Shopping cart','საყიდლების კალათა'],
+      desc:['One parsed cart feeds two branches: list + total','ერთი კალათა ორ განშტოებას კვებავს: სია + ჯამი'],
+      nodes:[{type:'localStore',x:80,y:320},{type:'jsonParse',x:340,y:320},{type:'templateLit',x:620,y:180},{type:'renderDom',x:880,y:180},{type:'browser',x:1140,y:180},{type:'reduceOp',x:620,y:460},{type:'consoleLog',x:880,y:460}],
+      connections:[[0,1],[1,2],[2,3],[3,4],[1,5],[5,6]] },
+    { id:'rw-search', real:true, dataset:'movies', diff:4,
+      scenario:['Streaming service · search box','სტრიმინგ სერვისი · საძიებო ველი'],
+      title:['Live movie search','ფილმების ცოცხალი ძიება'],
+      desc:['Debounce + abort, then fetch the matches','Debounce + გაუქმება, მერე დამთხვევების ჩამოტვირთვა'],
+      nodes:[{type:'userInput',x:60,y:320},{type:'debounceBlk',x:320,y:320},{type:'abortCtl',x:580,y:320},{type:'apiEndpoint',x:580,y:560},{type:'fetchCall',x:840,y:440},{type:'awaitOp',x:1100,y:440},{type:'jsonParse',x:1360,y:440},{type:'templateLit',x:1620,y:440},{type:'renderDom',x:1880,y:440},{type:'browser',x:2140,y:440}],
+      connections:[[0,1],[1,2],[2,4],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9]] },
+    { id:'rw-news', real:true, dataset:'news', diff:3,
+      scenario:['News site · homepage','საინფორმაციო საიტი · მთავარი გვერდი'],
+      title:['News feed that never breaks','ლენტა, რომელიც არ ფუჭდება'],
+      desc:['try / catch around fetch, drafts filtered out','try / catch fetch-ის გარშემო, მონახაზები გაფილტრულია'],
+      nodes:[{type:'asyncFn',x:60,y:320},{type:'tryCatch',x:320,y:320},{type:'apiEndpoint',x:320,y:560},{type:'fetchCall',x:580,y:440},{type:'awaitOp',x:840,y:440},{type:'jsonParse',x:1100,y:440},{type:'filterOp',x:1360,y:440},{type:'templateLit',x:1620,y:440},{type:'renderDom',x:1880,y:440},{type:'browser',x:2140,y:440}],
+      connections:[[0,1],[1,3],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9]] },
+    { id:'rw-todo', real:true, dataset:'todos', diff:4,
+      scenario:['Productivity app · to-do list','პროდუქტიულობის აპი · საქმეების სია'],
+      title:['To-do list that remembers','საქმეების სია, რომელსაც ახსოვს'],
+      desc:['Form → storage → spread → state, then save + render','ფორმა → საცავი → spread → state, მერე შენახვა + დახატვა'],
+      nodes:[{type:'formSubmit',x:60,y:320},{type:'localStore',x:320,y:320},{type:'jsonParse',x:580,y:320},{type:'spreadOp',x:840,y:320},{type:'stateObj',x:1100,y:320},{type:'saveLocal',x:1360,y:180},{type:'consoleLog',x:1620,y:180},{type:'templateLit',x:1360,y:460},{type:'renderDom',x:1620,y:460},{type:'browser',x:1880,y:460}],
+      connections:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[4,7],[7,8],[8,9]] },
+    { id:'rw-login', real:true, dataset:'login', diff:3,
+      scenario:['Learning platform · sign-in','სასწავლო პლატფორმა · შესვლა'],
+      title:['Sign-in form','შესვლის ფორმა'],
+      desc:['POST credentials, keep the token in localStorage','POST-ით შესვლა, ტოკენი localStorage-ში'],
+      nodes:[{type:'formSubmit',x:60,y:200},{type:'httpPost',x:320,y:200},{type:'apiEndpoint',x:320,y:440},{type:'fetchCall',x:580,y:320},{type:'awaitOp',x:840,y:320},{type:'jsonParse',x:1100,y:320},{type:'saveLocal',x:1360,y:320},{type:'consoleLog',x:1620,y:320}],
+      connections:[[0,1],[1,3],[2,3],[3,4],[4,5],[5,6],[6,7]] },
+    { id:'rw-dashboard', real:true, dataset:'orders', diff:5,
+      scenario:['Online store · admin dashboard','ონლაინ მაღაზია · ადმინ პანელი'],
+      title:['Sales dashboard','გაყიდვების დაფა'],
+      desc:['Fan in (URL + key), fan out (KPI + table)','შეერთება (URL + გასაღები), განშტოება (KPI + ცხრილი)'],
+      nodes:[{type:'asyncFn',x:60,y:200},{type:'apiEndpoint',x:320,y:200},{type:'apiKey',x:320,y:460},{type:'fetchCall',x:580,y:330},{type:'awaitOp',x:840,y:330},{type:'jsonParse',x:1100,y:330},{type:'filterOp',x:1360,y:330},{type:'reduceOp',x:1620,y:180},{type:'consoleLog',x:1880,y:180},{type:'sortOp',x:1620,y:480},{type:'templateLit',x:1880,y:480},{type:'renderDom',x:2140,y:480},{type:'browser',x:2400,y:480}],
+      connections:[[0,1],[1,3],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[6,9],[9,10],[10,11],[11,12]] },
+    { id:'rw-chat', real:true, dataset:'messages', diff:3,
+      scenario:['Chat app · notification bell','ჩატის აპი · შეტყობინებების ზარი'],
+      title:['Unread messages badge','წაუკითხავის ნიშნული'],
+      desc:['Poll with .then(), light the bell, list unread','შემოწმება .then()-ით, ზარი ინთება, სია'],
+      nodes:[{type:'setTimeoutBlk',x:60,y:320},{type:'apiEndpoint',x:320,y:320},{type:'fetchCall',x:580,y:320},{type:'promiseThen',x:840,y:320},{type:'filterOp',x:1100,y:320},{type:'classToggle',x:1360,y:170},{type:'sortOp',x:1360,y:470},{type:'templateLit',x:1620,y:470},{type:'renderDom',x:1880,y:470},{type:'browser',x:2140,y:470}],
+      connections:[[0,1],[1,2],[2,3],[3,4],[4,5],[4,6],[6,7],[7,8],[8,9]] },
+    { id:'rw-profile', real:true, dataset:'profile', diff:3,
+      scenario:['Social network · edit profile','სოციალური ქსელი · პროფილის რედაქტირება'],
+      title:['Edit profile','პროფილის რედაქტირება'],
+      desc:['Save click → PUT → state → re-render','Save → PUT → state → გადახატვა'],
+      nodes:[{type:'eventListener',x:60,y:200},{type:'httpPut',x:320,y:200},{type:'apiEndpoint',x:320,y:440},{type:'fetchCall',x:580,y:320},{type:'awaitOp',x:840,y:320},{type:'jsonParse',x:1100,y:320},{type:'stateObj',x:1360,y:320},{type:'templateLit',x:1620,y:320},{type:'renderDom',x:1880,y:320},{type:'browser',x:2140,y:320}],
+      connections:[[0,1],[1,3],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9]] },
+    { id:'rw-menu', real:true, dataset:'menu', diff:4,
+      scenario:['Food delivery · restaurant page','მიტანის სერვისი · რესტორნის გვერდი'],
+      title:['Restaurant menu','რესტორნის მენიუ'],
+      desc:['Module import, filter + sort, real DOM nodes','მოდულის იმპორტი, ფილტრი + დალაგება, DOM კვანძები'],
+      nodes:[{type:'dataArray',x:60,y:320},{type:'exportBlk',x:320,y:320},{type:'importBlk',x:580,y:320},{type:'filterOp',x:840,y:320},{type:'sortOp',x:1100,y:320},{type:'querySel',x:1360,y:320},{type:'createEl',x:1620,y:320},{type:'appendChildBlk',x:1880,y:320},{type:'browser',x:2140,y:320}],
+      connections:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8]] }
+];
+
+// ============================================================
+// REAL-WORLD TASKS — the student designs the flow from a brief.
+// Each requirement is a list of rules that must all hold:
+//   ['has', t]       a block of type t is on the canvas
+//   ['not', t]       no block of type t is on the canvas
+//   ['link', a, b]   a direct connection a → b
+//   ['path', a, b]   data can travel from a to b (blocks in between are fine)
+//   ['out', t, n]    one t block has at least n outgoing connections
+// `example` is the reference solution in EXAMPLES.
+// ============================================================
+const TASKS = [
+    {
+        id: 'weather', example: 'rw-weather', dataset: 'weather', diff: 3,
+        context: ['Weather app · news portal', 'ამინდის აპი · საინფორმაციო პორტალი'],
+        title:   ['Weather widget', 'ამინდის ვიჯეტი'],
+        goal:    ['Load live temperatures for five cities and render them as "24°C".', 'ჩატვირთე ხუთი ქალაქის ტემპერატურა და გამოიტანე ფორმატით „24°C“.'],
+        story:   ['A news portal wants a small weather strip in its header. When the page opens, ask the weather API for the current temperature in five cities. The API refuses anonymous calls, so your key has to travel with the request. The raw numbers must become display text like "24°C" before they reach the page.',
+                  'საინფორმაციო პორტალს სურს, ჰედერში ამინდის პატარა ზოლი ჰქონდეს. გვერდის გახსნისას ამინდის API-ს ჰკითხე ხუთი ქალაქის მიმდინარე ტემპერატურა. API ანონიმურ მოთხოვნას არ იღებს, ამიტომ შენი გასაღები მოთხოვნას უნდა გაჰყვეს. ნედლი რიცხვები გვერდამდე უნდა იქცეს ტექსტად, მაგალითად „24°C“.'],
+        hint:    ['fetch() can take two inputs: the URL and the API key. After res.json(), .map() reshapes every city before the template string.',
+                  'fetch()-ს შეიძლება ორი შემავალი ჰქონდეს: URL და API გასაღები. res.json()-ის შემდეგ .map() თითო ქალაქს გარდაქმნის შაბლონურ სტრიქონამდე.'],
+        reqs: [
+            { text: ['Wrap the work in an async function', 'მოათავსე ყველაფერი async ფუნქციაში'], rules: [['has', 'asyncFn']] },
+            { text: ['The weather API URL goes into fetch()', 'ამინდის API-ს URL შედის fetch()-ში'], rules: [['link', 'apiEndpoint', 'fetchCall']] },
+            { text: ['Your API key goes into the same fetch() — two inputs, one request', 'API გასაღებიც იმავე fetch()-ში შედის — ორი შემავალი, ერთი მოთხოვნა'], rules: [['link', 'apiKey', 'fetchCall']] },
+            { text: ['await the response, then read it with res.json()', 'დაელოდე პასუხს await-ით, მერე წაიკითხე res.json()-ით'], rules: [['path', 'fetchCall', 'awaitOp'], ['path', 'awaitOp', 'jsonParse']] },
+            { text: ['Turn every reading into "24°C" with .map()', 'თითო მაჩვენებელი .map()-ით აქციე „24°C“-ად'], rules: [['path', 'jsonParse', 'mapOp']] },
+            { text: ['Render the list and show it in the browser', 'დახატე სია და აჩვენე ბრაუზერში'], rules: [['path', 'mapOp', 'templateLit'], ['path', 'templateLit', 'renderDom'], ['path', 'renderDom', 'browser']] }
+        ]
+    },
+    {
+        id: 'cart', example: 'rw-cart', dataset: 'cart', diff: 3,
+        context: ['Online store · checkout', 'ონლაინ მაღაზია · გადახდა'],
+        title:   ['Shopping cart', 'საყიდლების კალათა'],
+        goal:    ['Restore the saved cart, list the items and calculate the total — one source, two branches.', 'აღადგინე შენახული კალათა, ჩამოწერე ნივთები და დაითვალე ჯამი — ერთი წყარო, ორი განშტოება.'],
+        story:   ['A customer left the store yesterday with four items in the cart, and the cart was saved in localStorage as a JSON string. Today they are back. Restore the cart, list the items on the cart page, and calculate the order total for the Pay button. Both results come from the same parsed array, so one block has to feed two branches.',
+                  'მყიდველმა გუშინ მაღაზია დატოვა კალათაში ოთხი ნივთით, კალათა კი localStorage-ში JSON სტრიქონად შეინახა. დღეს ის დაბრუნდა. აღადგინე კალათა, ჩამოწერე ნივთები კალათის გვერდზე და დაითვალე შეკვეთის ჯამი ღილაკისთვის „გადახდა“. ორივე შედეგი ერთი და იმავე დაპარსული მასივიდან მოდის, ამიტომ ერთმა ბლოკმა ორ განშტოებას უნდა მისცეს მონაცემი.'],
+        hint:    ['Drag two connections out of the same res.json() (JSON.parse) port: one to the template string, one to .reduce().',
+                  'გამოიყვანე ორი კავშირი ერთი და იმავე res.json() (JSON.parse) პორტიდან: ერთი შაბლონურ სტრიქონთან, მეორე .reduce()-თან.'],
+        reqs: [
+            { text: ['Read the saved cart from localStorage', 'წაიკითხე შენახული კალათა localStorage-იდან'], rules: [['has', 'localStore']] },
+            { text: ['Parse the string back into an array', 'სტრიქონი უკან მასივად აქციე'], rules: [['link', 'localStore', 'jsonParse']] },
+            { text: ['Branch 1: render the items on the page', 'განშტოება 1: დახატე ნივთები გვერდზე'], rules: [['path', 'jsonParse', 'templateLit'], ['path', 'templateLit', 'renderDom'], ['path', 'renderDom', 'browser']] },
+            { text: ['Branch 2: add up the prices with .reduce() and log the total', 'განშტოება 2: შეკრიბე ფასები .reduce()-ით და დალოგე ჯამი'], rules: [['path', 'jsonParse', 'reduceOp'], ['path', 'reduceOp', 'consoleLog']] },
+            { text: ['One output feeds both branches', 'ერთი გამოსასვლელი ორივე განშტოებას კვებავს'], rules: [['out', 'jsonParse', 2]] }
+        ]
+    },
+    {
+        id: 'search', example: 'rw-search', dataset: 'movies', diff: 4,
+        context: ['Streaming service · search box', 'სტრიმინგ სერვისი · საძიებო ველი'],
+        title:   ['Live movie search', 'ფილმების ცოცხალი ძიება'],
+        goal:    ['Search while the user types — without flooding the server or showing stale results.', 'ეძებე აკრეფისას — სერვერის გადატვირთვისა და მოძველებული შედეგების გარეშე.'],
+        story:   ['A streaming service shows results while you type "star". A request on every keystroke would send five requests for five letters, and a slow early answer could overwrite a newer one. Wait until the typing pauses, cancel any request that is still in flight, then fetch and render the matches.',
+                  'სტრიმინგ სერვისი შედეგებს აჩვენებს, სანამ „star“-ს კრეფ. მოთხოვნა ყოველ ღილაკზე ხუთ ასოზე ხუთ მოთხოვნას გააგზავნიდა, ხოლო ნელმა ადრეულმა პასუხმა შეიძლება ახალი გადაფაროს. დაელოდე აკრეფის პაუზას, გააუქმე ჯერ კიდევ მიმდინარე მოთხოვნა, მერე ჩამოტვირთე და დახატე დამთხვევები.'],
+        hint:    ['Input value → Debounce → AbortController → fetch(). The API endpoint plugs into fetch() as a second input.',
+                  'ინფუთის მნიშვნელობა → Debounce → AbortController → fetch(). API მისამართი fetch()-ს მეორე შემავლად უერთდება.'],
+        reqs: [
+            { text: ['Read the input and debounce it', 'წაიკითხე ინფუთი და გაატარე debounce-ში'], rules: [['link', 'userInput', 'debounceBlk']] },
+            { text: ['Abort the previous request before sending a new one', 'ახლის გაგზავნამდე გააუქმე წინა მოთხოვნა'], rules: [['path', 'debounceBlk', 'abortCtl'], ['path', 'abortCtl', 'fetchCall']] },
+            { text: ['Send the query to the search API', 'გაუგზავნე მოთხოვნა საძიებო API-ს'], rules: [['link', 'apiEndpoint', 'fetchCall']] },
+            { text: ['await the response and parse the JSON', 'დაელოდე პასუხს და დააპარსე JSON'], rules: [['path', 'fetchCall', 'awaitOp'], ['path', 'awaitOp', 'jsonParse']] },
+            { text: ['Render the results list', 'დახატე შედეგების სია'], rules: [['path', 'jsonParse', 'templateLit'], ['path', 'templateLit', 'renderDom'], ['path', 'renderDom', 'browser']] }
+        ]
+    },
+    {
+        id: 'news', example: 'rw-news', dataset: 'news', diff: 3,
+        context: ['News site · homepage', 'საინფორმაციო საიტი · მთავარი გვერდი'],
+        title:   ['News feed that never breaks', 'ლენტა, რომელიც არ ფუჭდება'],
+        goal:    ['Load the articles safely, hide drafts and render the feed.', 'უსაფრთხოდ ჩატვირთე სტატიები, დამალე მონახაზები და დახატე ლენტა.'],
+        story:   ['The homepage loads its articles from the newsroom API. Twice last month that API went down and visitors saw a blank page. Make the request inside try / catch so a failure shows a friendly message instead. The API also returns unpublished drafts — those must never reach the public page.',
+                  'მთავარი გვერდი სტატიებს რედაქციის API-დან ტვირთავს. გასულ თვეს ეს API ორჯერ გაითიშა და მნახველებმა ცარიელი გვერდი ნახეს. მოთხოვნა try / catch-ის შიგნით გააკეთე, რომ შეცდომისას მეგობრული შეტყობინება გამოჩნდეს. API გამოუქვეყნებელ მონახაზებსაც აბრუნებს — ისინი საჯარო გვერდზე არასდროს უნდა მოხვდეს.'],
+        hint:    ['async function → try / catch → fetch(), with the API endpoint as the second input of fetch(). After res.json(), .filter() keeps published articles only.',
+                  'async ფუნქცია → try / catch → fetch(), API მისამართი კი fetch()-ის მეორე შემავალია. res.json()-ის შემდეგ .filter() მხოლოდ გამოქვეყნებულს ტოვებს.'],
+        reqs: [
+            { text: ['Open an async function with try / catch inside', 'გახსენი async ფუნქცია, შიგნით try / catch-ით'], rules: [['path', 'asyncFn', 'tryCatch']] },
+            { text: ['Make the request inside the try', 'მოთხოვნა try-ის შიგნით გააკეთე'], rules: [['path', 'tryCatch', 'fetchCall']] },
+            { text: ['Call the newsroom API endpoint', 'გამოიძახე რედაქციის API'], rules: [['link', 'apiEndpoint', 'fetchCall']] },
+            { text: ['await the response and parse the JSON', 'დაელოდე პასუხს და დააპარსე JSON'], rules: [['path', 'fetchCall', 'awaitOp'], ['path', 'awaitOp', 'jsonParse']] },
+            { text: ['Hide drafts: keep only published articles', 'დამალე მონახაზები: დატოვე მხოლოდ გამოქვეყნებული'], rules: [['path', 'jsonParse', 'filterOp']] },
+            { text: ['Render the feed', 'დახატე ლენტა'], rules: [['path', 'filterOp', 'templateLit'], ['path', 'templateLit', 'renderDom'], ['path', 'renderDom', 'browser']] }
+        ]
+    },
+    {
+        id: 'todo', example: 'rw-todo', dataset: 'todos', diff: 4,
+        context: ['Productivity app · to-do list', 'პროდუქტიულობის აპი · საქმეების სია'],
+        title:   ['To-do list that remembers', 'საქმეების სია, რომელსაც ახსოვს'],
+        goal:    ['Add a task from the form, save the new list and re-render it.', 'დაამატე საქმე ფორმიდან, შეინახე ახალი სია და გადახატე.'],
+        story:   ['When the user submits the "New task" form, the app reads the saved list from localStorage, adds the new task without mutating the old array, and keeps the result in state. From state the flow splits in two: one branch saves the list back to localStorage so it survives a refresh, the other re-renders it on screen.',
+                  'როცა მომხმარებელი ფორმას „ახალი საქმე“ აგზავნის, აპი localStorage-იდან კითხულობს შენახულ სიას, ამატებს ახალ საქმეს ძველი მასივის შეუცვლელად და შედეგს state-ში ინახავს. state-იდან ნაკადი ორად იყოფა: ერთი განშტოება სიას უკან ინახავს localStorage-ში, რომ განახლების შემდეგაც დარჩეს, მეორე კი ეკრანზე ხელახლა ხატავს.'],
+        hint:    ['Form submit → localStorage → res.json() (JSON.parse) → Spread → State object. Then two connections out of State: Save to storage, and Template string → Render.',
+                  'ფორმის გაგზავნა → localStorage → res.json() (JSON.parse) → Spread → State ობიექტი. მერე State-დან ორი კავშირი: შენახვა საცავში და შაბლონური სტრიქონი → დახატვა.'],
+        reqs: [
+            { text: ['Start from the form submit event', 'დაიწყე ფორმის გაგზავნის ივენთით'], rules: [['path', 'formSubmit', 'localStore']] },
+            { text: ['Load the saved list and parse it', 'ჩატვირთე შენახული სია და დააპარსე'], rules: [['link', 'localStore', 'jsonParse']] },
+            { text: ['Add the new task with spread — never push into the old array', 'ახალი საქმე spread-ით დაამატე — ძველ მასივში push არასდროს'], rules: [['path', 'jsonParse', 'spreadOp']] },
+            { text: ['Keep the new list in state', 'ახალი სია state-ში შეინახე'], rules: [['path', 'spreadOp', 'stateObj']] },
+            { text: ['Branch 1: save the list back to localStorage', 'განშტოება 1: სია უკან შეინახე localStorage-ში'], rules: [['path', 'stateObj', 'saveLocal']] },
+            { text: ['Branch 2: re-render the list', 'განშტოება 2: სია ხელახლა დახატე'], rules: [['path', 'stateObj', 'templateLit'], ['path', 'templateLit', 'renderDom'], ['path', 'renderDom', 'browser']] }
+        ]
+    },
+    {
+        id: 'login', example: 'rw-login', dataset: 'login', diff: 3,
+        context: ['Learning platform · sign-in page', 'სასწავლო პლატფორმა · შესვლის გვერდი'],
+        title:   ['Sign-in form', 'შესვლის ფორმა'],
+        goal:    ['POST the credentials, then keep the session token in localStorage.', 'გააგზავნე მონაცემები POST-ით და სესიის ტოკენი შეინახე localStorage-ში.'],
+        story:   ['Build the sign-in for an online learning platform. On submit, stop the page reload, collect the email and password, and POST them to /auth/login. The server answers with JSON that contains a session token — store that token in localStorage so the student stays signed in after a refresh. Never store the password itself.',
+                  'ააწყე შესვლა ონლაინ სასწავლო პლატფორმისთვის. გაგზავნისას შეაჩერე გვერდის გადატვირთვა, შეაგროვე ელფოსტა და პაროლი და გააგზავნე POST-ით /auth/login-ზე. სერვერი JSON-ით პასუხობს, რომელშიც სესიის ტოკენია — შეინახე ეს ტოკენი localStorage-ში, რომ სტუდენტი განახლების შემდეგაც შესული დარჩეს. თავად პაროლი არასდროს შეინახო.'],
+        hint:    ['Form submit → POST → fetch(), and API endpoint → fetch() as the second input. Then await → res.json() → Save to storage → console.log.',
+                  'ფორმის გაგზავნა → POST → fetch(), და API მისამართი → fetch() მეორე შემავლად. მერე await → res.json() → შენახვა საცავში → console.log.'],
+        reqs: [
+            { text: ['Collect the form fields and prepare a POST', 'შეაგროვე ფორმის ველები და მოამზადე POST'], rules: [['link', 'formSubmit', 'httpPost']] },
+            { text: ['The POST options go into fetch()', 'POST-ის პარამეტრები fetch()-ში შედის'], rules: [['link', 'httpPost', 'fetchCall']] },
+            { text: ['The login URL goes into the same fetch()', 'შესვლის URL იმავე fetch()-ში შედის'], rules: [['link', 'apiEndpoint', 'fetchCall']] },
+            { text: ['await the answer and read the JSON', 'დაელოდე პასუხს და წაიკითხე JSON'], rules: [['path', 'fetchCall', 'awaitOp'], ['path', 'awaitOp', 'jsonParse']] },
+            { text: ['Save the session token to localStorage', 'სესიის ტოკენი შეინახე localStorage-ში'], rules: [['path', 'jsonParse', 'saveLocal']] },
+            { text: ['Log what was saved', 'დალოგე, რა შეინახა'], rules: [['path', 'saveLocal', 'consoleLog']] }
+        ]
+    },
+    {
+        id: 'dashboard', example: 'rw-dashboard', dataset: 'orders', diff: 5,
+        context: ['Online store · admin dashboard', 'ონლაინ მაღაზია · ადმინ პანელი'],
+        title:   ['Sales dashboard', 'გაყიდვების დაფა'],
+        goal:    ['One request, two widgets: a revenue number and a table of paid orders.', 'ერთი მოთხოვნა, ორი ვიჯეტი: შემოსავლის რიცხვი და გადახდილი შეკვეთების ცხრილი.'],
+        story:   ['The store owner opens the admin dashboard every morning. Fetch the orders from the private orders API (it needs your key), keep only the paid ones, then split the flow: one branch adds up the revenue for the big KPI number, the other sorts the orders by amount — biggest first — and renders the table.',
+                  'მაღაზიის მფლობელი ადმინ პანელს ყოველ დილით ხსნის. ჩამოტვირთე შეკვეთები დახურული API-დან (მას შენი გასაღები სჭირდება), დატოვე მხოლოდ გადახდილი და მერე გაყავი ნაკადი: ერთი განშტოება შემოსავალს კრებს დიდი KPI რიცხვისთვის, მეორე შეკვეთებს თანხით ალაგებს — უდიდესი პირველი — და ცხრილს ხატავს.'],
+        hint:    ['Fan in: API endpoint and API key both connect to fetch(). Fan out: .filter() connects to both .reduce() and .sort().',
+                  'შეერთება: API მისამართი და API გასაღები ორივე fetch()-ს უერთდება. განშტოება: .filter() უერთდება .reduce()-საც და .sort()-საც.'],
+        reqs: [
+            { text: ['Call the orders API with your key — two inputs into fetch()', 'გამოიძახე შეკვეთების API შენი გასაღებით — fetch()-ში ორი შემავალი'], rules: [['link', 'apiEndpoint', 'fetchCall'], ['link', 'apiKey', 'fetchCall']] },
+            { text: ['Run it in an async function and await the response', 'გაუშვი async ფუნქციაში და დაელოდე პასუხს await-ით'], rules: [['has', 'asyncFn'], ['path', 'fetchCall', 'awaitOp'], ['path', 'awaitOp', 'jsonParse']] },
+            { text: ['Keep only paid orders', 'დატოვე მხოლოდ გადახდილი შეკვეთები'], rules: [['path', 'jsonParse', 'filterOp']] },
+            { text: ['KPI branch: total revenue with .reduce() → console.log', 'KPI განშტოება: ჯამური შემოსავალი .reduce()-ით → console.log'], rules: [['path', 'filterOp', 'reduceOp'], ['path', 'reduceOp', 'consoleLog']] },
+            { text: ['Table branch: sort by amount and render', 'ცხრილის განშტოება: დაალაგე თანხით და დახატე'], rules: [['path', 'filterOp', 'sortOp'], ['path', 'sortOp', 'templateLit'], ['path', 'templateLit', 'renderDom'], ['path', 'renderDom', 'browser']] },
+            { text: ['.filter() feeds both branches', '.filter() ორივე განშტოებას კვებავს'], rules: [['out', 'filterOp', 2]] }
+        ]
+    },
+    {
+        id: 'chat', example: 'rw-chat', dataset: 'messages', diff: 3,
+        context: ['Chat app · notification bell', 'ჩატის აპი · შეტყობინებების ზარი'],
+        title:   ['Unread messages badge', 'წაუკითხავის ნიშნული'],
+        goal:    ['Poll the inbox, light up the bell, and list unread messages newest first.', 'პერიოდულად შეამოწმე inbox, აანთე ზარი და ჩამოწერე წაუკითხავები — უახლესი პირველი.'],
+        story:   ['A team chat checks the server for new messages every few seconds (polling). On each tick, fetch the inbox with a classic .then() chain, keep only the unread messages, toggle the red dot on the bell icon, and show the unread list with the newest message on top.',
+                  'გუნდური ჩატი სერვერზე ახალ შეტყობინებებს რამდენიმე წამში ერთხელ ამოწმებს (polling). ყოველ ჯერზე ჩამოტვირთე inbox კლასიკური .then() ჯაჭვით, დატოვე მხოლოდ წაუკითხავი, გადართე წითელი წერტილი ზარის ხატულაზე და აჩვენე წაუკითხავების სია, ზემოთ უახლესით.'],
+        hint:    ['setTimeout → API endpoint → fetch() → .then() chain → .filter(). From .filter() go two ways: classList, and .sort() → Template string → Render.',
+                  'setTimeout → API მისამართი → fetch() → .then() ჯაჭვი → .filter(). .filter()-დან ორი გზა: classList და .sort() → შაბლონური სტრიქონი → დახატვა.'],
+        reqs: [
+            { text: ['Schedule the check with setTimeout', 'დაგეგმე შემოწმება setTimeout-ით'], rules: [['path', 'setTimeoutBlk', 'fetchCall']] },
+            { text: ['Ask the inbox endpoint', 'მიმართე inbox-ის endpoint-ს'], rules: [['path', 'apiEndpoint', 'fetchCall']] },
+            { text: ['Use a .then() chain — no await this time', 'გამოიყენე .then() ჯაჭვი — ამჯერად await-ის გარეშე'], rules: [['link', 'fetchCall', 'promiseThen'], ['not', 'awaitOp']] },
+            { text: ['Keep only unread messages', 'დატოვე მხოლოდ წაუკითხავი'], rules: [['path', 'promiseThen', 'filterOp']] },
+            { text: ['Toggle the badge class on the bell', 'გადართე ნიშნულის კლასი ზარზე'], rules: [['path', 'filterOp', 'classToggle']] },
+            { text: ['Sort newest first and render the list', 'დაალაგე უახლესით და დახატე სია'], rules: [['path', 'filterOp', 'sortOp'], ['path', 'sortOp', 'templateLit'], ['path', 'templateLit', 'renderDom'], ['path', 'renderDom', 'browser']] }
+        ]
+    },
+    {
+        id: 'profile', example: 'rw-profile', dataset: 'profile', diff: 3,
+        context: ['Social network · edit profile', 'სოციალური ქსელი · პროფილის რედაქტირება'],
+        title:   ['Edit profile', 'პროფილის რედაქტირება'],
+        goal:    ['Send the edited profile with PUT and re-render the card from the answer.', 'გააგზავნე რედაქტირებული პროფილი PUT-ით და ბარათი პასუხიდან გადახატე.'],
+        story:   ['On the settings page the user changes their bio and clicks Save. Send the whole updated profile to /users/7 with PUT. Do not trust what is still in the form: put the server\'s answer into state and re-render the profile card from state — the server is the source of truth.',
+                  'პარამეტრების გვერდზე მომხმარებელი ცვლის ბიოგრაფიას და აჭერს Save-ს. გააგზავნე მთლიანი განახლებული პროფილი /users/7-ზე PUT-ით. ნუ ენდობი იმას, რაც ჯერ კიდევ ფორმაშია: სერვერის პასუხი ჩადე state-ში და პროფილის ბარათი state-იდან გადახატე — ჭეშმარიტების წყარო სერვერია.'],
+        hint:    ['addEventListener → PUT → fetch(), and API endpoint → fetch(). Then await → res.json() → State object → Template string → Render.',
+                  'addEventListener → PUT → fetch(), და API მისამართი → fetch(). მერე await → res.json() → State ობიექტი → შაბლონური სტრიქონი → დახატვა.'],
+        reqs: [
+            { text: ['On the Save click, prepare a PUT', 'Save-ზე დაწკაპუნებისას მოამზადე PUT'], rules: [['link', 'eventListener', 'httpPut']] },
+            { text: ['The PUT options and the user URL both go into fetch()', 'PUT-ის პარამეტრები და მომხმარებლის URL ორივე fetch()-ში შედის'], rules: [['link', 'httpPut', 'fetchCall'], ['link', 'apiEndpoint', 'fetchCall']] },
+            { text: ['await the answer and parse the JSON', 'დაელოდე პასუხს და დააპარსე JSON'], rules: [['path', 'fetchCall', 'awaitOp'], ['path', 'awaitOp', 'jsonParse']] },
+            { text: ['Store the server\'s answer in state', 'სერვერის პასუხი state-ში შეინახე'], rules: [['path', 'jsonParse', 'stateObj']] },
+            { text: ['Re-render the profile card from state', 'პროფილის ბარათი state-იდან გადახატე'], rules: [['path', 'stateObj', 'templateLit'], ['path', 'templateLit', 'renderDom'], ['path', 'renderDom', 'browser']] }
+        ]
+    },
+    {
+        id: 'menu', example: 'rw-menu', dataset: 'menu', diff: 4,
+        context: ['Food delivery · restaurant page', 'მიტანის სერვისი · რესტორნის გვერდი'],
+        title:   ['Restaurant menu', 'რესტორნის მენიუ'],
+        goal:    ['Import the menu from its own module and build the list from real DOM nodes.', 'მენიუ შემოიტანე საკუთარი მოდულიდან და სია ააწყე ნამდვილი DOM კვანძებით.'],
+        story:   ['A food delivery app keeps each restaurant\'s menu in its own module, menu.js. On the restaurant page, import the menu, hide sold-out dishes, sort what is left from cheapest to most expensive, and build the list with createElement. Dish names are typed in by restaurants, so the team bans innerHTML here.',
+                  'მიტანის აპი თითო რესტორნის მენიუს ცალკე მოდულში, menu.js-ში ინახავს. რესტორნის გვერდზე შემოიტანე მენიუ, დამალე გაყიდული კერძები, დარჩენილი დაალაგე იაფიდან ძვირისკენ და სია ააწყე createElement-ით. კერძების სახელებს რესტორნები თავად წერენ, ამიტომ გუნდი აქ innerHTML-ს კრძალავს.'],
+        hint:    ['Array of data → export → import → .filter() → .sort() → querySelector → createElement → append → Browser screen.',
+                  'მონაცემთა მასივი → export → import → .filter() → .sort() → querySelector → createElement → append → ბრაუზერი.'],
+        reqs: [
+            { text: ['Export the menu from menu.js and import it in app.js', 'დააექსპორტე მენიუ menu.js-იდან და დააიმპორტე app.js-ში'], rules: [['link', 'dataArray', 'exportBlk'], ['link', 'exportBlk', 'importBlk']] },
+            { text: ['Hide sold-out dishes', 'დამალე გაყიდული კერძები'], rules: [['path', 'importBlk', 'filterOp']] },
+            { text: ['Cheapest first', 'იაფი პირველი'], rules: [['path', 'filterOp', 'sortOp']] },
+            { text: ['Find the list and build <li> nodes with createElement', 'იპოვე სია და ააწყე <li> კვანძები createElement-ით'], rules: [['has', 'querySel'], ['path', 'sortOp', 'createEl']] },
+            { text: ['Append them in one go and show the page', 'მიაბი ერთბაშად და აჩვენე გვერდი'], rules: [['path', 'createEl', 'appendChildBlk'], ['path', 'appendChildBlk', 'browser']] },
+            { text: ['No innerHTML in this one', 'აქ innerHTML არ გამოიყენო'], rules: [['not', 'renderDom']] }
+        ]
+    }
 ];
 
 // ============================================================
@@ -1831,6 +2397,10 @@ const state = {
     librarySearch: '',
     trace: [],
     consoleLines: [],
+    dataset: 'products',     // which sample data the canvas runs on
+    task: null,              // the real-world task being solved, if any
+    taskUi: { blocks: false, solution: false, collapsed: false, story: false },
+    tasksDone: new Set(),
     // One shared API config — every API / fetch block on the canvas uses it.
     api: {
         url: '',
@@ -1845,9 +2415,15 @@ const state = {
 
 const NODE_W = 220;
 const NODE_H = 108;
+const CANVAS_W = 3200;
+const CANVAS_H = 1800;
 const SVG_NS = 'http://www.w3.org/2000/svg';
-const MIN_ZOOM = 0.4;
+const MIN_ZOOM = 0.3;
 const MAX_ZOOM = 2;
+const TASKS_STORE_KEY = 'jsl-tasks-done';
+const THEME_STORE_KEY = 'jsl-theme-v2';   // v2: the redesign starts everyone on the dark theme once
+const LAYOUT_STORE_KEY = 'jsl-layout';    // panel sizes
+const PANELS_STORE_KEY = 'jsl-panels';    // which panels are collapsed
 
 // ============================================================
 // DOM REFS
@@ -1878,6 +2454,8 @@ const previewOverlay = $('preview-overlay');
 const previewBody = $('preview-body');
 const consoleBodyEl = $('console-body');
 const zoomLevelEl = $('zoom-level');
+const taskPanelEl = $('task-panel');
+const tasksOverlay = $('tasks-overlay');
 
 // ============================================================
 // UTIL
@@ -1958,9 +2536,27 @@ function sizeOf(v) {
 // ============================================================
 function applyZoom() {
     canvasEl.style.transform = `scale(${state.zoom})`;
-    canvasStageEl.style.width = (2400 * state.zoom) + 'px';
-    canvasStageEl.style.height = (1400 * state.zoom) + 'px';
+    canvasStageEl.style.width = (CANVAS_W * state.zoom) + 'px';
+    canvasStageEl.style.height = (CANVAS_H * state.zoom) + 'px';
+    // The dot grid lives on the scroll container, so it scales with the zoom too.
+    canvasWrapEl.style.setProperty('--zoom', state.zoom);
     zoomLevelEl.textContent = Math.round(state.zoom * 100) + '%';
+}
+// Zooms and scrolls so every block on the canvas is in view.
+function fitView() {
+    if (!state.nodes.length) { setZoom(1); canvasWrapEl.scrollLeft = 0; canvasWrapEl.scrollTop = 0; return; }
+    const pad = 60;
+    const minX = Math.min(...state.nodes.map(n => n.x)) - pad;
+    const minY = Math.min(...state.nodes.map(n => n.y)) - pad;
+    const maxX = Math.max(...state.nodes.map(n => n.x)) + NODE_W + pad;
+    const maxY = Math.max(...state.nodes.map(n => n.y)) + NODE_H + pad;
+    const r = canvasWrapEl.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    const z = Math.min(1, Math.max(MIN_ZOOM, Math.min(r.width / (maxX - minX), r.height / (maxY - minY))));
+    state.zoom = z;
+    applyZoom();
+    canvasWrapEl.scrollLeft = Math.max(0, minX * z - Math.max(0, (r.width - (maxX - minX) * z) / 2));
+    canvasWrapEl.scrollTop = Math.max(0, minY * z - Math.max(0, (r.height - (maxY - minY) * z) / 2));
 }
 function setZoom(z, anchor) {
     const old = state.zoom;
@@ -1990,7 +2586,7 @@ function renderLibrary() {
     const matches = (type) => {
         if (!q) return true;
         const def = NODE_DEFS[type];
-        const hay = [tx(def.label), tx(def.short), tx(def.category), type, (SIM[type] && SIM[type].op) || ''].join(' ').toLowerCase();
+        const hay = [tx(def.label), tx(def.short), tx(def.category), type, opOf(type)].join(' ').toLowerCase();
         return hay.includes(q);
     };
 
@@ -2193,10 +2789,12 @@ function renderNodes() {
         el.style.top = node.y + 'px';
         el.dataset.id = node.id;
 
-        const hasIn = state.connections.some(c => c.to === node.id);
-        const hasOut = state.connections.some(c => c.from === node.id);
+        const inCount = state.connections.filter(c => c.to === node.id).length;
+        const outCount = state.connections.filter(c => c.from === node.id).length;
+        const hasIn = inCount > 0;
+        const hasOut = outCount > 0;
         const canDive = !state.canvasStack.length && !!SUB_TOOLS[node.type];
-        const op = (SIM[node.type] && SIM[node.type].op) || '';
+        const op = opOf(node.type);
 
         el.innerHTML = `
             <div class="node-inner">
@@ -2212,8 +2810,8 @@ function renderNodes() {
                     </div>
                     <div class="node-body">${escapeHtml(tx(def.short))}</div>
                     <div class="node-tag">${escapeHtml(op || tx(def.category))}</div>
-                    <div class="port port-in ${hasIn ? 'connected' : ''}" data-port="in"></div>
-                    <div class="port port-out ${hasOut ? 'connected' : ''}" data-port="out"></div>
+                    <div class="port port-in ${hasIn ? 'connected' : ''}" data-port="in" ${inCount > 1 ? `data-count="${inCount}"` : ''}></div>
+                    <div class="port port-out ${hasOut ? 'connected' : ''}" data-port="out" ${outCount > 1 ? `data-count="${outCount}"` : ''}></div>
                 </div>
                 <div class="node-face node-back">
                     <div class="node-back-title">${escapeHtml(tx(def.label))}</div>
@@ -2234,8 +2832,18 @@ function renderNodes() {
     });
 }
 
+// The point halfway along the curve drawn by bezier().
+function bezierMid(sx, sy, tx, ty) {
+    const dx = Math.max(40, Math.abs(tx - sx) * 0.5);
+    return {
+        x: (sx + 3 * (sx + dx) + 3 * (tx - dx) + tx) / 8,
+        y: (sy + 3 * sy + 3 * ty + ty) / 8
+    };
+}
+
 function renderConnections() {
-    Array.from(svgEl.querySelectorAll('.conn, .conn-hit')).forEach(n => n.remove());
+    Array.from(svgEl.querySelectorAll('.conn-group, .conn, .conn-hit')).forEach(n => n.remove());
+    const sel = state.selectedNodeId;
     state.connections.forEach(conn => {
         const from = state.nodes.find(n => n.id === conn.from);
         const to = state.nodes.find(n => n.id === conn.to);
@@ -2244,18 +2852,34 @@ function renderConnections() {
         const tp = portPos(to, 'in');
         const d = bezier(sp.x, sp.y, tp.x, tp.y);
 
+        const g = document.createElementNS(SVG_NS, 'g');
+        g.setAttribute('class', 'conn-group' + (sel && (conn.from === sel || conn.to === sel) ? ' linked' : ''));
+
         const hit = document.createElementNS(SVG_NS, 'path');
         hit.setAttribute('d', d);
         hit.setAttribute('class', 'conn-hit');
         hit.addEventListener('click', () => removeConnection(conn.id));
-        svgEl.appendChild(hit);
+        g.appendChild(hit);
 
         const path = document.createElementNS(SVG_NS, 'path');
         path.setAttribute('d', d);
         path.setAttribute('class', 'conn');
         path.dataset.id = conn.id;
-        svgEl.appendChild(path);
+        g.appendChild(path);
+
+        // A small × at the middle of the curve, shown on hover.
+        if (!state.readonly) {
+            const m = bezierMid(sp.x, sp.y, tp.x, tp.y);
+            const del = document.createElementNS(SVG_NS, 'g');
+            del.setAttribute('class', 'conn-del');
+            del.setAttribute('transform', `translate(${m.x} ${m.y})`);
+            del.innerHTML = `<title>${escapeHtml(tt('removeLink'))}</title><circle r="10"></circle><path d="M-3.5 -3.5 L3.5 3.5 M3.5 -3.5 L-3.5 3.5"></path>`;
+            del.addEventListener('click', (e) => { e.stopPropagation(); removeConnection(conn.id); });
+            g.appendChild(del);
+        }
+        svgEl.appendChild(g);
     });
+    renderTaskPanel();
 }
 
 // ============================================================
@@ -2518,12 +3142,16 @@ function setPanel(tab) {
     if (tab === 'data') renderDataPanel();
 }
 
-function renderExplainSteps() {
+function renderExplainSteps(count) {
     explainStepsEl.innerHTML = '';
-    if (state.canvasStack.length) return;
-    const lvl = LEVELS[state.currentLevel];
-    const expected = lvl.expected || (lvl.expectedGraph && lvl.expectedGraph.nodes) || [];
-    expected.forEach(() => {
+    if (state.canvasStack.length && count == null) return;
+    let n = count;
+    if (n == null) {
+        if (state.task) return;
+        const lvl = LEVELS[state.currentLevel];
+        n = (lvl.expected || (lvl.expectedGraph && lvl.expectedGraph.nodes) || []).length;
+    }
+    Array.from({ length: n }).forEach(() => {
         const dot = document.createElement('div');
         dot.className = 'explain-dot';
         explainStepsEl.appendChild(dot);
@@ -2609,7 +3237,9 @@ function renderCodePanel() {
 
 // Walks the chain and lets every block contribute its own source lines.
 function generateCode(order) {
-    const types = order.map(id => (state.nodes.find(n => n.id === id) || {}).type).filter(Boolean);
+    const byId = new Map(state.nodes.map(n => [n.id, n]));
+    const types = order.map(id => (byId.get(id) || {}).type).filter(Boolean);
+    const pos = new Map(order.map((id, i) => [id, i]));
     const c = {
         v: 'items',
         api: state.api,
@@ -2626,13 +3256,24 @@ function generateCode(order) {
     let indent = 0;
     const push = (lines) => lines.forEach(l => out.push(l ? '  '.repeat(indent) + l : ''));
 
-    types.forEach(t => {
-        const sim = SIM[t];
-        if (!sim || !sim.gen) return;
-        c.indentAfter = 0;
-        const lines = sim.gen(c) || [];
-        push(lines);
-        if (c.indentAfter) indent += c.indentAfter;
+    // Every block remembers the variable it produced, so in a branching flow
+    // each branch reads from its own parent — not from whatever ran last.
+    const varOf = new Map();
+    order.forEach(id => {
+        const node = byId.get(id);
+        if (!node) return;
+        const parents = state.connections
+            .filter(cn => cn.to === id && varOf.has(cn.from))
+            .map(cn => cn.from)
+            .sort((a, b) => pos.get(b) - pos.get(a));
+        if (parents.length) c.v = varOf.get(parents[0]);
+        const sim = SIM[node.type];
+        if (sim && sim.gen) {
+            c.indentAfter = 0;
+            push(sim.gen(c) || []);
+            if (c.indentAfter) indent += c.indentAfter;
+        }
+        varOf.set(id, c.v);
     });
     while (c.open.length) {
         const closer = c.open.pop();
@@ -2656,6 +3297,14 @@ function highlightJs(src) {
 }
 
 function renderHeader() {
+    const task = state.task;
+    document.body.classList.toggle('task-mode', !!task);
+    if (task) {
+        levelNumEl.textContent = tt('taskLabel') + ' ' + (TASKS.indexOf(task) + 1);
+        levelTitleEl.textContent = tx(task.title);
+        missionTextEl.textContent = tx(task.goal);
+        return;
+    }
     const lvl = LEVELS[state.currentLevel];
     levelNumEl.textContent = (lang === 'ka' ? 'დონე ' : 'Level ') + (state.currentLevel + 1);
     levelTitleEl.textContent = tx(lvl.title);
@@ -2686,7 +3335,11 @@ function renderUIStrings() {
     $('mission-hint').textContent = tt('showHint');
     $('brand-name').textContent = tt('brand');
     $('brand-sub').textContent = tt('academy');
+    $('lbl-tasks').textContent = tt('tasks');
+    $('lbl-tasks-title').textContent = tt('tasksTitle');
+    $('lbl-tasks-sub').textContent = tt('tasksSub');
     librarySearchEl.placeholder = tt('searchBlocks');
+    applyPanels();
 }
 
 function renderAll() {
@@ -2760,17 +3413,31 @@ function removeNode(id) {
     if (state.selectedNodeId === id) state.selectedNodeId = null;
     renderAll();
 }
+// Is `toId` reachable from `fromId` along the current connections?
+function reaches(fromId, toId) {
+    const seen = new Set([fromId]);
+    const queue = [fromId];
+    while (queue.length) {
+        const id = queue.shift();
+        if (id === toId) return true;
+        state.connections.forEach(c => {
+            if (c.from === id && !seen.has(c.to)) { seen.add(c.to); queue.push(c.to); }
+        });
+    }
+    return false;
+}
+
+// Any output can feed many inputs and any input can collect many outputs —
+// the only thing that is refused is a loop, because data must flow forward.
 function addConnection(fromId, toId) {
     if (state.readonly) return;
     if (fromId === toId) return;
     if (state.connections.some(c => c.from === fromId && c.to === toId)) return;
-    pushUndo();
-    const lvl = LEVELS[state.currentLevel];
-    const allowGraph = state.canvasStack.length > 0 || (lvl && lvl.expectedGraph);
-    if (!allowGraph) {
-        // Linear levels stay a single chain: one edge out, one edge in.
-        state.connections = state.connections.filter(c => c.from !== fromId && c.to !== toId);
+    if (reaches(toId, fromId)) {
+        showToast(tt('wouldLoop'), tt('wouldLoopMsg'), 'warning');
+        return;
     }
+    pushUndo();
     state.connections.push({ id: 'c' + state.nextConnId++, from: fromId, to: toId });
     renderConnections();
     renderNodes();
@@ -2791,20 +3458,49 @@ function flipNode(id) {
     renderNodes();
 }
 
-// Lays the current chain out left to right, wrapping onto a second row.
+// Lays the flow out in columns: every block sits one column to the right of
+// its furthest parent, and branches stack vertically inside a column.
 function autoLayout() {
     if (state.readonly || !state.nodes.length) return;
-    const order = currentOrder() || state.nodes.map(n => n.id);
+    const fg = flowGraph();
+    if (!fg.acyclic) return;
     pushUndo();
-    const perRow = 6;
-    order.forEach((id, i) => {
-        const node = state.nodes.find(n => n.id === id);
-        if (!node) return;
-        const row = Math.floor(i / perRow);
-        let col = i % perRow;
-        if (row % 2 === 1) col = perRow - 1 - col;   // snake back, so links stay short
-        node.x = 120 + col * 280;
-        node.y = 220 + row * 200;
+    const parentsOf = (id) => state.connections.filter(c => c.to === id).map(c => c.from);
+    const childrenOf = (id) => state.connections.filter(c => c.from === id).map(c => c.to);
+    const linked = new Set();
+    state.connections.forEach(c => { linked.add(c.from); linked.add(c.to); });
+
+    const col = new Map();
+    fg.order.forEach(id => {
+        const ps = parentsOf(id);
+        col.set(id, ps.length ? Math.max(...ps.map(p => col.get(p))) + 1 : 0);
+    });
+    // A source that only feeds a later block (an API key, a URL) moves up next to it.
+    [...fg.order].reverse().forEach(id => {
+        const kids = childrenOf(id);
+        if (!parentsOf(id).length && kids.length) col.set(id, Math.min(...kids.map(k => col.get(k))) - 1);
+    });
+
+    const columns = new Map();
+    fg.order.filter(id => linked.has(id)).forEach(id => {
+        const c = col.get(id);
+        if (!columns.has(c)) columns.set(c, []);
+        columns.get(c).push(id);
+    });
+    const byId = new Map(state.nodes.map(n => [n.id, n]));
+    const midY = 380, gapX = 260, gapY = 200;
+    columns.forEach((ids, c) => {
+        ids.sort((a, b) => byId.get(a).y - byId.get(b).y);
+        ids.forEach((id, row) => {
+            const node = byId.get(id);
+            node.x = 80 + c * gapX;
+            node.y = Math.max(40, Math.round(midY + (row - (ids.length - 1) / 2) * gapY));
+        });
+    });
+    // Blocks that are not wired to anything wait in a row underneath.
+    state.nodes.filter(n => !linked.has(n.id)).forEach((node, i) => {
+        node.x = 80 + i * gapX;
+        node.y = midY + 2 * gapY + 60;
     });
     renderAll();
     showToast('', tt('tidied'), 'info');
@@ -2889,6 +3585,7 @@ function onNodeClick(e, node) {
     if (e.target.closest('.dive-btn') || e.target.closest('.node-btn.delete') || e.target.classList.contains('port')) return;
     state.selectedNodeId = node.id;
     renderNodes();
+    renderConnections();
     renderInspector();
 }
 
@@ -2900,6 +3597,8 @@ function startConnectionDrag(node, portType, e) {
     const pending = document.createElementNS(SVG_NS, 'path');
     pending.setAttribute('class', 'pending');
     svgEl.appendChild(pending);
+    // Every port that could accept this connection lights up while dragging.
+    canvasEl.classList.add(isOutgoing ? 'linking-out' : 'linking-in');
     let targetEl = null;
     const onMove = (ev) => {
         const rect = canvasEl.getBoundingClientRect();
@@ -2916,6 +3615,7 @@ function startConnectionDrag(node, portType, e) {
     };
     const onUp = (ev) => {
         pending.remove();
+        canvasEl.classList.remove('linking-out', 'linking-in');
         if (targetEl) targetEl.classList.remove('target');
         document.removeEventListener('mousemove', onMove);
         document.removeEventListener('mouseup', onUp);
@@ -2938,9 +3638,11 @@ function startConnectionDrag(node, portType, e) {
 }
 
 canvasEl.addEventListener('click', (e) => {
+    if (state.justPanned) { state.justPanned = false; return; }
     if (e.target === canvasEl || e.target === svgEl || e.target === nodesContainer) {
         state.selectedNodeId = null;
         renderNodes();
+        renderConnections();
         renderInspector();
     }
 });
@@ -2969,38 +3671,60 @@ function topologicalChain() {
     return order;
 }
 
-// Kahn's algorithm — handles fan-in / fan-out for graph levels.
+// When several blocks are ready at once, scopes open first (async function,
+// event handlers), then sources, then request config, then everything else —
+// so the generated code reads the way a person would write it.
+const GEN_RANK = {
+    asyncFn: 0, eventListener: 0, delegation: 0, formSubmit: 0, setTimeoutBlk: 0, debounceBlk: 0, tryCatch: 0, eventLoop: 0,
+    dataArray: 1, apiEndpoint: 1, localStore: 1, userInput: 1, importBlk: 1,
+    apiKey: 2, httpGet: 2, httpPost: 2, httpPut: 2, httpDelete: 2, abortCtl: 2
+};
+
+// Kahn's algorithm with a priority — handles fan-in and fan-out. Among the
+// ready blocks it picks by rank, then left to right, so a run moves across
+// the canvas column by column.
 function flowGraph() {
     const nodes = state.nodes;
+    const byId = new Map(nodes.map(n => [n.id, n]));
     const indeg = new Map(nodes.map(n => [n.id, 0]));
-    const outdeg = new Map(nodes.map(n => [n.id, 0]));
     const adj = new Map(nodes.map(n => [n.id, []]));
     state.connections.forEach(c => {
-        indeg.set(c.to, (indeg.get(c.to) || 0) + 1);
-        outdeg.set(c.from, (outdeg.get(c.from) || 0) + 1);
-        (adj.get(c.from) || []).push(c.to);
+        if (!byId.has(c.from) || !byId.has(c.to)) return;
+        indeg.set(c.to, indeg.get(c.to) + 1);
+        adj.get(c.from).push(c.to);
     });
     const starts = nodes.filter(n => indeg.get(n.id) === 0).map(n => n.id);
     const remaining = new Map(indeg);
-    const queue = [...starts];
+    const ready = [...starts];
     const order = [];
-    while (queue.length) {
-        const id = queue.shift();
+    const key = (id) => {
+        const n = byId.get(id);
+        return [GEN_RANK[n.type] ?? 3, n.x, n.y];
+    };
+    while (ready.length) {
+        ready.sort((a, b) => {
+            const ka = key(a), kb = key(b);
+            return ka[0] - kb[0] || ka[1] - kb[1] || ka[2] - kb[2];
+        });
+        const id = ready.shift();
         order.push(id);
-        for (const next of adj.get(id) || []) {
+        for (const next of adj.get(id)) {
             remaining.set(next, remaining.get(next) - 1);
-            if (remaining.get(next) === 0) queue.push(next);
+            if (remaining.get(next) === 0) ready.push(next);
         }
     }
     return { order, acyclic: order.length === nodes.length, starts };
 }
 
-// The order used by the Code tab and by Run Flow.
+// The order used by the Code tab and by Run Flow. Blocks that are not
+// connected to anything stay out of it.
 function currentOrder() {
-    const chain = topologicalChain();
-    if (chain && chain.length === state.nodes.length) return chain;
     const fg = flowGraph();
-    return fg.acyclic ? fg.order : null;
+    if (!fg.acyclic) return null;
+    if (state.nodes.length === 1) return fg.order;
+    const linked = new Set();
+    state.connections.forEach(c => { linked.add(c.from); linked.add(c.to); });
+    return fg.order.filter(id => linked.has(id));
 }
 
 // ============================================================
@@ -3023,6 +3747,7 @@ function checkSubAnswers(lvl) {
 }
 
 function checkAnswer() {
+    if (state.task) return checkTask();
     const lvl = LEVELS[state.currentLevel];
     if (lvl.expectedGraph) return checkAnswerGraph(lvl.expectedGraph);
 
@@ -3124,37 +3849,44 @@ function checkAnswerGraph(expectedGraph) {
 // ============================================================
 // RUN FLOW — real values move through the blocks you connected
 // ============================================================
-function newRunContext() {
+function newRunContext(order) {
+    // A flow that starts from what the user typed gets search results back.
+    const useSearch = (order || []).some(id => (state.nodes.find(n => n.id === id) || {}).type === 'userInput');
     return {
         api: state.api,
         console: [],
-        payload: clone(currentMockData()),
+        useSearch,
+        payload: clone(currentMockData(useSearch)),
         payloadLoaded: false,
-        requestUrl: 'https://shop.local/api/products',
+        requestUrl: DS().api,
         status: 200,
         live: false,
         target: '#list',
         value: undefined,
         lastArray: null,
+        renderArray: null,
         html: ''
     };
 }
-function currentMockData() {
-    return LEVELS[state.currentLevel].outcome === 'search' ? SEARCH_RESULTS : PRODUCTS;
+function currentMockData(useSearch) {
+    const d = DS();
+    return useSearch && d.search ? d.search : d.rows;
 }
 
-// Maps whatever an API returns onto the { id, name, price, inStock } shape
-// the templates and the preview understand.
+// Maps whatever an API returns onto the fields the current dataset uses
+// (name / price / inStock for products), so real data flows through the
+// same .filter() / .map() / template blocks.
 function normalizeItems(arr) {
+    const f = DS().f;
     return arr.slice(0, 40).map((p, i) => {
-        if (!p || typeof p !== 'object') return { id: i + 1, name: String(p), price: 0, inStock: true };
-        const price = p.price ?? p.cost ?? p.amount ?? 0;
-        const stock = p.inStock ?? p.available ?? (typeof p.stock === 'number' ? p.stock > 0 : undefined);
+        if (!p || typeof p !== 'object') return { id: i + 1, [f.name]: String(p), [f.num]: 0, [f.ok]: true };
+        const num = p[f.num] ?? p.price ?? p.cost ?? p.amount ?? 0;
+        const ok = p[f.ok] ?? p.inStock ?? p.available ?? (typeof p.stock === 'number' ? p.stock > 0 : undefined);
         return {
             id: p.id ?? i + 1,
-            name: String(p.name ?? p.title ?? p.label ?? ('item ' + (i + 1))),
-            price: typeof price === 'number' ? price : Number(String(price).replace(/[^0-9.]/g, '')) || 0,
-            inStock: stock === undefined ? true : !!stock
+            [f.name]: String(p[f.name] ?? p.name ?? p.title ?? p.label ?? ('item ' + (i + 1))),
+            [f.num]: typeof num === 'number' ? num : Number(String(num).replace(/[^0-9.]/g, '')) || 0,
+            [f.ok]: ok === undefined ? true : !!ok
         };
     });
 }
@@ -3165,7 +3897,7 @@ async function loadPayload(c) {
     c.payloadLoaded = true;
     const url = buildUrl(c.api);
     if (!url) {
-        c.payload = clone(currentMockData());
+        c.payload = clone(currentMockData(c.useSearch));
         return;
     }
     c.requestUrl = url;
@@ -3186,28 +3918,18 @@ async function loadPayload(c) {
         }
     } catch (err) {
         c.status = 0;
-        c.payload = clone(currentMockData());
+        c.payload = clone(currentMockData(c.useSearch));
         appendLog(tt('fetchFailed') + ' (' + escapeHtml(err.message) + ')', 'warning');
     }
 }
 
 async function runFlow() {
     if (state.running) return;
-    const lvl = LEVELS[state.currentLevel];
-    let order;
-    if (lvl.expectedGraph) {
-        const fg = flowGraph();
-        if (!fg.acyclic || fg.order.length < 2) {
-            showToast(tt('nothingRun'), tt('nothingRunMsg'), 'warning');
-            return;
-        }
-        order = fg.order;
-    } else {
-        order = topologicalChain();
-        if (!order || order.length < 2) {
-            showToast(tt('nothingRun'), tt('nothingRunMsg'), 'warning');
-            return;
-        }
+    const order = currentOrder();
+    if (!state.connections.length || !order || order.length < 2) {
+        const loop = order === null;
+        showToast(tt('nothingRun'), loop ? tt('wouldLoopMsg') : tt('nothingRunMsg'), 'warning');
+        return;
     }
 
     state.running = true;
@@ -3217,42 +3939,36 @@ async function runFlow() {
         const b = el.querySelector('[data-badge]');
         if (b) { b.classList.remove('show'); b.textContent = ''; }
     });
-    renderExplainSteps();
+    renderExplainSteps(order.length);
     explainBodyEl.innerHTML = '';
     dataBodyEl.innerHTML = '';
 
-    const ctx = newRunContext();
-    await fireNode(order[0], 0, ctx);
-    await sleep(420);
-
-    if (lvl.expectedGraph) {
-        const orderIdx = new Map(order.map((id, i) => [id, i]));
-        const visited = new Set([order[0]]);
-        let step = 1;
-        for (const id of order) {
-            const outs = state.connections.filter(c => c.from === id);
-            outs.sort((a, b) => orderIdx.get(a.to) - orderIdx.get(b.to));
-            for (const conn of outs) {
-                await animateParticle(conn.from, conn.to);
-                if (!visited.has(conn.to)) {
-                    visited.add(conn.to);
-                    await fireNode(conn.to, step++, ctx);
-                    await sleep(170);
-                }
-            }
-        }
-    } else {
-        for (let i = 0; i < order.length - 1; i++) {
-            await animateParticle(order[i], order[i + 1]);
-            await fireNode(order[i + 1], i + 1, ctx);
-            await sleep(240);
-        }
+    // Every block keeps its own output. A block reads its input from its
+    // parent — in a branching flow each branch gets the right value.
+    const ctx = newRunContext(order);
+    const outputs = new Map();
+    const firedAt = new Map();
+    let firedBrowser = false;
+    for (let i = 0; i < order.length; i++) {
+        const id = order[i];
+        const incoming = state.connections.filter(c => c.to === id && outputs.has(c.from));
+        if (incoming.length) await Promise.all(incoming.map(c => animateParticle(c.from, c.to)));
+        // Several inputs (fan-in): the value comes from the parent that fired last.
+        const parent = incoming
+            .map(c => c.from)
+            .filter(p => outputs.get(p) !== undefined)
+            .sort((a, b) => firedAt.get(b) - firedAt.get(a))[0];
+        ctx.value = parent ? outputs.get(parent) : undefined;
+        await fireNode(id, i, ctx);
+        outputs.set(id, ctx.value);
+        firedAt.set(id, i);
+        if ((state.nodes.find(n => n.id === id) || {}).type === 'browser') firedBrowser = true;
+        await sleep(i === 0 ? 380 : 200);
     }
 
-    const lastNode = state.nodes.find(n => n.id === order[order.length - 1]);
     renderDataPanel();
     renderConsole(ctx);
-    if (lastNode && lastNode.type === 'browser') {
+    if (firedBrowser) {
         await sleep(120);
         showBrowserPreview(ctx);
     } else {
@@ -3287,7 +4003,7 @@ async function fireNode(id, stepIndex, ctx) {
 
     state.trace.push({
         type: node.type,
-        op: sim ? sim.op : (NODE_DEFS[node.type] && NODE_DEFS[node.type].file) || '',
+        op: sim ? opOf(node.type) : (NODE_DEFS[node.type] && NODE_DEFS[node.type].file) || '',
         before,
         after: ctx.value,
         error,
@@ -3362,7 +4078,7 @@ function animateParticle(fromId, toId) {
 // TRACE MESSAGES
 // ============================================================
 const LOG_MSGS = {
-    dataArray:     ['<strong>Array</strong> is ready in memory — 5 product objects.', '<strong>მასივი</strong> მზადაა მეხსიერებაში — 5 პროდუქტის ობიექტი.'],
+    dataArray:     ['<strong>Array</strong> is ready in memory — the objects are already there.', '<strong>მასივი</strong> მზადაა მეხსიერებაში — ობიექტები უკვე იქაა.'],
     apiEndpoint:   ['<strong>API endpoint</strong> is just a string so far — nothing has been sent.', '<strong>API მისამართი</strong> ჯერ მხოლოდ სტრიქონია — არაფერი გაგზავნილა.'],
     localStore:    ['<strong>localStorage</strong> returned a string, not an array.', '<strong>localStorage</strong>-მ დააბრუნა სტრიქონი და არა მასივი.'],
     userInput:     ['<strong>Input</strong> gave back what the user typed.', '<strong>ინფუთმა</strong> დააბრუნა ის, რაც აკრიფეს.'],
@@ -3438,26 +4154,31 @@ const OUTCOME_BANNERS = {
 
 function showBrowserPreview(ctx) {
     const lvl = LEVELS[state.currentLevel];
-    const items = Array.isArray(ctx.lastArray) ? ctx.lastArray : [];
-    const bannerKey = OUTCOME_BANNERS[lvl.outcome];
+    const d = DS();
+    const source = ctx.renderArray || ctx.lastArray;
+    const items = Array.isArray(source) ? source : [];
+    // Scenario datasets carry their own banner; the shop products use the level's.
+    const bannerText = d.banner ? tx(d.banner) : (OUTCOME_BANNERS[lvl.outcome] ? tt(OUTCOME_BANNERS[lvl.outcome]) : '');
     const bannerClass = ctx.live ? 'info' : '';
-    const banner = bannerKey ? `<div class="preview-banner ${bannerClass}">${tt(bannerKey)}</div>` : '';
+    const banner = bannerText ? `<div class="preview-banner ${bannerClass}">${bannerText}</div>` : '';
     const liveNote = ctx.live ? `<div class="preview-banner info">${tt('livePreview')} — ${escapeHtml(shorten(ctx.requestUrl, 70))}</div>` : '';
 
-    $('preview-url').textContent = ctx.live ? ctx.requestUrl : 'https://shop.local/products';
+    $('preview-url').textContent = ctx.live ? ctx.requestUrl : d.page;
 
-    const cards = items.slice(0, 20).map(p => `
+    const cards = items.slice(0, 20).map(p => {
+        const flag = p && p[d.f.ok];
+        return `
         <div class="product-card">
-            <div class="product-name">${escapeHtml(String(p.name ?? p.title ?? '(item)'))}</div>
+            <div class="product-name">${escapeHtml(String(nameOf(p)))}</div>
             <div class="product-meta">
-                <span class="product-price">${escapeHtml(typeof p.price === 'number' ? '$' + p.price : String(p.price ?? ''))}</span>
-                ${p.inStock === undefined ? '' : `<span class="product-stock ${p.inStock ? '' : 'out'}">${p.inStock ? tt('inStock') : tt('outOfStock')}</span>`}
+                <span class="product-price">${escapeHtml(fmtNum(numOf(p)))}</span>
+                ${flag === undefined ? '' : `<span class="product-stock ${flag ? '' : 'out'}">${escapeHtml(tx(flag ? d.okLabel : d.noLabel))}</span>`}
             </div>
-        </div>
-    `).join('');
+        </div>`;
+    }).join('');
 
     previewBody.innerHTML = `
-        <h1 class="preview-title">${tt('ourProducts')}</h1>
+        <h1 class="preview-title">${escapeHtml(tx(d.title))}</h1>
         <div class="preview-sub">${items.length} ${tt('items')} — ${tt('renderedBy')}</div>
         ${liveNote}
         ${banner}
@@ -3480,6 +4201,8 @@ function showToast(title, body, kind = 'info') {
         <button class="toast-close">${I.x}</button>
     `;
     t.querySelector('.toast-close').addEventListener('click', () => t.remove());
+    // Never more than three at once — the oldest makes room.
+    while (toastWrap.children.length >= 3) toastWrap.firstElementChild.remove();
     toastWrap.appendChild(t);
     setTimeout(() => {
         t.style.transition = 'opacity 0.25s, transform 0.25s';
@@ -3494,6 +4217,8 @@ function showToast(title, body, kind = 'info') {
 // ============================================================
 function loadLevel(idx) {
     state.canvasStack = [];
+    state.task = null;
+    state.dataset = 'products';
     exitExampleReadonly();
     renderBreadcrumb();
     renderLibrary();
@@ -3511,6 +4236,7 @@ function loadLevel(idx) {
     renderCodePanel();
     renderLevelsMenu();
     renderAll();
+    renderTaskPanel();
 }
 
 function resetCanvas() {
@@ -3533,69 +4259,402 @@ function resetCanvas() {
 // ============================================================
 // REFERENCE SCHEMAS
 // ============================================================
+const starsHtml = (n) => Array.from({ length: 5 }, (_, i) => `<span class="star ${i < n ? '' : 'dim'}">★</span>`).join('');
+const taskForExample = (exId) => TASKS.find(t => t.example === exId);
+
 function renderExamples() {
     const body = $('examples-body');
     if (!body) return;
     body.innerHTML = '';
-    EXAMPLES.forEach((ex) => {
-        const card = document.createElement('div');
-        card.className = 'example-card';
-        const stars = Array.from({ length: 5 }, (_, i) => `<span class="star ${i < ex.diff ? '' : 'dim'}">★</span>`).join('');
-        card.innerHTML = `
+    const section = (title, sub) => {
+        const h = document.createElement('div');
+        h.className = 'gallery-section';
+        h.innerHTML = `<div class="gallery-section-title">${escapeHtml(title)}</div>${sub ? `<div class="gallery-section-sub">${escapeHtml(sub)}</div>` : ''}`;
+        body.appendChild(h);
+    };
+    const card = (ex) => {
+        const el = document.createElement('div');
+        el.className = 'example-card' + (ex.real ? ' real' : '');
+        const task = ex.real ? taskForExample(ex.id) : null;
+        el.innerHTML = `
             <div class="example-thumb">${makeExampleThumb(ex)}</div>
+            ${ex.real ? `<div class="example-scenario">${escapeHtml(tx(ex.scenario))}</div>` : ''}
             <div class="example-title">${escapeHtml(tx(ex.title))}</div>
-            <div class="example-diff">${stars}</div>
+            <div class="example-diff">${starsHtml(ex.diff)}</div>
             <div class="example-desc">${escapeHtml(tx(ex.desc))}</div>
+            ${task ? `<button class="example-practice">${tt('practiceTask')} →</button>` : ''}
         `;
-        card.addEventListener('click', () => loadExample(ex, true));
-        body.appendChild(card);
-    });
+        el.addEventListener('click', (e) => {
+            if (task && e.target.closest('.example-practice')) {
+                examplesOverlay.classList.remove('show');
+                startTask(task);
+                return;
+            }
+            loadExample(ex, true);
+        });
+        body.appendChild(el);
+    };
+    section(tt('realWorld'), tt('realWorldSub'));
+    EXAMPLES.filter(e => e.real).forEach(card);
+    section(tt('conceptSchemas'), '');
+    EXAMPLES.filter(e => !e.real).forEach(card);
 }
 
+// A tiny picture of a flow: curved wires and one dot per block.
 function makeExampleThumb(ex) {
     const xs = ex.nodes.map(n => n.x);
     const ys = ex.nodes.map(n => n.y);
     const minX = Math.min(...xs), maxX = Math.max(...xs);
     const minY = Math.min(...ys), maxY = Math.max(...ys);
     const w = maxX - minX + 220, h = maxY - minY + 110;
-    const pad = 20;
+    const pad = 18;
     const sx = (x) => ((x - minX + 20) / w) * (240 - 2 * pad) + pad;
     const sy = (y) => ((y - minY + 20) / h) * (100 - 2 * pad) + pad;
-    const dots = ex.nodes.map(n => `<circle cx="${sx(n.x)}" cy="${sy(n.y)}" r="3" fill="var(--brand)"/>`).join('');
+    const dots = ex.nodes.map(n => `<circle class="thumb-dot" cx="${sx(n.x)}" cy="${sy(n.y)}" r="3.2"/>`).join('');
     const lines = ex.connections.map(([a, b]) => {
         const A = ex.nodes[a], B = ex.nodes[b];
-        return `<line x1="${sx(A.x)}" y1="${sy(A.y)}" x2="${sx(B.x)}" y2="${sy(B.y)}" stroke="var(--gray-400)" stroke-width="1"/>`;
+        const x1 = sx(A.x), y1 = sy(A.y), x2 = sx(B.x), y2 = sy(B.y);
+        const dx = Math.max(6, Math.abs(x2 - x1) * 0.5);
+        return `<path class="thumb-line" d="M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}"/>`;
     }).join('');
     return `<svg viewBox="0 0 240 100" preserveAspectRatio="xMidYMid meet">${lines}${dots}</svg>`;
 }
 
-let _currentExample = null;
-function loadExample(ex, readonly) {
-    _currentExample = ex;
-    state.canvasStack = [];
-    renderBreadcrumb();
-    renderLibrary();
+// Puts a pre-built flow on the canvas (read-only until "Load to canvas (edit)").
+function placeFlow(nodes, connections) {
     state.nodes = [];
     state.connections = [];
     state.nextNodeId = 1;
     state.nextConnId = 1;
     state.selectedNodeId = null;
     const idMap = [];
-    ex.nodes.forEach((n) => {
+    nodes.forEach((n) => {
         const node = { id: 'n' + state.nextNodeId++, type: n.type, x: n.x, y: n.y, flipped: false };
         state.nodes.push(node);
         idMap.push(node.id);
     });
-    ex.connections.forEach(([a, b]) => {
+    connections.forEach(([a, b]) => {
         state.connections.push({ id: 'c' + state.nextConnId++, from: idMap[a], to: idMap[b] });
     });
+}
+
+let _currentExample = null;
+function loadExample(ex, readonly) {
+    _currentExample = ex;
+    state.canvasStack = [];
+    state.task = null;
+    state.dataset = ex.dataset || 'products';
+    state.trace = [];
+    renderBreadcrumb();
+    renderLibrary();
+    placeFlow(ex.nodes, ex.connections);
     state.readonly = !!readonly;
+    renderHeader();
+    renderExplainSteps();
     renderAll();
+    renderDataPanel();
     renderCodePanel();
-    $('examples-overlay').classList.remove('show');
+    renderTaskPanel();
+    examplesOverlay.classList.remove('show');
+    tasksOverlay.classList.remove('show');
     const banner = $('example-readonly-banner');
     if (banner) banner.classList.toggle('show', !!readonly);
+    requestAnimationFrame(fitView);
 }
+
+// ============================================================
+// REAL-WORLD TASKS
+// ============================================================
+function loadTasksDone() {
+    try {
+        const raw = localStorage.getItem(TASKS_STORE_KEY);
+        if (raw) state.tasksDone = new Set(JSON.parse(raw));
+    } catch (_) {}
+}
+function saveTasksDone() {
+    try { localStorage.setItem(TASKS_STORE_KEY, JSON.stringify([...state.tasksDone])); } catch (_) {}
+}
+
+// The gallery of tasks — one card per real-world brief.
+function renderTasks() {
+    const body = $('tasks-body');
+    if (!body) return;
+    body.innerHTML = '';
+    TASKS.forEach((task, i) => {
+        const ex = EXAMPLES.find(e => e.id === task.example);
+        const done = state.tasksDone.has(task.id);
+        const el = document.createElement('div');
+        el.className = 'task-card' + (done ? ' done' : '') + (state.task === task ? ' current' : '');
+        el.innerHTML = `
+            <div class="task-card-top">
+                <span class="task-card-num">${done ? '✓' : i + 1}</span>
+                <span class="task-card-context">${escapeHtml(tx(task.context))}</span>
+                ${done ? `<span class="task-card-badge">${tt('completedBadge')}</span>` : ''}
+            </div>
+            <div class="task-card-title">${escapeHtml(tx(task.title))}</div>
+            <div class="task-card-story">${escapeHtml(tx(task.story))}</div>
+            <div class="task-card-meta">
+                <span class="example-diff">${starsHtml(task.diff)}</span>
+                <span>${ex ? ex.nodes.length : '?'} ${tt('blocksCount')}</span>
+                <span>${task.reqs.length + 1} ${tt('reqsCount')}</span>
+            </div>
+            <div class="task-card-actions">
+                <button class="btn btn-primary btn-sm" data-act="start">${tt('startTask')}</button>
+                <button class="btn btn-ghost btn-sm" data-act="solution">${tt('viewSolution')}</button>
+            </div>
+        `;
+        el.querySelector('[data-act="start"]').addEventListener('click', () => startTask(task));
+        el.querySelector('[data-act="solution"]').addEventListener('click', () => { if (ex) loadExample(ex, true); });
+        body.appendChild(el);
+    });
+}
+
+function startTask(task) {
+    state.canvasStack = [];
+    exitExampleReadonly();
+    state.task = task;
+    state.dataset = task.dataset;
+    state.taskUi = { blocks: false, solution: false, collapsed: false, story: false };
+    state.nodes = [];
+    state.connections = [];
+    state.selectedNodeId = null;
+    state.nextNodeId = 1;
+    state.nextConnId = 1;
+    state.trace = [];
+    state.undoStack.length = 0;
+    state.redoStack.length = 0;
+    tasksOverlay.classList.remove('show');
+    renderBreadcrumb();
+    renderLibrary();
+    renderHeader();
+    renderExplainSteps();
+    explainBodyEl.innerHTML = `<div class="explain-empty"><strong>${escapeHtml(tx(task.title))}.</strong> ${escapeHtml(tx(task.story))}</div>`;
+    renderDataPanel();
+    renderCodePanel();
+    renderAll();
+    renderTaskPanel();
+    state.zoom = 1;
+    applyZoom();
+    canvasWrapEl.scrollLeft = 0;
+    canvasWrapEl.scrollTop = 0;
+    showToast(tx(task.title), tt('taskTip'), 'info');
+}
+
+// Leaves task mode but keeps whatever the student built on the canvas.
+function exitTask() {
+    if (!state.task) return;
+    state.task = null;
+    renderHeader();
+    renderExplainSteps();
+    renderTaskPanel();
+    renderLevelsMenu();
+}
+
+// The top-level graph, even while the student is inside a block.
+function topGraph() {
+    if (state.canvasStack.length) {
+        const s = state.canvasStack[0].snapshot;
+        return { nodes: s.nodes, connections: s.connections };
+    }
+    return { nodes: state.nodes, connections: state.connections };
+}
+
+// Facts about the student's graph that the task rules ask about.
+function graphFacts(nodes, connections) {
+    const typeOf = new Map(nodes.map(n => [n.id, n.type]));
+    const adj = new Map(nodes.map(n => [n.id, []]));
+    connections.forEach(c => { if (adj.has(c.from) && typeOf.has(c.to)) adj.get(c.from).push(c.to); });
+    const idsOf = (t) => nodes.filter(n => n.type === t).map(n => n.id);
+    const reachTypes = (startId) => {
+        const seen = new Set();
+        const queue = [...adj.get(startId)];
+        while (queue.length) {
+            const id = queue.shift();
+            if (seen.has(id)) continue;
+            seen.add(id);
+            queue.push(...adj.get(id));
+        }
+        return new Set([...seen].map(id => typeOf.get(id)));
+    };
+    return {
+        count: nodes.length,
+        has: (t) => idsOf(t).length > 0,
+        link: (a, b) => connections.some(c => typeOf.get(c.from) === a && typeOf.get(c.to) === b),
+        path: (a, b) => idsOf(a).some(id => reachTypes(id).has(b)),
+        out: (t) => Math.max(0, ...idsOf(t).map(id => adj.get(id).length)),
+        connected: () => nodes.length > 1 && nodes.every(n => connections.some(c => c.from === n.id || c.to === n.id))
+    };
+}
+
+function evalRule(rule, g) {
+    switch (rule[0]) {
+        case 'has':       return g.has(rule[1]);
+        case 'not':       return !g.has(rule[1]);
+        case 'link':      return g.link(rule[1], rule[2]);
+        case 'path':      return g.path(rule[1], rule[2]);
+        case 'out':       return g.out(rule[1]) >= rule[2];
+        case 'connected': return g.connected();
+        default:          return false;
+    }
+}
+
+// One row per requirement, plus "every block is connected" at the end.
+function evaluateTask(task) {
+    const { nodes, connections } = topGraph();
+    const g = graphFacts(nodes, connections);
+    const reqs = task.reqs.concat([{ text: T.reqConnected, rules: [['connected']] }]);
+    return reqs.map(r => {
+        // A "do not use X" rule is only worth a tick once something is built.
+        const onlyGuards = r.rules.every(x => x[0] === 'not' || x[0] === 'connected');
+        const ok = r.rules.every(x => evalRule(x, g)) && (!onlyGuards || g.count >= 3);
+        return { text: r.text, ok };
+    });
+}
+
+// The reference flow, cut into readable chains: "A → B → C".
+function solutionSegments(ex) {
+    const outs = ex.nodes.map(() => []);
+    const ins = ex.nodes.map(() => 0);
+    ex.connections.forEach(([a, b]) => { outs[a].push(b); ins[b]++; });
+    const used = new Set();
+    const segs = [];
+    ex.connections.forEach(([a, b]) => {
+        if (used.has(a + '>' + b)) return;
+        used.add(a + '>' + b);
+        const seg = [a, b];
+        let cur = b;
+        while (outs[cur].length === 1 && ins[cur] === 1) {
+            const next = outs[cur][0];
+            if (used.has(cur + '>' + next)) break;
+            used.add(cur + '>' + next);
+            seg.push(next);
+            cur = next;
+        }
+        segs.push(seg.map(i => ex.nodes[i].type));
+    });
+    return segs;
+}
+
+let _taskSig = '';
+function renderTaskPanel() {
+    if (!taskPanelEl) return;
+    const task = state.task;
+    if (!task) {
+        taskPanelEl.classList.remove('show');
+        taskPanelEl.innerHTML = '';
+        _taskSig = '';
+        return;
+    }
+    const results = evaluateTask(task);
+    const ui = state.taskUi;
+    const done = results.filter(r => r.ok).length;
+    const total = results.length;
+    const sig = [lang, task.id, ui.blocks, ui.solution, ui.collapsed, ui.story, state.tasksDone.has(task.id), results.map(r => (r.ok ? 1 : 0)).join('')].join('|');
+    if (sig === _taskSig && taskPanelEl.classList.contains('show')) return;
+    _taskSig = sig;
+
+    const ex = EXAMPLES.find(e => e.id === task.example);
+    const pct = Math.round((done / total) * 100);
+    const label = (t) => escapeHtml(tx(NODE_DEFS[t].label));
+    const groupIndex = (t) => LIBRARY_GROUPS.findIndex(g => g.items.includes(t));
+    // Listed by library group, not by flow order — it should not give the answer away.
+    const blockTypes = ex ? [...new Set(ex.nodes.map(n => n.type))].sort((a, b) => groupIndex(a) - groupIndex(b) || LIBRARY_GROUPS[groupIndex(a)].items.indexOf(a) - LIBRARY_GROUPS[groupIndex(b)].items.indexOf(b)) : [];
+    const isDone = state.tasksDone.has(task.id);
+
+    taskPanelEl.classList.add('show');
+    taskPanelEl.classList.toggle('collapsed', ui.collapsed);
+    taskPanelEl.classList.toggle('complete', done === total);
+    taskPanelEl.innerHTML = `
+        <div class="task-head">
+            <div class="task-head-icon">${I.target}</div>
+            <div class="task-head-text">
+                <div class="task-eyebrow" title="${tt('taskEyebrow')}">${escapeHtml(tx(task.context))}</div>
+                <div class="task-title">${escapeHtml(tx(task.title))}${isDone ? ' <span class="task-done-tick">✓</span>' : ''}</div>
+            </div>
+            <span class="task-mini">${done}/${total}</span>
+            <button class="task-icon-btn" data-act="collapse" title="${tt(ui.collapsed ? 'expand' : 'collapse')}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="${ui.collapsed ? '6 9 12 15 18 9' : '18 15 12 9 6 15'}"/></svg>
+            </button>
+            <button class="task-icon-btn" data-act="exit" title="${tt('exitTask')}">${I.close}</button>
+        </div>
+        <div class="task-body">
+            <p class="task-story ${ui.story ? 'expanded' : ''}" data-act="story" title="${tt(ui.story ? 'collapse' : 'expand')}">${escapeHtml(tx(task.story))}</p>
+            <div class="task-progress">
+                <div class="task-progress-bar"><span style="width:${pct}%"></span></div>
+                <div class="task-progress-label">${done} / ${total} ${tt('taskProgress')}</div>
+            </div>
+            <ul class="task-reqs">
+                ${results.map(r => `
+                    <li class="${r.ok ? 'ok' : ''}">
+                        <span class="task-check">${r.ok ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' : ''}</span>
+                        <span class="task-req-text">${escapeHtml(tx(r.text))}</span>
+                    </li>`).join('')}
+            </ul>
+            <div class="task-tools">
+                <button class="task-chip-btn ${ui.blocks ? 'on' : ''}" data-act="blocks">${I.layers}<span>${tt(ui.blocks ? 'hideBlocks' : 'showBlocks')}</span></button>
+                <button class="task-chip-btn ${ui.solution ? 'on' : ''}" data-act="solution">${I.info}<span>${tt(ui.solution ? 'hideSolution' : 'showSolution')}</span></button>
+            </div>
+            ${ui.blocks ? `
+                <div class="task-sub-label">${tt('taskBlocks')}</div>
+                <div class="task-blocks">
+                    ${blockTypes.map(t => `<button class="task-block-chip" data-type="${t}" title="${tt('addToCanvas')}"><span class="lib-icon ${NODE_DEFS[t].color || ''}">${iconFor(t)}</span>${label(t)}</button>`).join('')}
+                </div>` : ''}
+            ${ui.solution && ex ? `
+                <div class="task-sub-label">${tt('solutionLabel')}</div>
+                <div class="task-solution">
+                    ${solutionSegments(ex).map(seg => `<div class="task-seg">${seg.map(label).join(' <span class="arr">→</span> ')}</div>`).join('')}
+                </div>` : ''}
+            <button class="btn btn-accent task-check-btn" data-act="check">${I.check}<span>${tt('checkTask')}</span></button>
+        </div>
+    `;
+}
+
+function checkTask() {
+    const task = state.task;
+    if (!task) return;
+    const results = evaluateTask(task);
+    const missing = results.find(r => !r.ok);
+    if (!missing) {
+        const first = !state.tasksDone.has(task.id);
+        state.tasksDone.add(task.id);
+        saveTasksDone();
+        showToast(tt('taskDone'), tt('taskDoneMsg'), 'success');
+        appendLog('<strong>' + escapeHtml(tx(task.title)) + '</strong> — ' + tt('taskDone'), 'success');
+        if (first) taskPanelEl.classList.add('celebrate');
+        setTimeout(() => taskPanelEl.classList.remove('celebrate'), 1200);
+        _taskSig = '';
+        renderTaskPanel();
+        return;
+    }
+    const msg = tt('taskNext') + ' <strong>' + escapeHtml(tx(missing.text)) + '</strong>';
+    showToast(tt('taskMissing'), msg, 'warning');
+    appendLog(msg, 'warning');
+}
+
+// Adds a block near the middle of what the student is looking at.
+function addNodeAtView(type) {
+    const r = canvasWrapEl.getBoundingClientRect();
+    const cx = (canvasWrapEl.scrollLeft + r.width / 2) / state.zoom;
+    const cy = (canvasWrapEl.scrollTop + r.height / 2) / state.zoom;
+    const k = state.nodes.length % 6;
+    addNode(type, cx + (k - 2.5) * 34, cy + (k - 2.5) * 26);
+}
+
+taskPanelEl.addEventListener('mousedown', (e) => e.stopPropagation());
+taskPanelEl.addEventListener('click', (e) => {
+    const chip = e.target.closest('.task-block-chip');
+    if (chip) { addNodeAtView(chip.dataset.type); return; }
+    const btn = e.target.closest('[data-act]');
+    if (!btn) return;
+    const act = btn.dataset.act;
+    if (act === 'collapse') state.taskUi.collapsed = !state.taskUi.collapsed;
+    if (act === 'story') state.taskUi.story = !state.taskUi.story;
+    if (act === 'blocks') state.taskUi.blocks = !state.taskUi.blocks;
+    if (act === 'solution') state.taskUi.solution = !state.taskUi.solution;
+    if (act === 'check') { checkTask(); return; }
+    if (act === 'exit') { exitTask(); return; }
+    renderTaskPanel();
+});
 
 function exitExampleReadonly() {
     state.readonly = false;
@@ -3606,15 +4665,16 @@ function exitExampleReadonly() {
 // ============================================================
 // THEME + LANGUAGE
 // ============================================================
-function setTheme(theme) {
-    state.theme = theme === 'dark' ? 'dark' : 'light';
+function setTheme(theme, persist) {
+    state.theme = theme === 'light' ? 'light' : 'dark';
     document.documentElement.classList.toggle('dark', state.theme === 'dark');
-    try { localStorage.setItem('jsl-theme', state.theme); } catch (_) {}
+    if (persist) { try { localStorage.setItem(THEME_STORE_KEY, state.theme); } catch (_) {} }
 }
+// Dark is the default look; a theme is only remembered once someone picks one.
 function loadTheme() {
-    let saved = 'light';
-    try { saved = localStorage.getItem('jsl-theme') || 'light'; } catch (_) {}
-    setTheme(saved);
+    let saved = null;
+    try { saved = localStorage.getItem(THEME_STORE_KEY); } catch (_) {}
+    setTheme(saved || 'dark', false);
 }
 function setLanguage(newLang) {
     if (newLang === lang) return;
@@ -3630,7 +4690,10 @@ function setLanguage(newLang) {
     renderAll();
     renderDataPanel();
     renderCodePanel();
-    if (explainBodyEl.querySelector('.explain-empty')) renderEmptyExplain();
+    renderTaskPanel();
+    if (tasksOverlay.classList.contains('show')) renderTasks();
+    if (examplesOverlay.classList.contains('show')) renderExamples();
+    if (explainBodyEl.querySelector('.explain-empty') && !state.task) renderEmptyExplain();
 }
 
 // ============================================================
@@ -3649,13 +4712,14 @@ document.addEventListener('click', (e) => {
 });
 
 missionHintBtn.addEventListener('click', () => {
-    showToast(tt('hint'), escapeHtml(tx(LEVELS[state.currentLevel].hint)), 'info');
+    const hint = state.task ? state.task.hint : LEVELS[state.currentLevel].hint;
+    showToast(tt('hint'), escapeHtml(tx(hint)), 'info');
 });
 
 document.querySelectorAll('.lang-btn').forEach(b => {
     b.addEventListener('click', () => setLanguage(b.dataset.lang));
 });
-$('theme-toggle').addEventListener('click', () => setTheme(state.theme === 'dark' ? 'light' : 'dark'));
+$('theme-toggle').addEventListener('click', () => setTheme(state.theme === 'dark' ? 'light' : 'dark', true));
 
 document.querySelectorAll('.panel-tab').forEach(b => {
     b.addEventListener('click', () => setPanel(b.dataset.tab));
@@ -3681,6 +4745,15 @@ $('example-load-editable').addEventListener('click', () => {
     exitExampleReadonly();
 });
 
+$('tasks-toggle').addEventListener('click', () => {
+    renderTasks();
+    tasksOverlay.classList.add('show');
+});
+$('tasks-close').addEventListener('click', () => tasksOverlay.classList.remove('show'));
+tasksOverlay.addEventListener('click', (e) => {
+    if (e.target === tasksOverlay) tasksOverlay.classList.remove('show');
+});
+
 const apiOverlay = $('api-overlay');
 $('api-toggle').addEventListener('click', () => {
     renderApiOverlay();
@@ -3699,6 +4772,7 @@ previewOverlay.addEventListener('click', (e) => {
 $('zoom-in').addEventListener('click', () => setZoom(state.zoom + 0.1));
 $('zoom-out').addEventListener('click', () => setZoom(state.zoom - 0.1));
 $('zoom-level').addEventListener('click', () => setZoom(1));
+$('fit-btn').addEventListener('click', fitView);
 $('autolayout-btn').addEventListener('click', autoLayout);
 $('snap-toggle').addEventListener('click', () => {
     state.snapToGrid = !state.snapToGrid;
@@ -3719,6 +4793,7 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         previewOverlay.classList.remove('show');
         examplesOverlay.classList.remove('show');
+        tasksOverlay.classList.remove('show');
         apiOverlay.classList.remove('show');
         levelsDropdown.classList.remove('open');
     }
@@ -3754,19 +4829,24 @@ window.addEventListener('keyup', (e) => {
 canvasWrapEl.addEventListener('mousedown', (e) => {
     const isMiddle = e.button === 1;
     const isSpaceDrag = state.spacePressed && e.button === 0;
-    if (!isMiddle && !isSpaceDrag) return;
+    // Dragging the empty background pans too — a plain click still deselects.
+    const isBackground = e.button === 0 && [canvasWrapEl, canvasStageEl, canvasEl, svgEl, nodesContainer].includes(e.target);
+    if (!isMiddle && !isSpaceDrag && !isBackground) return;
     if (e.target.closest('.node-btn, .port, .lib-item')) return;
     e.preventDefault();
     state.panning = true;
     canvasWrapEl.classList.add('panning');
     const startX = e.clientX, startY = e.clientY;
     const startScrollLeft = canvasWrapEl.scrollLeft, startScrollTop = canvasWrapEl.scrollTop;
+    let moved = false;
     const onMove = (ev) => {
+        if (Math.abs(ev.clientX - startX) + Math.abs(ev.clientY - startY) > 3) moved = true;
         canvasWrapEl.scrollLeft = startScrollLeft - (ev.clientX - startX);
         canvasWrapEl.scrollTop = startScrollTop - (ev.clientY - startY);
     };
     const onUp = () => {
         state.panning = false;
+        state.justPanned = moved;
         canvasWrapEl.classList.remove('panning');
         document.removeEventListener('mousemove', onMove);
         document.removeEventListener('mouseup', onUp);
@@ -3777,10 +4857,49 @@ canvasWrapEl.addEventListener('mousedown', (e) => {
 canvasWrapEl.addEventListener('auxclick', (e) => { if (e.button === 1) e.preventDefault(); });
 
 // ============================================================
-// RESIZABLE PANELS (library / inspector / bottom explain panel)
+// PANELS: drag the strips between panels to resize them; fold the library
+// into an icon rail; hide the inspector / bottom panel with the double arrow
+// that appears on their edge. Sizes and collapsed state are remembered.
 // ============================================================
-function initResizers() {
+const panels = { lib: false, insp: false, explain: false };
+let railTipEl = null;
+
+function applyPanels() {
+    const app = document.querySelector('.app');
+    if (!app) return;
+    app.classList.toggle('lib-collapsed', panels.lib);
+    app.classList.toggle('insp-collapsed', panels.insp);
+    app.classList.toggle('explain-collapsed', panels.explain);
+    // the collapsed bottom panel keeps exactly its header row
+    const head = document.querySelector('.explain-header');
+    if (head && head.offsetHeight) document.documentElement.style.setProperty('--explain-head-h', (head.offsetHeight + 2) + 'px');
+    const setTitle = (id, key) => { const el = $(id); if (el) el.title = tt(key); };
+    setTitle('library-collapse', panels.lib ? 'expandLibrary' : 'collapseLibrary');
+    setTitle('inspector-collapse', panels.insp ? 'showInspector' : 'hideInspector');
+    setTitle('explain-collapse', panels.explain ? 'showPanel' : 'hidePanel');
+    setTitle('resizer-library', 'dragResize');
+    setTitle('resizer-inspector', panels.insp ? 'showInspector' : 'dragResize');
+    setTitle('resizer-explain', panels.explain ? 'showPanel' : 'dragResize');
+}
+
+function togglePanel(name, collapsed = !panels[name]) {
+    panels[name] = collapsed;
+    if (name === 'lib' && collapsed && state.librarySearch) {
+        // the search box is hidden on the rail, so a leftover filter would hide icons for no visible reason
+        state.librarySearch = '';
+        $('library-search').value = '';
+        renderLibrary();
+    }
+    hideRailTip();
+    applyPanels();
+    try { localStorage.setItem(PANELS_STORE_KEY, JSON.stringify(panels)); } catch (_) {}
+}
+
+function hideRailTip() { if (railTipEl) railTipEl.classList.remove('show'); }
+
+function initPanels() {
     const root = document.documentElement;
+    const app = document.querySelector('.app');
     const explainEl = document.querySelector('.explain');
     const libraryEl = document.querySelector('.library');
     const inspectorEl = document.querySelector('.inspector');
@@ -3790,7 +4909,7 @@ function initResizers() {
 
     function saveLayout() {
         try {
-            localStorage.setItem('jsl-layout', JSON.stringify({
+            localStorage.setItem(LAYOUT_STORE_KEY, JSON.stringify({
                 libraryW: parseInt(root.style.getPropertyValue('--library-w')) || undefined,
                 inspectorW: parseInt(root.style.getPropertyValue('--inspector-w')) || undefined,
                 explainH: parseInt(root.style.getPropertyValue('--explain-h')) || undefined,
@@ -3800,70 +4919,93 @@ function initResizers() {
 
     function loadLayout() {
         try {
-            const raw = localStorage.getItem('jsl-layout');
-            if (!raw) return;
-            const l = JSON.parse(raw);
+            const l = JSON.parse(localStorage.getItem(LAYOUT_STORE_KEY) || '{}');
             if (l.libraryW) root.style.setProperty('--library-w', l.libraryW + 'px');
             if (l.inspectorW) root.style.setProperty('--inspector-w', l.inspectorW + 'px');
             if (l.explainH) root.style.setProperty('--explain-h', l.explainH + 'px');
         } catch (_) {}
+        try {
+            const p = JSON.parse(localStorage.getItem(PANELS_STORE_KEY) || '{}');
+            panels.lib = !!p.lib; panels.insp = !!p.insp; panels.explain = !!p.explain;
+        } catch (_) {}
     }
 
-    function dragCol(resizerEl, varName, targetEl, min, max, fromRight) {
+    // A strip resizes on drag. Its arrow button toggles instead, and on a collapsed panel
+    // any press on the strip just brings the panel back.
+    function startDrag(e, resizerEl, panelName, bodyClass, onMove) {
+        if (e.button !== 0 || e.target.closest('.edge-toggle')) return;
+        e.preventDefault();
+        if (panels[panelName]) { togglePanel(panelName, false); return; }
+        resizerEl.classList.add('active');
+        document.body.classList.add(bodyClass);
+        const onUp = () => {
+            resizerEl.classList.remove('active');
+            document.body.classList.remove(bodyClass);
+            document.removeEventListener('mousemove', onMove);
+            document.removeEventListener('mouseup', onUp);
+            saveLayout();
+        };
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', onUp);
+    }
+
+    function dragCol(resizerEl, varName, targetEl, min, max, fromRight, panelName) {
         if (!resizerEl) return;
         resizerEl.addEventListener('mousedown', (e) => {
-            e.preventDefault();
-            resizerEl.classList.add('active');
-            document.body.classList.add('resizing-col');
             const startX = e.clientX;
             const startW = targetEl.getBoundingClientRect().width;
-            const onMove = (ev) => {
-                let delta = ev.clientX - startX;
-                if (fromRight) delta = -delta;
-                const next = Math.min(max, Math.max(min, Math.round(startW + delta)));
-                root.style.setProperty(varName, next + 'px');
-            };
-            const onUp = () => {
-                resizerEl.classList.remove('active');
-                document.body.classList.remove('resizing-col');
-                document.removeEventListener('mousemove', onMove);
-                document.removeEventListener('mouseup', onUp);
-                saveLayout();
-            };
-            document.addEventListener('mousemove', onMove);
-            document.addEventListener('mouseup', onUp);
+            startDrag(e, resizerEl, panelName, 'resizing-col', (ev) => {
+                const delta = fromRight ? startX - ev.clientX : ev.clientX - startX;
+                root.style.setProperty(varName, Math.min(max, Math.max(min, Math.round(startW + delta))) + 'px');
+            });
         });
     }
 
     function dragRow(resizerEl) {
         if (!resizerEl) return;
         resizerEl.addEventListener('mousedown', (e) => {
-            e.preventDefault();
-            resizerEl.classList.add('active');
-            document.body.classList.add('resizing-row');
             const startY = e.clientY;
             const startH = explainEl.getBoundingClientRect().height;
-            const onMove = (ev) => {
-                const delta = startY - ev.clientY;
-                const next = Math.min(EXP_MAX, Math.max(EXP_MIN, Math.round(startH + delta)));
-                root.style.setProperty('--explain-h', next + 'px');
-            };
-            const onUp = () => {
-                resizerEl.classList.remove('active');
-                document.body.classList.remove('resizing-row');
-                document.removeEventListener('mousemove', onMove);
-                document.removeEventListener('mouseup', onUp);
-                saveLayout();
-            };
-            document.addEventListener('mousemove', onMove);
-            document.addEventListener('mouseup', onUp);
+            startDrag(e, resizerEl, 'explain', 'resizing-row', (ev) => {
+                root.style.setProperty('--explain-h', Math.min(EXP_MAX, Math.max(EXP_MIN, Math.round(startH + startY - ev.clientY))) + 'px');
+            });
         });
     }
 
+    // restore the saved state without playing the collapse animation on page load
     loadLayout();
-    dragCol($('resizer-library'), '--library-w', libraryEl, LIB_MIN, LIB_MAX, false);
-    dragCol($('resizer-inspector'), '--inspector-w', inspectorEl, INSP_MIN, INSP_MAX, true);
+    app.style.transition = explainEl.style.transition = 'none';
+    applyPanels();
+    requestAnimationFrame(() => requestAnimationFrame(() => { app.style.transition = explainEl.style.transition = ''; }));
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(applyPanels);
+
+    dragCol($('resizer-library'), '--library-w', libraryEl, LIB_MIN, LIB_MAX, false, 'lib');
+    dragCol($('resizer-inspector'), '--inspector-w', inspectorEl, INSP_MIN, INSP_MAX, true, 'insp');
     dragRow($('resizer-explain'));
+
+    $('library-collapse').addEventListener('click', () => togglePanel('lib'));
+    $('inspector-collapse').addEventListener('click', () => togglePanel('insp'));
+    $('explain-collapse').addEventListener('click', () => togglePanel('explain'));
+    // the collapsed bottom panel is still a bar: clicking it (or one of its tabs) opens it
+    document.querySelector('.explain-header').addEventListener('click', () => { if (panels.explain) togglePanel('explain', false); });
+
+    // icon rail: show the block's name next to the hovered icon
+    railTipEl = document.createElement('div');
+    railTipEl.className = 'rail-tip';
+    document.body.appendChild(railTipEl);
+    libraryListEl.addEventListener('mouseover', (e) => {
+        const item = e.target.closest('.lib-item');
+        if (!panels.lib || !item) return;
+        const r = item.getBoundingClientRect();
+        const label = item.querySelector('.lib-label');
+        railTipEl.textContent = label ? label.textContent.trim() : '';
+        railTipEl.style.left = (r.right + 12) + 'px';
+        railTipEl.style.top = (r.top + r.height / 2) + 'px';
+        railTipEl.classList.add('show');
+    });
+    libraryListEl.addEventListener('mouseout', hideRailTip);
+    libraryListEl.addEventListener('mousedown', hideRailTip);
+    libraryListEl.addEventListener('scroll', hideRailTip);
 }
 
 // ============================================================
@@ -3888,7 +5030,8 @@ function preloadStarter() {
     } catch (_) {}
     loadTheme();
     loadApiConfig();
-    initResizers();
+    loadTasksDone();
+    initPanels();
     renderUIStrings();
     renderLibrary();
     renderLevelsMenu();
