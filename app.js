@@ -255,6 +255,8 @@ const T = {
     // Reference schemas gallery
     realWorld:    ['Real-world scenarios', 'რეალური სცენარები'],
     realWorldSub: ['The flows behind products people use every day. Open one read-only, or practise it as a task.', 'ნაკადები ყოველდღიური პროდუქტების უკან. გახსენი სანახავად ან ივარჯიშე დავალების სახით.'],
+    realProjects: ['From real products', 'რეალური პროდუქტებიდან'],
+    realProjectsSub: ['The same blocks inside apps everyone has used: YouTube, Spotify, Netflix, Google, Bolt, Airbnb, GitHub, Instagram, Wolt and Duolingo.', 'იგივე ბლოკები აპებში, რომლებსაც ყველა იყენებს: YouTube, Spotify, Netflix, Google, Bolt, Airbnb, GitHub, Instagram, Wolt და Duolingo.'],
     conceptSchemas:['Concept schemas', 'კონცეფციების სქემები'],
     practiceTask: ['Practise as a task', 'ივარჯიშე დავალებად'],
 
@@ -1288,6 +1290,183 @@ const DATASETS = {
         ],
         add: { id: 6, dish: 'Mtsvadi', price: 22, available: true },
         banner: ['Menu built from real DOM nodes — no innerHTML involved.', 'მენიუ აწყობილია ნამდვილი DOM კვანძებით — innerHTML-ის გარეშე.']
+    },
+    // ---------- the products behind the second set of real-world schemas ----------
+    comments: {
+        var: 'comments', it: 'c', file: './comments.js', storageKey: 'comments', click: '#load-comments',
+        f: { name: 'text', num: 'likes', ok: 'pinned' }, pre: '♥ ', suf: '', okVar: 'pinnedComments', sortDesc: true,
+        title: ['Comments · top first', 'კომენტარები · ჯერ საუკეთესო'],
+        okLabel: ['Pinned', 'მიმაგრებული'], noLabel: ['Comment', 'კომენტარი'],
+        page: 'https://video.local/watch?v=js-in-100s', api: 'https://api.video.local/videos/42/comments',
+        query: 'async',
+        rows: [
+            { id: 1, text: 'Finally understood async/await',              likes: 1840, pinned: false },
+            { id: 2, text: 'The event loop part blew my mind',            likes: 932,  pinned: false },
+            { id: 3, text: 'Thanks for watching! Code is in the description', likes: 410, pinned: true },
+            { id: 4, text: 'Can you do one on closures next?',            likes: 2210, pinned: false },
+            { id: 5, text: '00:42 is the best explanation of promises',   likes: 675,  pinned: false }
+        ],
+        add: { id: 6, text: 'Great video!', likes: 0, pinned: false },
+        banner: ['Top comments first: the list is sorted by likes before it is drawn.', 'ჯერ საუკეთესო კომენტარები: სია დახატვამდე ლაიქებით ლაგდება.']
+    },
+    tracks: {
+        var: 'tracks', it: 't', file: './tracks.js', storageKey: 'playlist', click: '#play',
+        f: { name: 'track', num: 'minutes', ok: 'liked' }, pre: '', suf: ' min', okVar: 'likedTracks',
+        title: ['Playlist · Focus coding', 'პლეილისტი · Focus coding'],
+        okLabel: ['Liked', 'მოწონებული'], noLabel: ['Not liked', 'არ არის მოწონებული'],
+        page: 'https://music.local/playlist/focus', api: 'https://api.music.local/v1/playlists/focus/tracks',
+        query: 'lofi',
+        rows: [
+            { id: 1, track: 'Lo-fi Morning',  minutes: 3.2, liked: true },
+            { id: 2, track: 'Deep Work',      minutes: 4.1, liked: false },
+            { id: 3, track: 'Coffee & Code',  minutes: 2.8, liked: true },
+            { id: 4, track: 'Night Commit',   minutes: 3.6, liked: true },
+            { id: 5, track: 'Merge Conflict', minutes: 5.0, liked: false }
+        ],
+        add: { id: 6, track: 'Hotfix', minutes: 2.4, liked: false },
+        banner: ['The tracks are listed and the playlist length comes from the same response.', 'ტრეკები სიაშია, პლეილისტის ხანგრძლივობა კი იმავე პასუხიდან ითვლება.']
+    },
+    watching: {
+        var: 'watching', it: 's', file: './watching.js', storageKey: 'continueWatching', click: '#row-continue',
+        f: { name: 'show', num: 'progress', ok: 'unfinished' }, pre: '', suf: '%', okVar: 'toContinue', sortDesc: true,
+        title: ['Continue watching', 'ყურების გაგრძელება'],
+        okLabel: ['Resume', 'გაგრძელება'], noLabel: ['Finished', 'დასრულებული'],
+        page: 'https://stream.local/browse', api: 'https://api.stream.local/profiles/1/progress',
+        query: 'dark',
+        rows: [
+            { id: 1, show: 'Dark · S1 E4',            progress: 62,  unfinished: true },
+            { id: 2, show: 'The Crown · S2 E1',       progress: 100, unfinished: false },
+            { id: 3, show: 'Arcane · S1 E7',          progress: 35,  unfinished: true },
+            { id: 4, show: 'Stranger Things · S4 E2', progress: 88,  unfinished: true },
+            { id: 5, show: 'Wednesday · S1 E8',       progress: 100, unfinished: false }
+        ],
+        add: { id: 6, show: 'Squid Game · S2 E1', progress: 5, unfinished: true },
+        banner: ['Read from localStorage: this row needed no request at all.', 'წაკითხულია localStorage-დან: ამ რიგს მოთხოვნა საერთოდ არ დასჭირდა.']
+    },
+    suggest: {
+        var: 'suggestions', it: 's', file: './suggestions.js', storageKey: 'recentSearches', click: '#search',
+        f: { name: 'text', num: 'results', ok: 'trending' }, pre: '', suf: 'K results', okVar: 'trending',
+        title: ['Suggestions for "javasc"', 'შეთავაზებები „javasc“-ისთვის'],
+        okLabel: ['Trending', 'პოპულარული'], noLabel: ['Suggestion', 'შეთავაზება'],
+        page: 'https://search.local/?q=javasc', api: 'https://api.search.local/complete',
+        query: 'javasc',
+        rows: [
+            { id: 1, text: 'javascript',                     results: 2240, trending: true },
+            { id: 2, text: 'javascript tutorial',            results: 610,  trending: true },
+            { id: 3, text: 'javascript array methods',       results: 95,   trending: false },
+            { id: 4, text: 'javascript interview questions', results: 120,  trending: false },
+            { id: 5, text: 'javascript vs typescript',       results: 88,   trending: true }
+        ],
+        add: { id: 6, text: 'javascript event loop', results: 41, trending: false },
+        banner: ['One request for the whole word: the earlier keystrokes were cancelled.', 'ერთი მოთხოვნა მთელი სიტყვისთვის: წინა კლავიშების მოთხოვნები გაუქმდა.']
+    },
+    drivers: {
+        var: 'drivers', it: 'd', file: './drivers.js', storageKey: 'lastRide', click: '#order-ride',
+        f: { name: 'driver', num: 'eta', ok: 'free' }, pre: '', suf: ' min', okVar: 'freeDrivers',
+        title: ['Drivers nearby', 'მძღოლები ახლოს'],
+        okLabel: ['Free', 'თავისუფალი'], noLabel: ['On a ride', 'მგზავრით'],
+        page: 'https://ride.local/order', api: 'https://api.ride.local/drivers/nearby?lat=41.69&lng=44.80',
+        query: 'prius',
+        rows: [
+            { id: 1, driver: 'Giorgi · Toyota Prius',  eta: 4, free: true },
+            { id: 2, driver: 'Nino · Hyundai Elantra', eta: 2, free: false },
+            { id: 3, driver: 'Levan · Toyota Camry',   eta: 7, free: true },
+            { id: 4, driver: 'Mariam · Kia Optima',    eta: 3, free: true },
+            { id: 5, driver: 'Dato · Ford Fusion',     eta: 9, free: false }
+        ],
+        add: { id: 6, driver: 'Ana · Tesla Model 3', eta: 5, free: true },
+        banner: ['Refreshed every few seconds: free drivers only, the nearest first.', 'ახლდება ყოველ რამდენიმე წამში: მხოლოდ თავისუფალი მძღოლები, ჯერ უახლოესი.']
+    },
+    stays: {
+        var: 'stays', it: 's', file: './stays.js', storageKey: 'wishlist', click: '#apply-filters',
+        f: { name: 'stay', num: 'price', ok: 'available' }, pre: '$', suf: ' / night', okVar: 'availableStays',
+        title: ['Stays in Tbilisi', 'ბინები თბილისში'],
+        okLabel: ['Available', 'თავისუფალი'], noLabel: ['Booked', 'დაჯავშნილი'],
+        page: 'https://stays.local/s/tbilisi', api: 'https://api.stays.local/v2/search?city=tbilisi',
+        query: 'old town',
+        rows: [
+            { id: 1, stay: 'Old Town loft with a balcony', price: 64, available: true },
+            { id: 2, stay: 'Sololaki studio',              price: 38, available: true },
+            { id: 3, stay: 'Vake apartment with a view',   price: 92, available: false },
+            { id: 4, stay: 'Mtatsminda guest house',       price: 45, available: true },
+            { id: 5, stay: 'Rustaveli Avenue flat',        price: 71, available: false }
+        ],
+        add: { id: 6, stay: 'Vera garden room', price: 52, available: true },
+        banner: ['Only free stays, the cheapest first: the same list the map pins use.', 'მხოლოდ თავისუფალი ბინები, ჯერ ყველაზე იაფი: იგივე სია, რასაც რუკის ნიშნულები იყენებს.']
+    },
+    repos: {
+        var: 'repos', it: 'r', file: './repos.js', storageKey: 'starred', click: '#star-btn',
+        f: { name: 'repo', num: 'stars', ok: 'starred' }, pre: '★ ', suf: '', okVar: 'starredRepos',
+        title: ['Repository', 'რეპოზიტორია'],
+        okLabel: ['Starred', 'ვარსკვლავი დასმულია'], noLabel: ['Star', 'ვარსკვლავის დასმა'],
+        page: 'https://code.local/vercel/next.js', api: 'https://api.code.local/user/starred/vercel/next.js',
+        query: 'next',
+        rows: [
+            { id: 1, repo: 'vercel/next.js',   stars: 131000, starred: false },
+            { id: 2, repo: 'facebook/react',   stars: 236000, starred: true },
+            { id: 3, repo: 'angular/angular',  stars: 97000,  starred: false },
+            { id: 4, repo: 'microsoft/vscode', stars: 170000, starred: true },
+            { id: 5, repo: 'denoland/deno',    stars: 100000, starred: false }
+        ],
+        edit: { stars: 131001, starred: true },
+        add: { id: 6, repo: 'withastro/astro', stars: 50000, starred: true },
+        banner: ['PUT with your token: the star is saved on the server, then the page shows its answer.', 'PUT შენი ტოკენით: ვარსკვლავი სერვერზე ინახება, შემდეგ გვერდი მის პასუხს აჩვენებს.']
+    },
+    posts: {
+        var: 'posts', it: 'p', file: './posts.js', storageKey: 'likedPosts', click: '.feed',
+        f: { name: 'caption', num: 'likes', ok: 'liked' }, pre: '♥ ', suf: '', okVar: 'likedPosts',
+        title: ['Feed', 'ფიდი'],
+        okLabel: ['Liked', 'მოწონებული'], noLabel: ['Like', 'მოწონება'],
+        page: 'https://photos.local/', api: 'https://api.photos.local/v1/posts/7/likes',
+        query: 'sunset',
+        rows: [
+            { id: 1, caption: 'Sunset over Narikala',      likes: 1204, liked: false },
+            { id: 2, caption: 'Khachapuri o\'clock',       likes: 880,  liked: true },
+            { id: 3, caption: 'First day at the bootcamp', likes: 342,  liked: false },
+            { id: 4, caption: 'Kazbegi in the clouds',     likes: 2310, liked: true },
+            { id: 5, caption: 'My desk setup',             likes: 157,  liked: false }
+        ],
+        add: { id: 7, caption: 'Sunset over Narikala', likes: 1205, liked: true },
+        banner: ['One listener on the feed handles the heart of every post.', 'ერთი listener ფიდზე ყველა პოსტის გულს ამუშავებს.']
+    },
+    tracking: {
+        var: 'steps', it: 's', file: './order.js', storageKey: 'activeOrder', click: '#track',
+        f: { name: 'step', num: 'minute', ok: 'done' }, pre: '+', suf: ' min', okVar: 'doneSteps',
+        title: ['Order #5521 is on its way', 'შეკვეთა #5521 გზაშია'],
+        okLabel: ['Done', 'შესრულდა'], noLabel: ['Waiting', 'მოლოდინში'],
+        page: 'https://delivery.local/orders/5521', api: 'https://api.delivery.local/orders/5521/status',
+        query: '5521',
+        rows: [
+            { id: 1, step: 'Order received',        minute: 0,  done: true },
+            { id: 2, step: 'Restaurant is cooking', minute: 4,  done: true },
+            { id: 3, step: 'Courier picked it up',  minute: 18, done: true },
+            { id: 4, step: 'Courier is 1 km away',  minute: 24, done: false },
+            { id: 5, step: 'Delivered',             minute: 30, done: false }
+        ],
+        add: { id: 6, step: 'Rate your courier', minute: 31, done: false },
+        banner: ['Checked every few seconds: the status moves without a reload.', 'მოწმდება ყოველ რამდენიმე წამში: სტატუსი გადატვირთვის გარეშე იცვლება.']
+    },
+    lessons: {
+        var: 'lessons', it: 'l', file: './lessons.js', storageKey: 'xpHistory', click: '#finish-lesson',
+        f: { name: 'lesson', num: 'xp', ok: 'perfect' }, pre: '', suf: ' XP', okVar: 'perfectLessons',
+        title: ['This week', 'ეს კვირა'],
+        okLabel: ['Perfect', 'უშეცდომო'], noLabel: ['Done', 'დასრულებული'],
+        page: 'https://learn.local/learn', api: 'https://api.learn.local/users/me/xp',
+        query: 'travel',
+        rows: [
+            { id: 1, lesson: 'Basics 1',   xp: 10, perfect: true },
+            { id: 2, lesson: 'Basics 2',   xp: 15, perfect: false },
+            { id: 3, lesson: 'Food',       xp: 12, perfect: true },
+            { id: 4, lesson: 'Travel',     xp: 20, perfect: false },
+            { id: 5, lesson: 'Past tense', xp: 18, perfect: true }
+        ],
+        stored: [
+            { id: 1, lesson: 'Basics 1', xp: 10, perfect: true },
+            { id: 2, lesson: 'Basics 2', xp: 15, perfect: false },
+            { id: 3, lesson: 'Food',     xp: 12, perfect: true }
+        ],
+        add: { id: 4, lesson: 'Daily challenge', xp: 30, perfect: true },
+        banner: ['Today\'s lesson was added to a copy of the history and saved back.', 'დღევანდელი გაკვეთილი ისტორიის ასლს დაემატა და უკან შეინახა.']
     }
 };
 
@@ -2178,7 +2357,68 @@ const EXAMPLES = [
       title:['Restaurant menu','რესტორნის მენიუ'],
       desc:['Module import, filter + sort, real DOM nodes','მოდულის იმპორტი, ფილტრი + დალაგება, DOM კვანძები'],
       nodes:[{type:'dataArray',x:60,y:320},{type:'exportBlk',x:320,y:320},{type:'importBlk',x:580,y:320},{type:'filterOp',x:840,y:320},{type:'sortOp',x:1100,y:320},{type:'querySel',x:1360,y:320},{type:'createEl',x:1620,y:320},{type:'appendChildBlk',x:1880,y:320},{type:'browser',x:2140,y:320}],
-      connections:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8]] }
+      connections:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8]] },
+    // ---------- Real projects: the same ideas inside products everyone has used ----------
+    { id:'rw-youtube', real:true, project:true, dataset:'comments', diff:3,
+      scenario:['YouTube · comments under a video','YouTube · კომენტარები ვიდეოს ქვეშ'],
+      title:['Top comments','საუკეთესო კომენტარები'],
+      desc:['Fetch the comments, sort them by likes, render the list','კომენტარების წამოღება, ლაიქებით დალაგება, სიის დახატვა'],
+      nodes:[{type:'asyncFn',x:60,y:320},{type:'apiEndpoint',x:320,y:320},{type:'fetchCall',x:580,y:320},{type:'awaitOp',x:840,y:320},{type:'jsonParse',x:1100,y:320},{type:'sortOp',x:1360,y:320},{type:'templateLit',x:1620,y:320},{type:'renderDom',x:1880,y:320},{type:'browser',x:2140,y:320}],
+      connections:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8]] },
+    { id:'rw-spotify', real:true, project:true, dataset:'tracks', diff:4,
+      scenario:['Spotify · playlist page','Spotify · პლეილისტის გვერდი'],
+      title:['Playlist and its length','პლეილისტი და მისი ხანგრძლივობა'],
+      desc:['Token + URL into one fetch; one list feeds the tracks and the total time','ტოკენი + URL ერთ fetch-ში; ერთი სია კვებავს ტრეკებსაც და ჯამურ დროსაც'],
+      nodes:[{type:'asyncFn',x:60,y:200},{type:'apiEndpoint',x:320,y:200},{type:'apiKey',x:320,y:440},{type:'fetchCall',x:580,y:320},{type:'awaitOp',x:840,y:320},{type:'jsonParse',x:1100,y:320},{type:'templateLit',x:1360,y:180},{type:'renderDom',x:1620,y:180},{type:'browser',x:1880,y:180},{type:'reduceOp',x:1360,y:460},{type:'consoleLog',x:1620,y:460}],
+      connections:[[0,1],[1,3],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[5,9],[9,10]] },
+    { id:'rw-netflix', real:true, project:true, dataset:'watching', diff:3,
+      scenario:['Netflix · Continue watching row','Netflix · „ყურების გაგრძელების“ რიგი'],
+      title:['Continue watching','ყურების გაგრძელება'],
+      desc:['Saved progress → keep the unfinished → most watched first','შენახული პროგრესი → მხოლოდ დაუსრულებელი → ჯერ ყველაზე ნანახი'],
+      nodes:[{type:'localStore',x:60,y:320},{type:'jsonParse',x:320,y:320},{type:'filterOp',x:580,y:320},{type:'sortOp',x:840,y:320},{type:'templateLit',x:1100,y:320},{type:'renderDom',x:1360,y:320},{type:'browser',x:1620,y:320}],
+      connections:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6]] },
+    { id:'rw-google', real:true, project:true, dataset:'suggest', diff:5,
+      scenario:['Google · search suggestions','Google · ძიების შეთავაზებები'],
+      title:['Search suggestions','ძიების შეთავაზებები'],
+      desc:['Debounce, cancel the stale request, then format each suggestion','debounce, ძველი მოთხოვნის გაუქმება, შემდეგ თითო შეთავაზების ფორმატირება'],
+      nodes:[{type:'userInput',x:60,y:320},{type:'debounceBlk',x:320,y:320},{type:'abortCtl',x:580,y:320},{type:'apiEndpoint',x:840,y:320},{type:'fetchCall',x:1100,y:320},{type:'awaitOp',x:1360,y:320},{type:'jsonParse',x:1620,y:320},{type:'mapOp',x:1880,y:320},{type:'templateLit',x:2140,y:320},{type:'renderDom',x:2400,y:320},{type:'browser',x:2660,y:320}],
+      connections:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,10]] },
+    { id:'rw-bolt', real:true, project:true, dataset:'drivers', diff:4,
+      scenario:['Bolt / Uber · ordering a ride','Bolt / Uber · მანქანის გამოძახება'],
+      title:['Drivers nearby, nearest first','ახლო მძღოლები, ჯერ უახლოესი'],
+      desc:['A timer polls, .then() unwraps, keep the free drivers, sort by arrival time','ტაიმერი ამოწმებს, .then() ხსნის, მხოლოდ თავისუფალი, დალაგება მოსვლის დროით'],
+      nodes:[{type:'setTimeoutBlk',x:60,y:320},{type:'apiEndpoint',x:320,y:320},{type:'fetchCall',x:580,y:320},{type:'promiseThen',x:840,y:320},{type:'filterOp',x:1100,y:320},{type:'sortOp',x:1360,y:320},{type:'templateLit',x:1620,y:320},{type:'renderDom',x:1880,y:320},{type:'browser',x:2140,y:320}],
+      connections:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8]] },
+    { id:'rw-airbnb', real:true, project:true, dataset:'stays', diff:3,
+      scenario:['Airbnb · search results','Airbnb · ძიების შედეგები'],
+      title:['Free stays, cheapest first','თავისუფალი ბინები, ჯერ იაფი'],
+      desc:['Fetch → keep the available → sort by price → render','წამოღება → მხოლოდ თავისუფალი → ფასით დალაგება → დახატვა'],
+      nodes:[{type:'asyncFn',x:60,y:320},{type:'apiEndpoint',x:320,y:320},{type:'fetchCall',x:580,y:320},{type:'awaitOp',x:840,y:320},{type:'jsonParse',x:1100,y:320},{type:'filterOp',x:1360,y:320},{type:'sortOp',x:1620,y:320},{type:'templateLit',x:1880,y:320},{type:'renderDom',x:2140,y:320},{type:'browser',x:2400,y:320}],
+      connections:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9]] },
+    { id:'rw-github', real:true, project:true, dataset:'repos', diff:4,
+      scenario:['GitHub · starring a repository','GitHub · რეპოზიტორიისთვის ვარსკვლავის დასმა'],
+      title:['Star a repository','ვარსკვლავის დასმა'],
+      desc:['Click → PUT with your token → keep the answer in state → re-render','დაწკაპუნება → PUT შენი ტოკენით → პასუხი state-ში → თავიდან დახატვა'],
+      nodes:[{type:'eventListener',x:60,y:200},{type:'httpPut',x:320,y:200},{type:'apiEndpoint',x:580,y:200},{type:'apiKey',x:580,y:440},{type:'fetchCall',x:840,y:320},{type:'awaitOp',x:1100,y:320},{type:'jsonParse',x:1360,y:320},{type:'stateObj',x:1620,y:320},{type:'templateLit',x:1880,y:320},{type:'renderDom',x:2140,y:320},{type:'browser',x:2400,y:320}],
+      connections:[[0,1],[1,2],[2,4],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,10]] },
+    { id:'rw-instagram', real:true, project:true, dataset:'posts', diff:3,
+      scenario:['Instagram · liking a post','Instagram · პოსტის მოწონება'],
+      title:['Like any post in the feed','ნებისმიერი პოსტის მოწონება'],
+      desc:['One delegated listener for the whole feed, then POST the like','ერთი დელეგირებული listener მთელ ფიდზე, შემდეგ მოწონების POST'],
+      nodes:[{type:'delegation',x:60,y:320},{type:'apiEndpoint',x:320,y:320},{type:'httpPost',x:580,y:320},{type:'fetchCall',x:840,y:320},{type:'awaitOp',x:1100,y:320},{type:'jsonParse',x:1360,y:320},{type:'consoleLog',x:1620,y:320}],
+      connections:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6]] },
+    { id:'rw-wolt', real:true, project:true, dataset:'tracking', diff:3,
+      scenario:['Wolt / Glovo · order tracking','Wolt / Glovo · შეკვეთის თვალყური'],
+      title:['Live order status','შეკვეთის ცოცხალი სტატუსი'],
+      desc:['A timer polls the order, .then() unwraps it, .map() formats each step','ტაიმერი ამოწმებს შეკვეთას, .then() ხსნის, .map() აფორმებს თითო ნაბიჯს'],
+      nodes:[{type:'setTimeoutBlk',x:60,y:320},{type:'apiEndpoint',x:320,y:320},{type:'fetchCall',x:580,y:320},{type:'promiseThen',x:840,y:320},{type:'mapOp',x:1100,y:320},{type:'templateLit',x:1360,y:320},{type:'renderDom',x:1620,y:320},{type:'browser',x:1880,y:320}],
+      connections:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7]] },
+    { id:'rw-duolingo', real:true, project:true, dataset:'lessons', diff:4,
+      scenario:['Duolingo · lesson complete','Duolingo · გაკვეთილი დასრულდა'],
+      title:['Save today\'s XP','დღევანდელი XP-ის შენახვა'],
+      desc:['Read the saved history, add today without mutating it, save it back','წაიკითხე ისტორია, დაამატე დღევანდელი მუტაციის გარეშე, შეინახე უკან'],
+      nodes:[{type:'eventListener',x:60,y:320},{type:'localStore',x:320,y:320},{type:'jsonParse',x:580,y:320},{type:'spreadOp',x:840,y:320},{type:'stateObj',x:1100,y:320},{type:'saveLocal',x:1360,y:320},{type:'consoleLog',x:1620,y:320}],
+      connections:[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6]] }
 ];
 
 // ============================================================
@@ -4295,7 +4535,9 @@ function renderExamples() {
         body.appendChild(el);
     };
     section(tt('realWorld'), tt('realWorldSub'));
-    EXAMPLES.filter(e => e.real).forEach(card);
+    EXAMPLES.filter(e => e.real && !e.project).forEach(card);
+    section(tt('realProjects'), tt('realProjectsSub'));
+    EXAMPLES.filter(e => e.project).forEach(card);
     section(tt('conceptSchemas'), '');
     EXAMPLES.filter(e => !e.real).forEach(card);
 }

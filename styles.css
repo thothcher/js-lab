@@ -4,6 +4,7 @@
    white pill CTAs, 12px cards lifted by heavy soft shadows.
    Light: the same system on a cool off-white.
    ============================================================ */
+/* Colours: JS Flow Lab: the JavaScript logo yellow (#F7DF1E) with a warm amber. */
 :root {
     --font: "Inter", "Noto Sans Georgian", system-ui, -apple-system, "Segoe UI", "BPG Arial", "Sylfaen", Roboto, sans-serif;
     --display: "Figtree", "Inter", "Noto Sans Georgian", system-ui, sans-serif;
@@ -24,13 +25,19 @@
     --text-3: #5d6477;
     --text-4: #969db0;
 
-    --accent: #2862d7;
-    --accent-2: #5b58f0;
-    --accent-soft: rgba(91, 88, 240, 0.09);
-    --accent-ring: rgba(91, 88, 240, 0.22);
-    --pink: #d9459f;
-    --grad: linear-gradient(90deg, #305fbd, #625fff);
-    --grad-aurora: linear-gradient(135deg, #625fff 0%, #b46cff 55%, #ff7dda 100%);
+    /* logo palette: --b1 is the logo colour, --b2 its companion (r, g, b for rgba()) */
+    --b1: 191, 155, 0;
+    --b2: 230, 126, 0;
+    --accent: #8a6d00;
+    --accent-2: #a88600;
+    --accent-soft: rgba(191, 155, 0, 0.10);
+    --accent-ring: rgba(191, 155, 0, 0.28);
+    --pink: #e67e00;
+    --grad: linear-gradient(90deg, #f7df1e, #ffb02e);
+    --on-accent: #1a1600;
+    --grad-aurora: linear-gradient(135deg, #a88600 0%, #c98a00 55%, #e06c00 100%);
+    --code-k: #f7df1e;
+    --code-f: #ffcf8a;
 
     --success: #0e9f6e;
     --success-soft: rgba(14, 159, 110, 0.10);
@@ -48,8 +55,8 @@
     --overlay: rgba(14, 17, 27, 0.32);
     --dot: rgba(14, 17, 27, 0.10);
     --wire: #b8bfd2;
-    --glow-a: rgba(98, 95, 255, 0.11);
-    --glow-b: rgba(255, 125, 218, 0.09);
+    --glow-a: rgba(247, 223, 30, 0.16);
+    --glow-b: rgba(255, 159, 67, 0.10);
 
     --code-bg: #0d172b;
     --code-border: #172540;
@@ -91,11 +98,17 @@
     --text-3: #abaebb;
     --text-4: #6c7184;
 
-    --accent: #6f9bff;
-    --accent-2: #7d7aff;
-    --accent-soft: rgba(98, 95, 255, 0.16);
-    --accent-ring: rgba(125, 122, 255, 0.34);
-    --pink: #ff7dda;
+    /* logo palette: --b1 is the logo colour, --b2 its companion (r, g, b for rgba()) */
+    --b1: 247, 223, 30;
+    --b2: 255, 159, 67;
+    --accent: #f7df1e;
+    --accent-2: #f7df1e;
+    --accent-soft: rgba(247, 223, 30, 0.12);
+    --accent-ring: rgba(247, 223, 30, 0.30);
+    --pink: #ffb02e;
+    --grad: linear-gradient(90deg, #f7df1e, #ffb02e);
+    --on-accent: #1a1600;
+    --grad-aurora: linear-gradient(135deg, #f7df1e 0%, #ffc531 55%, #ff9f43 100%);
 
     --success: #34d399;
     --success-soft: rgba(52, 211, 153, 0.12);
@@ -113,8 +126,8 @@
     --overlay: rgba(3, 4, 8, 0.66);
     --dot: rgba(171, 174, 187, 0.11);
     --wire: #2e4067;
-    --glow-a: rgba(98, 95, 255, 0.30);
-    --glow-b: rgba(255, 125, 218, 0.17);
+    --glow-a: rgba(247, 223, 30, 0.13);
+    --glow-b: rgba(255, 159, 67, 0.10);
 
     --code-bg: #0a1222;
     --code-border: #151e32;
@@ -178,7 +191,7 @@ button { font-family: inherit; }
     right: 0;
     bottom: -1px;
     height: 1px;
-    background: linear-gradient(90deg, transparent 5%, rgba(98, 95, 255, 0.55) 35%, rgba(255, 125, 218, 0.45) 65%, transparent 95%);
+    background: linear-gradient(90deg, transparent 5%, rgba(var(--b1), 0.55) 35%, rgba(var(--b2), 0.45) 65%, transparent 95%);
     opacity: 0.22;
     pointer-events: none;
 }
@@ -346,7 +359,7 @@ button { font-family: inherit; }
     font-weight: 600;
     margin-top: 1px;
 }
-.level-item.active .level-item-num { background: var(--grad); color: #fff; box-shadow: 0 4px 12px rgba(98, 95, 255, 0.35); }
+.level-item.active .level-item-num { background: var(--grad); color: var(--on-accent); box-shadow: 0 4px 12px rgba(var(--b1), 0.35); }
 .level-item.done .level-item-num { background: var(--success); color: #fff; }
 .level-item-body { flex: 1; min-width: 0; }
 .level-item-title { font-size: 13px; font-weight: 500; color: var(--text); }
@@ -410,11 +423,11 @@ button { font-family: inherit; }
 /* the one chromatic action — blue → violet */
 .btn-accent {
     background: var(--grad);
-    color: #fff;
+    color: var(--on-accent);
     border: none;
-    box-shadow: 0 6px 20px rgba(98, 95, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    box-shadow: 0 6px 20px rgba(var(--b1), 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
-.btn-accent:hover { filter: brightness(1.1); box-shadow: 0 8px 26px rgba(98, 95, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2); }
+.btn-accent:hover { filter: brightness(1.1); box-shadow: 0 8px 26px rgba(var(--b1), 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2); }
 
 .btn-icon { width: 36px; padding: 0; justify-content: center; }
 
@@ -425,8 +438,8 @@ button { font-family: inherit; }
 .navbar .btn-secondary { border-color: transparent; color: var(--text-2); }
 .navbar .btn-secondary:hover { border-color: var(--border); background: var(--surface-2); color: var(--text); }
 .navbar #check-btn { border-color: var(--border); }
-.navbar .btn-accent { box-shadow: 0 2px 10px rgba(98, 95, 255, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.16); }
-.navbar .btn-accent:hover { box-shadow: 0 4px 16px rgba(98, 95, 255, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.2); }
+.navbar .btn-accent { box-shadow: 0 2px 10px rgba(var(--b1), 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.16); }
+.navbar .btn-accent:hover { box-shadow: 0 4px 16px rgba(var(--b1), 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.2); }
 .navbar .btn-primary { box-shadow: none; }
 :root.dark .navbar .btn-primary { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06); }
 
@@ -493,7 +506,7 @@ body.resizing-col .app, body.resizing-row .explain { transition: none !important
 .edge-toggle svg { width: 14px; height: 14px; transition: transform 0.26s; }
 .resizer:hover .edge-toggle,
 .edge-toggle:focus-visible { opacity: 1; pointer-events: auto; }
-.edge-toggle:hover { color: #fff; background: var(--grad); border-color: transparent; }
+.edge-toggle:hover { color: var(--on-accent); background: var(--grad); border-color: transparent; }
 .resizer-v .edge-toggle { top: 50%; left: 50%; width: 20px; height: 44px; transform: translate(-50%, -50%); }
 .resizer-h .edge-toggle { top: 50%; left: 50%; width: 44px; height: 20px; transform: translate(-50%, -50%); }
 /* collapsed: the arrow stays on screen and points the other way, so the panel can come back */
@@ -660,7 +673,7 @@ body.resizing-col .app, body.resizing-row .explain { transition: none !important
     background: var(--accent-soft);
     color: var(--accent-2);
     flex-shrink: 0;
-    box-shadow: inset 0 0 0 1px rgba(125, 122, 255, 0.18);
+    box-shadow: inset 0 0 0 1px rgba(var(--b1), 0.18);
 }
 .lib-icon svg { width: 14px; height: 14px; }
 .lib-icon.c-success { background: var(--success-soft); color: var(--success); box-shadow: inset 0 0 0 1px rgba(52, 211, 153, 0.2); }
@@ -697,12 +710,12 @@ body.resizing-col .app, body.resizing-row .explain { transition: none !important
     height: 32px;
     border-radius: 10px;
     background: var(--grad);
-    color: #fff;
+    color: var(--on-accent);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    box-shadow: 0 6px 18px rgba(98, 95, 255, 0.4);
+    box-shadow: 0 6px 18px rgba(var(--b1), 0.4);
 }
 .mission-icon svg { width: 16px; height: 16px; }
 .mission-text {
@@ -712,7 +725,7 @@ body.resizing-col .app, body.resizing-row .explain { transition: none !important
     color: var(--text-2);
 }
 .mission-text strong { color: var(--text); font-weight: 600; margin-right: 2px; }
-body.task-mode .mission-icon { background: linear-gradient(135deg, #625fff, #ff7dda); box-shadow: 0 6px 18px rgba(255, 125, 218, 0.35); }
+body.task-mode .mission-icon { background: var(--grad-aurora); box-shadow: 0 6px 18px rgba(var(--b2), 0.35); }
 .mission-hint {
     padding: 6px 13px;
     font-size: 12px;
@@ -841,14 +854,14 @@ body.task-mode .mission-icon { background: linear-gradient(135deg, #625fff, #ff7
 #connections-svg .conn-group.linked .conn {
     stroke: var(--accent-2);
     stroke-width: 2.5;
-    filter: drop-shadow(0 0 5px rgba(125, 122, 255, 0.55));
+    filter: drop-shadow(0 0 5px rgba(var(--b1), 0.55));
 }
 #connections-svg .conn.active {
     stroke: var(--pink);
     stroke-width: 2.8;
     stroke-dasharray: 8 6;
     animation: wireFlow 0.6s linear infinite;
-    filter: drop-shadow(0 0 7px rgba(255, 125, 218, 0.6));
+    filter: drop-shadow(0 0 7px rgba(var(--b2), 0.6));
 }
 @keyframes wireFlow { to { stroke-dashoffset: -28; } }
 #connections-svg .conn-del {
@@ -881,7 +894,7 @@ body.task-mode .mission-icon { background: linear-gradient(135deg, #625fff, #ff7
 }
 #connections-svg .particle {
     fill: #fff;
-    filter: drop-shadow(0 0 6px rgba(255, 125, 218, 0.95)) drop-shadow(0 0 12px rgba(98, 95, 255, 0.8));
+    filter: drop-shadow(0 0 6px rgba(var(--b2), 0.95)) drop-shadow(0 0 12px rgba(var(--b1), 0.8));
 }
 #connections-svg .particle-halo {
     fill: var(--pink);
@@ -1011,7 +1024,7 @@ body.task-mode .mission-icon { background: linear-gradient(135deg, #625fff, #ff7
 .node-back {
     transform: rotateY(180deg);
     background:
-        radial-gradient(120% 100% at 0% 0%, rgba(98, 95, 255, 0.22), transparent 60%),
+        radial-gradient(120% 100% at 0% 0%, rgba(var(--b1), 0.22), transparent 60%),
         var(--highlight);
     border-color: var(--border-strong);
 }
@@ -1028,11 +1041,11 @@ body.task-mode .mission-icon { background: linear-gradient(135deg, #625fff, #ff7
 }
 .node.firing .node-front {
     border-color: var(--pink);
-    box-shadow: 0 0 0 4px rgba(255, 125, 218, 0.25), 0 0 34px rgba(255, 125, 218, 0.35), var(--shadow-node);
+    box-shadow: 0 0 0 4px rgba(var(--b2), 0.25), 0 0 34px rgba(var(--b2), 0.35), var(--shadow-node);
     animation: nodePulse 1s ease-in-out infinite;
 }
 @keyframes nodePulse {
-    50% { box-shadow: 0 0 0 6px rgba(125, 122, 255, 0.22), 0 0 44px rgba(125, 122, 255, 0.4), var(--shadow-node); }
+    50% { box-shadow: 0 0 0 6px rgba(var(--b1), 0.22), 0 0 44px rgba(var(--b1), 0.4), var(--shadow-node); }
 }
 
 .node-header {
@@ -1051,7 +1064,7 @@ body.task-mode .mission-icon { background: linear-gradient(135deg, #625fff, #ff7
     background: var(--accent-soft);
     color: var(--accent-2);
     flex-shrink: 0;
-    box-shadow: inset 0 0 0 1px rgba(125, 122, 255, 0.2), 0 4px 12px rgba(98, 95, 255, 0.12);
+    box-shadow: inset 0 0 0 1px rgba(var(--b1), 0.2), 0 4px 12px rgba(var(--b1), 0.12);
 }
 .node-icon svg { width: 15px; height: 15px; }
 .node-icon.c-success { background: var(--success-soft); color: var(--success); box-shadow: inset 0 0 0 1px rgba(52, 211, 153, 0.22), 0 4px 12px rgba(52, 211, 153, 0.1); }
@@ -1155,11 +1168,11 @@ body.task-mode .mission-icon { background: linear-gradient(135deg, #625fff, #ff7
     font-family: var(--mono);
     font-size: 10px;
     font-weight: 500;
-    color: #fff;
+    color: var(--on-accent);
     background: var(--grad);
     padding: 2px 8px;
     border-radius: var(--pill);
-    box-shadow: 0 4px 14px rgba(98, 95, 255, 0.45);
+    box-shadow: 0 4px 14px rgba(var(--b1), 0.45);
     opacity: 0;
     transform: translateY(3px);
     transition: opacity 0.2s, transform 0.2s;
@@ -1192,7 +1205,7 @@ body.task-mode .mission-icon { background: linear-gradient(135deg, #625fff, #ff7
 .port.connected {
     background: var(--grad-aurora);
     border-color: transparent;
-    box-shadow: 0 0 0 3px var(--accent-soft), 0 0 12px rgba(125, 122, 255, 0.55);
+    box-shadow: 0 0 0 3px var(--accent-soft), 0 0 12px rgba(var(--b1), 0.55);
 }
 .port[data-count]::after {
     content: attr(data-count);
@@ -1297,9 +1310,9 @@ body.task-mode .mission-icon { background: linear-gradient(135deg, #625fff, #ff7
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
-    background: linear-gradient(135deg, #625fff, #ff7dda);
-    box-shadow: 0 6px 16px rgba(255, 125, 218, 0.3);
+    color: var(--on-accent);
+    background: var(--grad-aurora);
+    box-shadow: 0 6px 16px rgba(var(--b2), 0.3);
 }
 .task-head-icon svg { width: 16px; height: 16px; }
 .task-head-text { flex: 1; min-width: 0; }
@@ -1381,7 +1394,7 @@ body.task-mode .mission-icon { background: linear-gradient(135deg, #625fff, #ff7
     height: 100%;
     background: var(--grad-aurora);
     border-radius: var(--pill);
-    box-shadow: 0 0 12px rgba(255, 125, 218, 0.5);
+    box-shadow: 0 0 12px rgba(var(--b2), 0.5);
     transition: width 0.35s ease;
 }
 .task-panel.complete .task-progress-bar span { background: linear-gradient(90deg, #34d399, #28b6ff); box-shadow: 0 0 12px rgba(52, 211, 153, 0.5); }
@@ -1495,7 +1508,7 @@ body.task-mode .mission-icon { background: linear-gradient(135deg, #625fff, #ff7
     line-height: 1.55;
     color: var(--code-text);
 }
-.task-seg .arr { color: #ff7dda; }
+.task-seg .arr { color: rgb(var(--b2)); }
 .task-check-btn { width: 100%; justify-content: center; height: 36px; }
 
 /* ---------------- Inspector ---------------- */
@@ -1526,7 +1539,7 @@ body.task-mode .mission-icon { background: linear-gradient(135deg, #625fff, #ff7
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: inset 0 0 0 1px rgba(125, 122, 255, 0.2);
+    box-shadow: inset 0 0 0 1px rgba(var(--b1), 0.2);
 }
 .inspector-header-icon svg { width: 15px; height: 15px; }
 .inspector-title-wrap { flex: 1; min-width: 0; }
@@ -1602,7 +1615,7 @@ body.task-mode .mission-icon { background: linear-gradient(135deg, #625fff, #ff7
     overflow-x: auto;
     white-space: pre;
 }
-.insp-code .k { color: #ff7dda; }
+.insp-code .k { color: var(--code-k); }
 .insp-code .s { color: #28b6ff; }
 .insp-code .c { color: #8798c1; font-style: italic; }
 .insp-code .n { color: #85a6e9; }
@@ -1737,7 +1750,7 @@ body.task-mode .mission-icon { background: linear-gradient(135deg, #625fff, #ff7
     transition: all 0.2s;
 }
 .explain-dot.done { background: var(--success); border-color: var(--success); }
-.explain-dot.active { background: var(--pink); border-color: var(--pink); box-shadow: 0 0 0 3px rgba(255, 125, 218, 0.25), 0 0 10px rgba(255, 125, 218, 0.6); }
+.explain-dot.active { background: var(--pink); border-color: var(--pink); box-shadow: 0 0 0 3px rgba(var(--b2), 0.25), 0 0 10px rgba(var(--b2), 0.6); }
 .explain-body {
     flex: 1;
     overflow-y: auto;
@@ -1773,7 +1786,7 @@ body.task-mode .mission-icon { background: linear-gradient(135deg, #625fff, #ff7
     background: var(--surface-3);
     border-radius: 50%;
 }
-.data-step.changed .data-step-num { background: var(--grad); color: #fff; box-shadow: 0 3px 10px rgba(98, 95, 255, 0.35); }
+.data-step.changed .data-step-num { background: var(--grad); color: var(--on-accent); box-shadow: 0 3px 10px rgba(var(--b1), 0.35); }
 .data-step-main { flex: 1; min-width: 0; }
 .data-step-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 5px; }
 .data-step-label { font-size: 12.5px; font-weight: 600; color: var(--text); }
@@ -1820,11 +1833,11 @@ body.task-mode .mission-icon { background: linear-gradient(135deg, #625fff, #ff7
     overflow: auto;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
-.code-out .k { color: #ff7dda; }
+.code-out .k { color: var(--code-k); }
 .code-out .s { color: #28b6ff; }
 .code-out .c { color: #8798c1; font-style: italic; }
 .code-out .n { color: #85a6e9; }
-.code-out .f { color: #f0abfc; }
+.code-out .f { color: var(--code-f); }
 .code-copy {
     position: absolute;
     top: 9px;
@@ -2030,8 +2043,8 @@ body.task-mode .mission-icon { background: linear-gradient(135deg, #625fff, #ff7
     transition: border-color 0.15s, box-shadow 0.2s, transform 0.2s;
 }
 .example-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-lg), var(--inner-hl); transform: translateY(-3px); }
-.example-card.real { background: radial-gradient(120% 80% at 0% 0%, rgba(98, 95, 255, 0.10), transparent 60%), var(--card); }
-:root.dark .example-card.real { background: radial-gradient(120% 80% at 0% 0%, rgba(98, 95, 255, 0.16), transparent 60%), var(--highlight); border-color: #1e2b48; }
+.example-card.real { background: radial-gradient(120% 80% at 0% 0%, rgba(var(--b1), 0.10), transparent 60%), var(--card); }
+:root.dark .example-card.real { background: radial-gradient(120% 80% at 0% 0%, rgba(var(--b1), 0.16), transparent 60%), var(--highlight); border-color: #1e2b48; }
 .example-thumb {
     width: 100%;
     height: 100px;
@@ -2049,7 +2062,7 @@ body.task-mode .mission-icon { background: linear-gradient(135deg, #625fff, #ff7
 .example-thumb svg { width: 100%; height: 100%; }
 .thumb-line { fill: none; stroke: var(--wire); stroke-width: 1.4; }
 .example-card:hover .thumb-line { stroke: var(--accent-2); }
-.thumb-dot { fill: var(--accent-2); filter: drop-shadow(0 0 3px rgba(125, 122, 255, 0.8)); }
+.thumb-dot { fill: var(--accent-2); filter: drop-shadow(0 0 3px rgba(var(--b1), 0.8)); }
 .example-scenario {
     align-self: flex-start;
     padding: 2px 10px;
@@ -2106,9 +2119,9 @@ body.task-mode .mission-icon { background: linear-gradient(135deg, #625fff, #ff7
     justify-content: center;
     font-size: 12px;
     font-weight: 600;
-    color: #fff;
+    color: var(--on-accent);
     background: var(--grad);
-    box-shadow: 0 4px 12px rgba(98, 95, 255, 0.35);
+    box-shadow: 0 4px 12px rgba(var(--b1), 0.35);
 }
 .task-card.done .task-card-num { background: var(--success); color: #05150f; box-shadow: 0 4px 12px rgba(52, 211, 153, 0.35); }
 .task-card-context {
@@ -2252,7 +2265,7 @@ body.task-mode .mission-icon { background: linear-gradient(135deg, #625fff, #ff7
     line-height: 1.65;
 }
 .console-line { display: flex; gap: 8px; color: var(--code-text); padding: 1px 0; }
-.console-line .arrow { color: #ff7dda; }
+.console-line .arrow { color: var(--code-k); }
 .console-line.warn { color: #fbbf24; }
 .console-line.err { color: #f87171; }
 .console-empty { color: #8798c1; font-family: var(--font); font-size: 12px; }

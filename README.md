@@ -75,7 +75,7 @@ Fundamentals 1–9: render an array, filter, map, sort, reduce, first fetch, asy
 
 Advanced 10–22: click handlers, POST from a form, PUT, delegated DELETE, spread + localStorage, restore from storage, debounced search, event delegation, `.then()` chain, event-loop ordering, ES modules, AbortController, and a fan-in/fan-out graph level where create and delete share one request pipeline.
 
-**Check Answer** validates the chain and names the first block that is out of place. **Reference Schemas** holds 30 pre-built flows you can load read-only and then edit: 10 real-world scenarios (each with a *Practise as a task* link) and 20 concept schemas.
+**Check Answer** validates the chain and names the first block that is out of place. **Reference Schemas** holds 40 pre-built flows you can load read-only and then edit: 10 real-world scenarios (each with a *Practise as a task* link), 10 from real products (YouTube comments, a Spotify playlist, Netflix's Continue watching row, Google suggestions, Bolt drivers nearby, Airbnb stays, starring a GitHub repo, liking an Instagram post, Wolt order tracking, Duolingo XP), each with its own data, and 20 concept schemas.
 
 ## Canvas controls
 
@@ -90,7 +90,7 @@ Advanced 10–22: click handlers, POST from a form, PUT, delegated DELETE, sprea
 | More room for the canvas | « in the library header folds it into an icon rail (hover an icon for its name, drag it as usual) · hover the inspector's or the bottom panel's edge and click the double arrow to hide it, click it again to bring it back · drag any edge to resize. Remembered per browser. |
 | Delete a block | Select and press Delete |
 
-Also: dark (default) and light theme, English/Georgian UI, block search, and task progress — remembered in `localStorage`.
+Also: dark (default) and light theme, English/Georgian UI, block search, and task progress — remembered in `localStorage`. The accent colour is the JavaScript logo's yellow; the palette is two variables at the top of `styles.css` (`--b1`, `--b2`), the same scheme [Angular Flow Lab](https://thothcher.github.io/schemas/) (red) and [React Flow Lab](https://thothcher.github.io/react-lab/) (cyan) use.
 
 ## Teaching ideas
 
